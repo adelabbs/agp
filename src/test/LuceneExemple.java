@@ -20,7 +20,7 @@ public class LuceneExemple {
 	    Analyzer analyseur = new StandardAnalyzer();
 
 	    // 2. Creation de l'index
-//	    Directory index = new RAMDirectory();  //création index en mémoire
+	    //Directory index = new RAMDirectory();  //création index en mémoire
 	    Path indexpath = FileSystems.getDefault().getPath("/tmp/index"); //localisation index
 	    Directory index = FSDirectory.open(indexpath);  //création index sur disque
 	    
