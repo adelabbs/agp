@@ -2,6 +2,11 @@ package persistence.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+/**
+ *  TEST COMMIT G
+ *
+ *
+ */
 
 class JdbcConnection {
 	private static String host = "localhost";
