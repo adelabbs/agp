@@ -12,7 +12,7 @@ import dao.StatisticPersistence;
 
 /**
  * System simulation. Access point of all related information.
- Test commit geoffroy
+ Test commit geoffroy 2
  */
 public class Simulation {
 	private Bank bank;
