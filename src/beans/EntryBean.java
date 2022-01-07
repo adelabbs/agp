@@ -15,7 +15,8 @@ import business.spring.SpringIoC;
 @ManagedBean
 @SessionScoped
 public class EntryBean {
-
+	// test Aëlien
+	
 	/**
 	 * Proxy encapsulated object. All get/set of parameters work on this proxy object.
 	 */
