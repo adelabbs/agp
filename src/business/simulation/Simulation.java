@@ -15,6 +15,8 @@ import dao.StatisticPersistence;
  Test commit geoffroy
  
  Test commit Lucas
+ 
+ Test commit Alex
  */
 public class Simulation {
 	private Bank bank;
