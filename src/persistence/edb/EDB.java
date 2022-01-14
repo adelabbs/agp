@@ -1,5 +1,6 @@
 package persistence.edb;
 
-public class EDB {
-
+public interface EDB {
+	AbstractOperator execQuerySQL(String query);
+	AbstractOperator execMixedQuery(String query);
 }

@@ -1,5 +1,6 @@
 package persistence.edb;
 
-public class AbstractOperator {
-
+public interface AbstractOperator {
+	void init();
+	AbstractOperator next();
 }
