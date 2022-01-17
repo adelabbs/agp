@@ -17,14 +17,13 @@ public class EntryBean {
 	
 	private SearchEntry entry = new SearchEntry();
 	
-	private Engine form = (Engine) SpringIoC.getBean("form");;
+	private Engine form = (Engine) SpringIoC.getBean("form");
 	
 	public EntryBean() {}
 	
 	public String startEngine() {
 		return "result";
 	}
-	
 	
 	public SearchEntry getEntry() {
 		return entry;
