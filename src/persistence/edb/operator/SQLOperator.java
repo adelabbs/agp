@@ -66,7 +66,11 @@ public class SQLOperator implements Operator {
 
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
+		try {
+			return !resultSet.isLast();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }
