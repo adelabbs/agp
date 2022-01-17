@@ -1,6 +1,5 @@
 package beans;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,7 @@ import business.model.Offer;
 
 @ManagedBean
 @SessionScoped
-public class ResultBean implements Serializable {
+public class ResultBean  {
 
 	private List<Offer> offers;
 	
