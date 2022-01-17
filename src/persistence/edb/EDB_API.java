@@ -1,6 +1,9 @@
 package persistence.edb;
 
 public interface EDB_API {
-	AbstractOperator execQuerySQL(String query);
-	AbstractOperator execMixedQuery(String query);
+	void initDataParameters();
+	void createFileDescription();
+	void createTextualIndex();
+	abstract AbstractOperator execMixedQuery();
+	AbstractOperator execSQLQuery();
 }
