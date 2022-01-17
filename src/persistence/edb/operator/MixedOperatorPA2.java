@@ -8,15 +8,21 @@ public class MixedOperatorPA2 implements Operator {
 	}
 
 	@Override
-	public Result next() {
+	public boolean next() {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Result getRow() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,7 +4,9 @@ public interface Operator {
 	
 	public void init();
 	
-	public Result next();
+	public boolean next();
+	
+	public Result getRow();
 	
 	public void executeQuery(String query);
 }
