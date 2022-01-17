@@ -21,4 +21,10 @@ public class TextualOperator implements Operator {
 		return null;
 	}
 
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

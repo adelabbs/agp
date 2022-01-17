@@ -19,4 +19,10 @@ public class MixedOperatorPA1 implements Operator {
 		return null;
 	}
 
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

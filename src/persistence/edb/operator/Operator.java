@@ -6,5 +6,7 @@ public interface Operator {
 	
 	public Result next();
 	
+	public boolean hasNext();
+	
 	public void executeQuery(String query);
 }

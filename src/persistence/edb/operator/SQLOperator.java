@@ -24,7 +24,7 @@ public class SQLOperator implements Operator {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public Result next() {
 		Result result = new Result();
@@ -40,7 +40,7 @@ public class SQLOperator implements Operator {
 		return result;
 	}
 	
-	public void buildResultMetaData() {
+	private void buildResultMetaData() {
 		try {
 			rsmd = (ResultSetMetaData) resultSet.getMetaData();
 			numberOfColumns = rsmd.getColumnCount();
@@ -58,8 +58,15 @@ public class SQLOperator implements Operator {
 			PreparedStatement preparedStatement = JdbcConnection.getConnection().prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			preparedStatement.close();
+			buildResultMetaData();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
+	}
+
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
