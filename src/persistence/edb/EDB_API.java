@@ -25,7 +25,7 @@ public abstract class EDB_API {
 	
 	void createTextualIndex() {
 		try {
-			LuceneIndexer li = new LuceneIndexer(userDirectoryPath);
+			LuceneIndexer.getInstance(userDirectoryPath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
