@@ -16,7 +16,7 @@ public class LocationImplementation implements LocationPersistence {
 	Operator op;
 	
 	public LocationImplementation() {
-		bde = new PlanAct1();
+		bde = new PlanAct1(null, null, null);
 	}
 
 	

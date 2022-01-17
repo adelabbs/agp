@@ -1,25 +1,37 @@
 package persistence.edb;
 
 import persistence.edb.operator.Operator;
+import persistence.lucene.LuceneIndexer;
 
 public abstract class EDB_API {
 	
-	public EDB_API() {
-		
+	private String tableName; 
+	private String key;
+	private String userDirectoryPath;
+	
+	public EDB_API(String tableName, String key, String userDirectoryPath) {
+		initDataParameters(tableName, key, userDirectoryPath);
 	}
 	
-	void initDataParameters() {
-		
+	void initDataParameters(String tableName, String key, String userDirectoryPath) {
+		this.tableName = tableName;
+		this.key = key;
+		this.userDirectoryPath = userDirectoryPath;
 	}
+	
 	void createFileDescription() {
 		
 	}
 	
 	void createTextualIndex() {
-		
+		try {
+			LuceneIndexer li = new LuceneIndexer(userDirectoryPath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	Operator execSQLQuery() {
+	Operator execSQLQuery(String query) {
 		return null;	
 	}
 	
