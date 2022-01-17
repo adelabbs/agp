@@ -23,7 +23,11 @@ public class ResultBean {
 
 	@PostConstruct
 	private void printResults() {
-		System.out.println();
+		setBudgetMin(entryBean.getBudgetMin());
+		setBudgetMax(entryBean.getBudgetMax());
+		setDaysOfStay(entryBean.getDaysOfStay());
+		setDifficultyPreference(entryBean.getDifficultyPreference());
+		setLocationPreference(entryBean.getLocationPreference());
 	}
 
 	public EntryBean getEntryBean() {

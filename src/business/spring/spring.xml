@@ -19,22 +19,22 @@
 
 	<!-- This part is used only by TestEngine -->
 	<bean id="entry" class="business.engine.SearchEntry">
-		<property name="budgetMin">
-			<value>100</value>
+		<!-- <property name="budgetMin">
+			<value>100</value> 
 		</property>
 		<property name="budgetMax">
-			<value>500</value>
+			<value>500</value> 
 		</property>
 		<property name="daysOfStay">
-			<value>7</value>
+			<value>7</value> 
 		</property>
 		<property name="difficultyPreference">
-			<value>2</value>
+			<value>2</value> 
 		</property>
 		<property name="locationPreference">
-			<value>Historical</value>
-		</property>
-	</bean>
+			<value>Historical</value> 
+		</property> -->
+	</bean> 
 
 	<bean id="transport" class="business.client.AbstractTransport"
 		abstract="true" scope="prototype" />
