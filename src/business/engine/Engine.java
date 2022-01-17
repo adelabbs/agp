@@ -13,8 +13,6 @@ public class Engine {
 	public SearchEntry getSearchEntry() {
 		return searchEntry;
 	}
-	
-	
 
 	public void setSearchEntry(SearchEntry searchEntry) {
 		this.searchEntry = searchEntry;
