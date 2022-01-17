@@ -23,8 +23,14 @@ public class TestLucene {
 				
 		}
 		
-		new LuceneIndexer();
+		System.out.println("yo");
+		String sysdir = System.getProperty("user.dir");
 		
+		
+		LuceneIndexer indexer = new LuceneIndexer(sysdir+"/tmp/index");
+		
+		int num = indexer.indexing(sysdir+"/tmp/files");
+	    
+	    System.out.println("Indexed "+num+" files out of "+testNames.length);
 	}
-		 
 }

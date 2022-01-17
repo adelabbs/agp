@@ -13,40 +13,45 @@ import org.apache.lucene.store.*;
 
 public class LuceneIndexer {
 	
-	public LuceneIndexer() throws Exception{
+	private Analyzer analyzer; 
+	private Path indexpath;
+	private Directory index;
+	private IndexWriterConfig config;
+	private IndexWriter writer;
+	
+	
+	public LuceneIndexer(String indexpathname) throws Exception {
+		this.analyzer = new StandardAnalyzer();
+		this.indexpath = FileSystems.getDefault().getPath(indexpathname);
+		this.index = FSDirectory.open(indexpath);
+		this.config = new IndexWriterConfig(analyzer);
+		this.writer = new IndexWriter(index, config);
 		
-		Analyzer analyzer = new StandardAnalyzer();
+	 }
+	
+	public Analyzer getAnalyzer() {
+		return analyzer;
+	}
 
-	    Path indexpath = FileSystems.getDefault().getPath(localDir+"/tmp/index");
-	    Directory index = FSDirectory.open(indexpath);
-	    
-	    IndexWriterConfig config = new IndexWriterConfig(analyzer);
-	    w = new IndexWriter(index, config);
-	    
-	    FileFilter filter = new TextFilesFilter();
-	    
-	    String directory = localDir+"/tmp/files";
-	    
-	    int numDocs = fileIndexer(directory, filter);
-	    
-	    close();
-	    
-	    System.out.println("Indexed "+numDocs+" files");
-   		
-	  }
-	
-	private IndexWriter w;
-	
-	private String localDir = System.getProperty("user.dir");
-	
-	public void close() throws IOException {
-		w.close();
+	public Directory getIndex() {
+		return index;
 	}
 	
-	public int fileIndexer(String directory, FileFilter filter) throws Exception {
+	public int indexing(String filespathname) throws Exception {
 		
+	    FileFilter filter = new TextFilesFilter();
+	    String directory = filespathname;
+	    int numDocs = fileIndexer(directory, filter);
+	    close();
 		
-		
+		return numDocs;
+	}
+	
+	private void close() throws IOException {
+		writer.close();
+	}
+	
+	private int fileIndexer(String directory, FileFilter filter) throws Exception {
 		File[] files = new File(directory).listFiles();
 	    
 	    for (File f: files) {
@@ -54,11 +59,11 @@ public class LuceneIndexer {
 	    		!f.isHidden() &&
 	    		f.exists() &&
 	    		f.canRead()) {
-	    		indexFile(f, w);
+	    		indexFile(f, writer);
 	    	}
 	    }
 		
-		return w.numRamDocs();
+		return writer.numRamDocs();
 	}
 	
 	private static class TextFilesFilter implements FileFilter {

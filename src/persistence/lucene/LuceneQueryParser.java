@@ -11,17 +11,22 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.store.*;
 
 public class LuceneQueryParser {
-	public static void main(String[] args) throws Exception{
+	
+	LuceneIndexer indexer;
+	
+	public LuceneQueryParser(LuceneIndexer indexer) throws Exception{
+		this.indexer = indexer;
+	}
+	
+	public void search(String reqstr) throws Exception {
 		int MAX_RESULTS = 100;
 		
-		Analyzer analyzer = new StandardAnalyzer();
-		
-		Path indexpath = FileSystems.getDefault().getPath("/tmp/index");
-		Directory index = FSDirectory.open(indexpath);
+		Analyzer analyzer = indexer.getAnalyzer();
+	
+		Directory index = indexer.getIndex();
 		
 		DirectoryReader ireader = DirectoryReader.open(index);
 	    IndexSearcher searcher = new IndexSearcher(ireader);
-	    String reqstr = "word1 word2";
 	    
 	    QueryParser qp = new QueryParser("content", analyzer); 
 	    Query req = qp.parse(reqstr);
