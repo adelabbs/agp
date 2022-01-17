@@ -18,7 +18,7 @@ public class LuceneQueryParser {
 		this.indexer = indexer;
 	}
 	
-	public void search(String reqstr) throws Exception {
+	public TopDocs search(String reqstr) throws Exception {
 		int MAX_RESULTS = 100;
 		
 		Analyzer analyzer = indexer.getAnalyzer();
@@ -41,5 +41,7 @@ public class LuceneQueryParser {
 	    }
 	    
 	    ireader.close();
+	    
+	    return resultats;
     }
 }
