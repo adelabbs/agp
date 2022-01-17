@@ -3,9 +3,9 @@ package persistence.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-class JdbcConnection {
-	private static String host = "localhost";
-	private static String base = "agp";
+public class JdbcConnection {
+	private static String host = "localhost/phpmyadmin";
+	private static String base = "agp_team1";
 	private static String user = "root";
 	private static String password = "";
 	private static String url = "jdbc:mysql://" + host + "/" + base;
