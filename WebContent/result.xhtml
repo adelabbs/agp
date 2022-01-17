@@ -13,13 +13,27 @@
 		<legend>
 			<strong>Here are the offers that match your criteria</strong>
 		</legend>		
-	
-		Budget Min : #{resultBean.budgetMin} <br /> 
-		Budget Max : #{resultBean.budgetMax} <br /> 
-		Difficulty preference : #{resultBean.difficultyPreference} <br /> 
-		Location preference : #{resultBean.locationPreference} <br /> 
-		Days of Stay : #{resultBean.daysOfStay} <br /> 
-
+		<br></br>	
+		<h:form id="form">
+    		<div class="product card">
+        		<p:dataList value="#{resultBean.offers}" var="offer" type="ordered">
+            	<div class="product-list-item">
+                	<div class="product-list-detail">
+                    	<div class="product-name">Offre n°x</div>
+                    	<div class="product-description">programme jour 1</div>
+                    	<div class="product-description">...</div>
+                    	<div class="product-description">programme jour x</div>
+               	 	</div>
+               		<div class="product-list-action">
+                   		<h:outputText value="#{offer.totalPrice}" styleClass="product-price">
+                    	<f:convertNumber currencySymbol="€" type="currency"/>
+                    	</h:outputText>
+                	</div>
+                	<br></br>
+            	</div>
+        		</p:dataList>
+  			</div>
+   	 	</h:form>	
 	</fieldset>
 </h:body>
 </html>
