@@ -9,8 +9,9 @@ public class PlanAct2 extends EDB_API {
 	}
 
 	@Override
-	Operator execMixedQuery() {
+	Operator executeMixedQuery(String query) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

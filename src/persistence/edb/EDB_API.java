@@ -25,16 +25,16 @@ public abstract class EDB_API {
 	
 	void createTextualIndex() {
 		try {
-			LuceneIndexer li = new LuceneIndexer(userDirectoryPath);
+			LuceneIndexer.getInstance(userDirectoryPath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	Operator execSQLQuery(String query) {
+	Operator executeSQLQuery(String query) {
 		return null;	
 	}
 	
-	abstract Operator execMixedQuery();
+	abstract Operator executeMixedQuery(String query);
 
 }

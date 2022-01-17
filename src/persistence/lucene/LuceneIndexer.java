@@ -13,6 +13,8 @@ import org.apache.lucene.store.*;
 
 public class LuceneIndexer {
 	
+	private static LuceneIndexer indexer = null;
+	
 	private Analyzer analyzer; 
 	private Path indexpath;
 	private Directory index;
@@ -20,14 +22,26 @@ public class LuceneIndexer {
 	private IndexWriter writer;
 	
 	
-	public LuceneIndexer(String indexpathname) throws Exception {
+	private LuceneIndexer(String indexpathname) throws Exception {
 		this.analyzer = new StandardAnalyzer();
+		File indexdirectory = new File(indexpathname);
+		emptyDirectory(indexdirectory);
 		this.indexpath = FileSystems.getDefault().getPath(indexpathname);
 		this.index = FSDirectory.open(indexpath);
 		this.config = new IndexWriterConfig(analyzer);
 		this.writer = new IndexWriter(index, config);
-		
 	 }
+	
+	public static LuceneIndexer getInstance(String indexpathname) {
+		if (indexer == null) {
+			try {
+				indexer = new LuceneIndexer(indexpathname);
+			} catch (Exception e) {
+			}
+			return indexer;
+		}
+		return indexer;
+	}
 	
 	public Analyzer getAnalyzer() {
 		return analyzer;
@@ -35,6 +49,15 @@ public class LuceneIndexer {
 
 	public Directory getIndex() {
 		return index;
+	}
+	
+	private void emptyDirectory(File folder){
+		for(File file : folder.listFiles()){
+			if(file.isDirectory()){
+				emptyDirectory(file);
+		    }
+		    file.delete();
+		}
 	}
 	
 	public int indexing(String filespathname) throws Exception {

@@ -4,6 +4,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 
+import org.apache.lucene.search.TopDocs;
+
 import persistence.lucene.*;
 
 public class TestLucene {
@@ -23,14 +25,21 @@ public class TestLucene {
 				
 		}
 		
-		System.out.println("yo");
 		String sysdir = System.getProperty("user.dir");
 		
 		
-		LuceneIndexer indexer = new LuceneIndexer(sysdir+"/tmp/index");
+		LuceneIndexer indexer = LuceneIndexer.getInstance(sysdir+"/tmp/index");
 		
 		int num = indexer.indexing(sysdir+"/tmp/files");
 	    
 	    System.out.println("Indexed "+num+" files out of "+testNames.length);
+	    
+	    LuceneQueryParser parser = new LuceneQueryParser(indexer);
+	    
+	    TopDocs resultats;
+	    resultats = parser.search("wonderful");
+	    
+	    
+	    
 	}
 }

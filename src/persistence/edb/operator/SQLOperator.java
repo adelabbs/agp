@@ -7,10 +7,10 @@ import java.sql.SQLException;
 
 public class SQLOperator extends Operator {
 
-	public void execQuery(String query) {
+	public void executeQuery(String query) {
 		try {
 			PreparedStatement preparedStatement = JdbcConnection.getConnection().prepareStatement(query);
-			result = preparedStatement.executeQuery();
+			resultSet = preparedStatement.executeQuery();
 			preparedStatement.close();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
