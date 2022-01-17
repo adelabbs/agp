@@ -5,25 +5,22 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Bank simulation</title>
+	<title> Santorini and Crete travel scheduler </title>
 </h:head>
 <h:body>
 	<p>
-		<strong>Welcome to bank simulation !</strong>
+		<strong>Welcome to our travel scheduler </strong>
 	</p>
 
-	<h2>Please enter values for simulation parameters</h2>
+	<h2>Please state your expectations for the stay  </h2>
 	<fieldset>
 		<h:form>
-			Simulation duration : <h:inputText value="#{entryBean.simulationDuration}" /> <br />
-			Cashier count : <h:inputText value="#{entryBean.cashierCount}" /> <br />
-			Min service time : <h:inputText value="#{entryBean.minServiceTime}" /> <br />
-			Max service time : <h:inputText value="#{entryBean.maxServiceTime}" /> <br />
-			Client arrival interval : <h:inputText value="#{entryBean.clientArrivalInterval}" /> <br />
-			Priority client rate : <h:inputText value="#{entryBean.priorityClientRate}" /> <br />
-			Client patience time : <h:inputText value="#{entryBean.clientPatienceTime}" /> <br />    
-			 
-			<h:commandButton value="Start" action="#{entryBean.startSimulation}" />
+			Stay duration : <h:inputText value="#{entryBean.stay_duration}" /> <br />
+			Confort : <h:inputText value="#{entryBean.difficulty_score}" /> <br />
+			type of the stay : <h:inputText value="#{entryBean.excursion_types}" /> <br />  
+			Budget inf : <h:inputText value="#{entryBean.budget_inf}" /> <br />
+			Budget supp : <h:inputText value="#{entryBean.budget_supp}" /> <br />
+			<h:commandButton value="Submit" action="#{entryBean.startEngine}" />
 		</h:form>
 	</fieldset>
 </h:body>

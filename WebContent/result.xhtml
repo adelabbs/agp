@@ -6,28 +6,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Simulation result</title>
+	<title>Research result</title>
 </h:head>
 <h:body>
 	<fieldset>
 		<legend>
-			<strong>In memory simulation result</strong>
+			<strong>Here are the offers that match your criteria</strong>
 		</legend>		
 	
-		Average client waiting time : #{resultBean.averageClientWaitingTime} <br /> 
-		Average client service time : #{resultBean.averageClientServiceTime} <br />
-		Cashier occupation rate : #{resultBean.cashierOccupationRate} % <br /> 
-		Client satisfaction rate : #{resultBean.clientSatisfactionRate} % <br />
-
-	</fieldset>
-	<fieldset>
-		<legend>
-			<strong>Persisted simulation result</strong>
-		</legend>		
-		Served client count : #{resultBean.servedClientCount} <br />
-		Non Served client count : #{resultBean.nonServedClientCount} <br /> 
-		
-		<p:chart type="pie" model="#{resultBean.pieModel1}" style="width:400px;height:300px" /> <br />
+		Day 1 : #{resultBean.stay_duration} <br /> 
 
 	</fieldset>
 </h:body>
