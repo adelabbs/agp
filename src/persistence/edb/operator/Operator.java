@@ -5,28 +5,31 @@ import java.sql.SQLException;
 
 public abstract class Operator {
 	
-	ResultSet result = null;
+	ResultSet resultSet = null;
+	private int cpt;
+	private int numberOfRows;
 	
-	boolean init() {
+	public void init() {
 		try {
-			return result.first();
+			numberOfRows = resultSet.getRow();
+			cpt = 0;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
 	}
 	
-	boolean next() {
+	public Result next() {
 		try {
-			return result.next();
+			//return result.next();
+			resultSet.getObject(0);
+			resultSet.getArray(cpt);
+			cpt++;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 	
-	abstract void execQuery(String query);
+	public abstract void executeQuery(String query);
 	
 }

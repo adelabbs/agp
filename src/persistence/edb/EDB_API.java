@@ -31,10 +31,10 @@ public abstract class EDB_API {
 		}
 	}
 	
-	Operator execSQLQuery(String query) {
+	Operator executeSQLQuery(String query) {
 		return null;	
 	}
 	
-	abstract Operator execMixedQuery();
+	abstract Operator executeMixedQuery(String query);
 
 }

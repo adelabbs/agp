@@ -9,11 +9,11 @@ public class Result {
 		
 	}
 	
-	void addField(String key, Object value) {
+	public void addField(String key, Object value) {
 		resultRow.put(key, value);
 	}
 	
-	Object getObject(String key) {
+	public Object getObject(String key) {
 		return resultRow.get(key);
 	}
 }
