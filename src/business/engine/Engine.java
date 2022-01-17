@@ -13,6 +13,16 @@ public class Engine {
 	public SearchEntry getSearchEntry() {
 		return searchEntry;
 	}
+	
+	
+
+	public void setSearchEntry(SearchEntry searchEntry) {
+		this.searchEntry = searchEntry;
+	}
+
+	public void setSearchResultsManager(SearchResultsManager searchResultsManager) {
+		this.searchResultsManager = searchResultsManager;
+	}
 
 	public SearchResultsManager getSearchResultsManager() {
 		return searchResultsManager;

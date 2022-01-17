@@ -1,10 +1,13 @@
 package beans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
+
 import javax.faces.bean.SessionScoped;
 
-import business.engine.LucasEngine;
-import business.engine.LucasEntry;
+import business.engine.Engine;
+import business.engine.SearchEntry;
 import business.spring.SpringIoC;
 
 @ManagedBean
@@ -12,9 +15,9 @@ import business.spring.SpringIoC;
 
 public class EntryBean {
 	
-	private LucasEntry entry = new LucasEntry();
+	private SearchEntry entry = new SearchEntry();
 	
-	private LucasEngine form = (LucasEngine) SpringIoC.getBean("form");;
+	private Engine form = (Engine) SpringIoC.getBean("form");;
 	
 	public EntryBean() {}
 	
@@ -23,55 +26,73 @@ public class EntryBean {
 	}
 	
 	
-	public LucasEntry getEntry() {
+	public SearchEntry getEntry() {
 		return entry;
 	}
-	public void setEntry(LucasEntry entry) {
+	public void setEntry(SearchEntry entry) {
 		this.entry = entry;
 	}
-	public int getStay_duration() {
-		return entry.getStay_duration();
+	public int getBudgetMin() {
+		return entry.getBudgetMin();
 	}
 
-	public void setStay_duration(int stayDuration) {
-		entry.setStay_duration(stayDuration);
+	public void setBudgetMin(int budgetMin) {
+		entry.setBudgetMin(budgetMin);
 	}
 
-	public int getBudget_inf() {
-		return entry.getBudget_inf();
+	public int getBudgetMax() {
+		return entry.getBudgetMax();
 	}
 
-	public void setBudget_inf(int budget_inf) {
-		entry.setBudget_inf(budget_inf);
+	public void setBudgetMax(int budgetMax) {
+		entry.setBudgetMax(budgetMax);
 	}
 
-	public int getBudget_supp() {
-		return entry.getBudget_supp();
+	public int getDaysOfStay() {
+		return entry.getDaysOfStay();
 	}
 
-	public void setBudget_supp(int budget_supp) {
-		entry.setBudget_supp(budget_supp);
+	public void setDaysOfStay(int daysOfStay) {
+		entry.setDaysOfStay(daysOfStay);
 	}
 
-	public int getDifficulty_score() {
-		return entry.getDifficulty_score();
+	public int getDifficultyPreference() {
+		return entry.getDifficultyPreference() ;
 	}
 
-	public void setDifficulty_score(int difficulty_score) {
-		entry.setDifficulty_score(difficulty_score);
+	public void setDifficultyPreference(int difficultyPreference) {
+		entry.setDifficultyPreference(difficultyPreference);
 	}
 
-	public char getExcursion_types() {
-		return entry.getExcursion_types();
+	public String getLocationPreference() {
+		return entry.getLocationPreference();
 	}
 
-	public void setExcursion_types(char excursion_types) {
-		entry.setExcursion_types(excursion_types);
+	public void setLocationPreference(String locationPreference) {
+		entry.setLocationPreference(locationPreference);
 	}
-	public LucasEngine getForm() {
+
+	public List<String> getSearchKeywords() {
+		return entry.getSearchKeywords();
+	}
+
+	public void setSearchKeywords(List<String> searchKeywords) {
+		entry.setSearchKeywords(searchKeywords);
+	}
+
+	public void addSearchKeyword(String keyword) {
+		if (!entry.getSearchKeywords().contains(keyword)) {
+			entry.addSearchKeyword(keyword);
+		}
+	}
+
+	public void removeSearchKeyword(String keyword) {
+		entry.removeSearchKeyword(keyword);
+	}
+	public Engine getForm() {
 		return form;
 	}
-	public void setForm(LucasEngine form) {
+	public void setForm(Engine form) {
 		this.form = form;
 	}
 	

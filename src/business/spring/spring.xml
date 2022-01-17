@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-	<bean id="engine" class="business.engine.Engine">
+	<bean id="form" class="business.engine.Engine">
 		<property name="searchEntry" ref="entry" />
 	</bean>
 
@@ -18,7 +18,7 @@
 		parent="persistenceDAO" />
 
 	<!-- This part is used only by TestEngine -->
-	<bean id="entry" class="business.client.SearchEntry">
+	<bean id="entry" class="business.engine.SearchEntry">
 		<property name="budgetMin">
 			<value>100</value>
 		</property>

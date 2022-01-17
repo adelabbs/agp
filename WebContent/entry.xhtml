@@ -15,11 +15,11 @@
 	<h2>Please state your expectations for the stay  </h2>
 	<fieldset>
 		<h:form>
-			Stay duration : <h:inputText value="#{entryBean.stay_duration}" /> <br />
-			Confort : <h:inputText value="#{entryBean.difficulty_score}" /> <br />
-			type of the stay : <h:inputText value="#{entryBean.excursion_types}" /> <br />  
-			Budget inf : <h:inputText value="#{entryBean.budget_inf}" /> <br />
-			Budget supp : <h:inputText value="#{entryBean.budget_supp}" /> <br />
+			Stay duration : <h:inputText value="#{entryBean.daysOfStay}" /> <br />
+			Confort : <h:inputText value="#{entryBean.difficultyPreference}" /> <br />
+			type of the stay : <h:inputText value="#{entryBean.locationPreference}" /> <br />  
+			Budget inf : <h:inputText value="#{entryBean.budgetMin}" /> <br />
+			Budget supp : <h:inputText value="#{entryBean.budgetMax}" /> <br />
 			<h:commandButton value="Submit" action="#{entryBean.startEngine}" />
 		</h:form>
 	</fieldset>
