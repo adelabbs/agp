@@ -7,96 +7,43 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-	<bean id="simulation" class="business.simulation.Simulation">
-		<property name="simulationEntry" ref="entry" />
-		<property name="statisticManager" ref="manager" />
-		<property name="statisticPersistence" ref="hibernateDAO" />
+	<bean id="engine" class="business.engine.Engine">
+		<property name="searchEntry" ref="entry" />
 	</bean>
 
-	<bean id="persistenceDAO" class="dao.StatisticPersistence"
+	<bean id="persistenceDAO" class="dao.LocationPersistence"
 		abstract="true" scope="prototype" />
 
-	<bean id="hibernateDAO"
-		class="persistence.hibernate.HibernatePersistence"
-		parent="persistenceDAO" />
-	<bean id="jdbcDAO" class="persistence.jdbc.JdbcPersistence"
+	<bean id="edbDAO" class="persistence.edbPersistence"
 		parent="persistenceDAO" />
 
-	<!-- This part is used only by TestSimulation -->
-	<bean id="entry" class="business.client.SimulationEntry">
-		<property name="cashierCount">
-			<value>3</value>
+	<!-- This part is used only by TestEngine -->
+	<bean id="entry" class="business.client.SearchEntry">
+		<property name="budgetMin">
+			<value>100</value>
 		</property>
-		<property name="clientArrivalInterval">
-			<value>5</value>
+		<property name="budgetMax">
+			<value>500</value>
 		</property>
-		<property name="clientPatienceTime">
+		<property name="daysOfStay">
 			<value>7</value>
 		</property>
-		<property name="maxServiceTime">
-			<value>20</value>
+		<property name="difficultyPreference">
+			<value>2</value>
 		</property>
-		<property name="minServiceTime">
-			<value>10</value>
-		</property>
-		<property name="priorityClientRate">
-			<value>0.1</value>
-		</property>
-		<property name="simulationDuration">
-			<value>1000</value>
+		<property name="locationPreference">
+			<value>Historical</value>
 		</property>
 	</bean>
 
-	<bean id="manager" class="business.simulation.StatisticManager" />
-
-	<bean id="client" class="business.client.AbstractClient"
-		abstract="true" scope="prototype" />
-	<bean id="operation" class="business.client.AbstractOperation"
+	<bean id="transport" class="business.client.AbstractTransport"
 		abstract="true" scope="prototype" />
 
-	<bean id="vipConsultation" class="business.client.VIPClient"
-		parent="client">
-		<property name="operation" ref="consultation" />
-	</bean>
-	<bean id="vipTransfer" class="business.client.VIPClient"
-		parent="client">
-		<property name="operation" ref="transfer" />
-	</bean>
-	<bean id="vipWithdraw" class="business.client.VIPClient"
-		parent="client">
-		<property name="operation" ref="withdraw" />
-	</bean>
-	<bean id="normalConsultation" class="business.client.Client"
-		parent="client">
-		<property name="operation" ref="consultation" />
-	</bean>
-	<bean id="normalTransfer" class="business.client.Client"
-		parent="client">
-		<property name="operation" ref="transfer" />
-	</bean>
-	<bean id="normalWithdraw" class="business.client.Client"
-		parent="client">
-		<property name="operation" ref="withdraw" />
-	</bean>
-	<bean id="consultation" class="business.client.Consultation"
-		parent="operation" />
-	<bean id="transfer" class="business.client.Transfer"
-		parent="operation" />
-	<bean id="withdraw" class="business.client.Withdraw"
-		parent="operation" />
-
-
-	<aop:config>
-		<aop:pointcut id="servicePointcut"
-			expression="execution(* business.simulation.StatisticManager.registerNonServedClient(..))" />
-		<aop:aspect id="serviceReporterAspect"
-			ref="serviceReporter">
-			<aop:before method="nonServedClientEntry"
-				pointcut-ref="servicePointcut" />
-		</aop:aspect>
-	</aop:config>
-	<bean id="serviceReporter" class="business.spring.AOPReporter" />
-
-
+	<bean id="boat" class="business.model.transport.Boat"
+		parent="transport" />
+	<bean id="bus" class="business.model.transport.Bus"
+		parent="transport" />
+	<bean id="onFoot" class="business.model.transport.OnFoot"
+		parent="transport" />
 
 </beans>
