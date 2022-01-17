@@ -1,5 +1,7 @@
 package persistence.edb.operator;
 
+import java.sql.ResultSet;
+
 public class TextualOperator implements Operator {
 
 	@Override
@@ -14,13 +16,7 @@ public class TextualOperator implements Operator {
 	}
 
 	@Override
-	public boolean next() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Result getRow() {
+	public Result next() {
 		// TODO Auto-generated method stub
 		return null;
 	}

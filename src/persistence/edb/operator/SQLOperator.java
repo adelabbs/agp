@@ -26,19 +26,18 @@ public class SQLOperator implements Operator {
 	}
 
 	@Override
-	public boolean next() {
+	public Result next() {
 		Result result = new Result();
 		try {
 			if(resultSet.next()) {
 				for(int i = 0; i < numberOfColumns; i++) {
 					result.addField(columnNames.get(i), resultSet.getObject(i));
 				}
-				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return result;
 	}
 	
 	public void buildResultMetaData() {
@@ -62,11 +61,5 @@ public class SQLOperator implements Operator {
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
-	}
-
-	@Override
-	public Result getRow() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

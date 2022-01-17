@@ -14,13 +14,7 @@ public class MixedOperatorPA1 implements Operator {
 	}
 
 	@Override
-	public boolean next() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public Result getRow() {
+	public Result next() {
 		// TODO Auto-generated method stub
 		return null;
 	}
