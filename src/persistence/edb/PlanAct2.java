@@ -1,35 +1,11 @@
 package persistence.edb;
 
-public class PlanAct2 implements EDB_API {
+import persistence.edb.operator.Operator;
 
+public class PlanAct2 extends EDB_API {
 	@Override
-	public void initDataParameters() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createFileDescription() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void createTextualIndex() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public AbstractOperator execMixedQuery() {
+	Operator execMixedQuery() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public AbstractOperator execSQLQuery() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
