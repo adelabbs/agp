@@ -1,9 +1,8 @@
 package persistence.edb;
 
-public class EDBImplementation implements EDB {
+public class PlanAct1 implements EDB_API {
 
 	public AbstractOperator execQuerySQL(String query) {
-		
 		return null;
 	}
 

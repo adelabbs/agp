@@ -1,6 +1,6 @@
 package persistence.edb;
 
-public class MixedOperator implements AbstractOperator {
+public class MixedOperatorPA1 implements AbstractOperator {
 	public void init() {
 		// TODO Auto-generated method stub
 		
