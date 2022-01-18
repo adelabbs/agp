@@ -1,6 +1,7 @@
 package persistence.edb;
 
 import persistence.edb.operator.Operator;
+import persistence.edb.operator.SQLOperator;
 import persistence.lucene.LuceneIndexer;
 
 public abstract class EDB_API {
@@ -36,7 +37,9 @@ public abstract class EDB_API {
 	}
 	
 	public Operator executeSQLQuery(String query) {
-		return null;	
+		Operator op = new SQLOperator();
+		op.executeQuery(query);	
+		return op;
 	}
 	
 	public abstract Operator executeMixedQuery(String query);
