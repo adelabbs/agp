@@ -13,7 +13,7 @@ public class SearchEntry {
 
 	private int budgetMax;
 
-	private int daysOfStay;
+	private String daysOfStay;
 
 	/**
 	 * The user comfortPreference score.
@@ -26,7 +26,7 @@ public class SearchEntry {
 
 	}
 
-	public SearchEntry(int budgetMin, int budgetMax, int daysOfStay, int comfortPreference) {
+	public SearchEntry(int budgetMin, int budgetMax, String daysOfStay, int comfortPreference) {
 		this.budgetMin = budgetMin;
 		this.budgetMax = budgetMax;
 		this.daysOfStay = daysOfStay;
@@ -49,11 +49,11 @@ public class SearchEntry {
 		this.budgetMax = budgetMax;
 	}
 
-	public int getDaysOfStay() {
+	public String getDaysOfStay() {
 		return daysOfStay;
 	}
 
-	public void setDaysOfStay(int daysOfStay) {
+	public void setDaysOfStay(String daysOfStay) {
 		this.daysOfStay = daysOfStay;
 	}
 
