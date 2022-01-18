@@ -9,11 +9,12 @@ import persistence.lucene.LuceneQueryParser;
 
 public class TextualOperator implements Operator {
 	
-	TopDocs results;
-	LuceneIndexer indexer;
-	LuceneQueryParser parser;
+	private TopDocs results;
+	private LuceneIndexer indexer;
+	private LuceneQueryParser parser;
 	
-	int cursor;
+	private int cursor = 0;
+	private String SEPARATOR = "\\.";
 	
 
 	@Override
@@ -40,19 +41,20 @@ public class TextualOperator implements Operator {
 		Result result = new Result();
 		
 		try {
-			if (cursor < results.totalHits.value) {
+			if (cursor < results.scoreDocs.length) {
 				int docId = results.scoreDocs[cursor].doc;
-				cursor++;
+				
 				
 				IndexSearcher searcher = parser.getSearcher();
 				
 				Document d = searcher.doc(docId);
 				
 				String fileName = d.get("name");
-				String[] splitted = fileName.split(".");
+				String[] fields = fileName.split(SEPARATOR);
 				
-				result.addField("name", splitted[0]);
+				result.addField("name", fields[0]);
 				result.addField("score", results.scoreDocs[cursor].score);
+				cursor++;
 			}
 	
 		} catch (Exception e) {

@@ -25,7 +25,9 @@ public class LuceneIndexer {
 	private LuceneIndexer(String indexpathname) throws Exception {
 		this.analyzer = new StandardAnalyzer();
 		File indexdirectory = new File(indexpathname);
-		emptyDirectory(indexdirectory);
+		if (indexdirectory.listFiles() != null) {
+			emptyDirectory(indexdirectory);
+		}
 		this.indexpath = FileSystems.getDefault().getPath(indexpathname);
 		this.index = FSDirectory.open(indexpath);
 		this.config = new IndexWriterConfig(analyzer);
@@ -37,6 +39,7 @@ public class LuceneIndexer {
 			try {
 				indexer = new LuceneIndexer(indexpathname);
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			return indexer;
 		}
