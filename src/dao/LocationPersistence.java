@@ -19,7 +19,11 @@ public interface LocationPersistence {
 	
 	List<AbstractTransport> getAllTransports();
 	
+	AbstractTransport getLocationsTransport(String keyTransport);
+	
 	List<Site> getHotelsBeaches();
+	
+	Site getHotelsBeach(String keyBeach);
 	
 	// Lucene Methods
 	List<Site> getSiteByKeywords(List<String> keywords);

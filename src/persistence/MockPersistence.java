@@ -72,4 +72,16 @@ public class MockPersistence implements LocationPersistence {
 		return null;
 	}
 
+	@Override
+	public AbstractTransport getLocationsTransport(String keyTransport) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Site getHotelsBeach(String keyBeach) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
