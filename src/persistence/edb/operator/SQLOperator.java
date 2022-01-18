@@ -73,4 +73,20 @@ public class SQLOperator implements Operator {
 		}
 		return false;
 	}
+	
+	public int getNumberOfColumns() {
+		return numberOfColumns;
+	}
+	
+	public ArrayList<String> getColumnNames() {
+		return columnNames;
+	}
+	
+	public ResultSet getResultSet() {
+		return resultSet;
+	}
+	
+	public ResultSetMetaData getRsmd() {
+		return rsmd;
+	}
 }

@@ -13,17 +13,17 @@ public abstract class EDB_API {
 		initDataParameters(tableName, key, userDirectoryPath);
 	}
 	
-	void initDataParameters(String tableName, String key, String userDirectoryPath) {
+	public void initDataParameters(String tableName, String key, String userDirectoryPath) {
 		this.tableName = tableName;
 		this.key = key;
 		this.userDirectoryPath = userDirectoryPath;
 	}
 	
-	void createFileDescription() {
+	public void createFileDescription() {
 		
 	}
 	
-	void createTextualIndex() {
+	public void createTextualIndex() {
 		try {
 			LuceneIndexer.getInstance(userDirectoryPath);
 		} catch (Exception e) {
@@ -31,10 +31,10 @@ public abstract class EDB_API {
 		}
 	}
 	
-	Operator executeSQLQuery(String query) {
+	public Operator executeSQLQuery(String query) {
 		return null;	
 	}
 	
-	abstract Operator executeMixedQuery(String query);
+	public abstract Operator executeMixedQuery(String query);
 
 }

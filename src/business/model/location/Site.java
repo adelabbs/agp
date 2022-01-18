@@ -6,29 +6,29 @@ public class Site extends AbstractLocation {
 		super();
 	}
 
-	public Site(String name, Coordinates coordinates, String category, String description, int difficulty,
+	public Site(String name, Coordinates coordinates, String island, String description, int comfort,
 			float pricePerVisit) {
 		super(name, coordinates);
-		this.category = category;
+		this.island = island;
 		this.description = description;
-		this.difficulty = difficulty;
+		this.comfort = comfort;
 		this.pricePerVisit = pricePerVisit;
 	}
 
-	private String category;
+	private String island;
 
 	private String description;
 
-	private int difficulty;
+	private int comfort;
 
 	private float pricePerVisit;
 
-	public String getCategory() {
-		return category;
+	public String getIsland() {
+		return island;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setIsland(String island) {
+		this.island = island;
 	}
 
 	public String getDescription() {
@@ -39,12 +39,12 @@ public class Site extends AbstractLocation {
 		this.description = description;
 	}
 
-	public int getDifficulty() {
-		return difficulty;
+	public int getComfort() {
+		return comfort;
 	}
 
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
+	public void setComfort(int comfort) {
+		this.comfort = comfort;
 	}
 
 	public float getPricePerVisit() {

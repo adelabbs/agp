@@ -55,20 +55,12 @@ public class EntryBean {
 		entry.setDaysOfStay(daysOfStay);
 	}
 
-	public int getDifficultyPreference() {
-		return entry.getDifficultyPreference() ;
+	public int getComfortPreference() {
+		return entry.getComfortPreference() ;
 	}
 
-	public void setDifficultyPreference(int difficultyPreference) {
-		entry.setDifficultyPreference(difficultyPreference);
-	}
-
-	public String getLocationPreference() {
-		return entry.getLocationPreference();
-	}
-
-	public void setLocationPreference(String locationPreference) {
-		entry.setLocationPreference(locationPreference);
+	public void setComfortPreference(int comfortPreference) {
+		entry.setComfortPreference(comfortPreference);
 	}
 
 	public List<String> getSearchKeywords() {

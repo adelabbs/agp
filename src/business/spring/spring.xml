@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
-	xmlns:context="http://www.springframework.org/schema/context">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd" xmlns:context="http://www.springframework.org/schema/context">
 
 	<bean id="form" class="business.engine.Engine">
 		<property name="searchEntry" ref="entry" />
 	</bean>
 
-	<bean id="persistenceDAO" class="dao.LocationPersistence"
-		abstract="true" scope="prototype" />
+	<bean id="persistenceDAO" class="dao.LocationPersistence" abstract="true" scope="prototype" />
 
-	<bean id="edbDAO" class="persistence.edbPersistence"
-		parent="persistenceDAO" />
+	<bean id="edbDAO" class="persistence.edbPersistence" parent="persistenceDAO" />
 
 	<!-- This part is used only by TestEngine -->
 	<bean id="entry" class="business.engine.SearchEntry">
@@ -28,22 +22,17 @@
 		<property name="daysOfStay">
 			<value>7</value> 
 		</property>
-		<property name="difficultyPreference">
+		<property name="comfortPreference">
 			<value>2</value> 
 		</property>
-		<property name="locationPreference">
-			<value>Historical</value> 
-		</property> -->
-	</bean> 
+	 -->
+	</bean>
 
-	<bean id="location" class="business.model.location.AbstractLocation"
-		abstract="true" scope="prototype" />
-		
-	<bean id="hotel" class="business.model.location.Hotel"
-		parent="location"/>
-		
-	<bean id="cheapHotel" class="business.model.location.Hotel"
-		parent="location">
+	<bean id="location" class="business.model.location.AbstractLocation" abstract="true" scope="prototype" />
+
+	<bean id="hotel" class="business.model.location.Hotel" parent="location" />
+
+	<bean id="cheapHotel" class="business.model.location.Hotel" parent="location">
 		<property name="name">
 			<value>1 start hotel</value>
 		</property>
@@ -51,9 +40,8 @@
 			<value>30</value>
 		</property>
 	</bean>
-	
-	<bean id="expensiveHotel" class="business.model.location.Hotel"
-		parent="location">
+
+	<bean id="expensiveHotel" class="business.model.location.Hotel" parent="location">
 		<property name="name">
 			<value>Palace</value>
 		</property>
@@ -61,67 +49,65 @@
 			<value>300</value>
 		</property>
 	</bean>
-		
-	<bean id="site" class="business.model.location.Site"
-		parent="location"/>
-		
-	<bean id="historySite" class="business.model.location.Site"
-		parent="location">
-		<property name="category">
-			<value>Historical</value>
+
+	<bean id="site" class="business.model.location.Site" parent="location" />
+
+	<bean id="historySite" class="business.model.location.Site" parent="location">
+		<property name="island">
+			<value>Crete</value>
 		</property>
-	</bean>
-	
-	<bean id="easyLeasureSite" class="business.model.location.Site"
-		parent="location">
-		<property name="name">
-			<value>Heraklion beach</value>
-		</property>
-		<property name="category">
-			<value>Leasure</value>
-		</property>
-		<property name="difficulty">
-			<value>1</value>
-		</property>
-		<property name="pricePerVisit">
-			<value>0</value>
-		</property>
-	</bean>
-	
-	<bean id="difficultLeasureSite" class="business.model.location.Site"
-		parent="location">
-		<property name="name">
-			<value>Rock climbing</value>
-		</property>
-		<property name="category">
-			<value>Leasure</value>
-		</property>
-		<property name="difficulty">
-			<value>3</value>
+		<property name="comfort">
+			<value>2</value>
 		</property>
 		<property name="pricePerVisit">
 			<value>10</value>
 		</property>
 	</bean>
 
+	<bean id="easyLeasureSite" class="business.model.location.Site" parent="location">
+		<property name="name">
+			<value>Heraklion beach</value>
+		</property>
+		<property name="island">
+			<value>Crete</value>
+		</property>
+		<property name="comfort">
+			<value>3</value>
+		</property>
+		<property name="pricePerVisit">
+			<value>0</value>
+		</property>
+	</bean>
 
-	<bean id="transport" class="business.model.transport.AbstractTransport"
-		abstract="true" scope="prototype" />
+	<bean id="difficultLeasureSite" class="business.model.location.Site" parent="location">
+		<property name="name">
+			<value>Rock climbing</value>
+		</property>
+		<property name="island">
+			<value>Crete</value>
+		</property>
+		<property name="comfort">
+			<value>1</value>
+		</property>
+		<property name="pricePerVisit">
+			<value>20</value>
+		</property>
+	</bean>
 
-	<bean id="boat" class="business.model.transport.Boat"
-		parent="transport">
+
+	<bean id="transport" class="business.model.transport.AbstractTransport" abstract="true" scope="prototype" />
+
+	<bean id="boat" class="business.model.transport.Boat" parent="transport">
 		<property name="speed">
 			<value>40</value>
 		</property>
 	</bean>
-	<bean id="bus" class="business.model.transport.Bus"
-		parent="transport">
+	<bean id="bus" class="business.model.transport.Bus" parent="transport">
 		<property name="speed">
 			<value>30</value>
 		</property>
 	</bean>
-	<bean id="onFoot" class="business.model.transport.OnFoot"
-		parent="transport">
+	<bean id="onFoot" class="business.model.transport.OnFoot" parent="transport">
 		<property name="speed">
 			<value>5</value>
 		</property>
