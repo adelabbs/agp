@@ -15,12 +15,37 @@
 	<h2>Please state your expectations for the stay  </h2>
 	<fieldset>
 		<h:form>
-			Stay duration : <h:inputText value="#{entryBean.daysOfStay}" /> <br />
-			Confort : <h:inputText value="#{entryBean.difficultyPreference}" /> <br />
-			Preffered excursion type : <h:inputText value="#{entryBean.locationPreference}" /> <br />  
-			Minimum Budget : <h:inputText value="#{entryBean.budgetMin}" /> <br />
-			Maximum budget : <h:inputText value="#{entryBean.budgetMax}" /> <br />
-			<h:commandButton value="Submit" action="#{entryBean.startEngine}" />
+        <br></br>
+        <div class="card">
+        <div class="p-grid ui-fluid">  
+            <div class="p-col-12 p-md-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon"> Stay duration : <h:inputText id = "text" value="#{entryBean.daysOfStay}" required="true" requiredMessage="	*mandatory field" /> days
+                   		<h:message for="text" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon"> Comfort : <h:inputText value="#{entryBean.comfortPreference}" /> </div>
+                </div>
+            </div>
+            
+            <div class="p-col-12 p-md-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon"> Minimum Budget : <h:inputText value="#{entryBean.budgetMin}" />€</div>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-4">
+                <div class="ui-inputgroup">
+                    <div class="ui-inputgroup-addon"> Maximum Budget : <h:inputText value="#{entryBean.budgetMax}" />€</div>
+                </div>
+            </div>
+        </div>
+       	<h:commandButton value="Submit" action="#{entryBean.startEngine}" />
+        </div>
 		</h:form>
 	</fieldset>
 </h:body>
