@@ -1,23 +1,30 @@
 package business.model;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+
+import business.model.location.Hotel;
 
 public class Offer {
 
-	private LinkedList<DailyProgram> dailyPrograms = new LinkedList<DailyProgram>();
+	private LinkedList<Excursion> excursions = new LinkedList<Excursion>();
+
+	private HashMap<Hotel, Stay> hotels = new HashMap<Hotel, Stay>();
 
 	private float totalPrice;
 
-	public LinkedList<DailyProgram> getDailyPrograms() {
-		return dailyPrograms;
+	public LinkedList<Excursion> getExcursions() {
+		return excursions;
 	}
 
-	public void addDailyProgram(DailyProgram dailyProgram) {
-		dailyPrograms.add(dailyProgram);
+	public void addExcursion(Excursion excursion) {
+		if (!excursions.contains(excursion)) {
+			excursions.add(excursion);
+		}
 	}
 
-	public void removeDailyProgram(DailyProgram dailyProgram) {
-		dailyPrograms.remove(dailyProgram);
+	public void removeExcursion(Excursion excursion) {
+		excursions.remove(excursion);
 	}
 
 	public float getTotalPrice() {

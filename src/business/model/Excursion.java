@@ -2,36 +2,37 @@ package business.model;
 
 import java.util.LinkedList;
 
-import business.model.transport.Transport;
-
 public class Excursion {
 
-	private LinkedList<Visit> visits = new LinkedList<Visit>();
+	private LinkedList<Route> routes = new LinkedList<Route>();
 
-	private Transport returnMeanOfTransport;
+	private int day;
 
-	public Excursion(Transport returnMeanOfTransport) {
-		this.returnMeanOfTransport = returnMeanOfTransport;
+	public Excursion(int day) {
+		this.day = day;
+
 	}
 
-	public LinkedList<Visit> getVisits() {
-		return visits;
+	public LinkedList<Route> getRoutes() {
+		return routes;
 	}
 
-	public void addVisit(Visit visit) {
-		visits.add(visit);
+	public void addRoute(Route route) {
+		if (!routes.contains(route)) {
+			routes.add(route);
+		}
 	}
 
-	public void removeVisit(Visit visit) {
-		visits.remove(visit);
+	public void removeRoute(Route route) {
+		routes.remove(route);
 	}
 
-	public Transport getReturnMeanOfTransport() {
-		return returnMeanOfTransport;
+	public int getDay() {
+		return day;
 	}
 
-	public void setReturnMeanOfTransport(Transport returnMeanOfTransport) {
-		this.returnMeanOfTransport = returnMeanOfTransport;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 }

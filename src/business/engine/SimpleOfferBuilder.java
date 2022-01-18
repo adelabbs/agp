@@ -5,6 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import business.model.Offer;
+import business.model.location.Hotel;
+import business.model.location.Site;
+import business.model.transport.OnFoot;
+import business.model.transport.Transport;
+import business.spring.SpringIoC;
+import persistence.MockPersistence;
 
 public class SimpleOfferBuilder implements OfferBuilder {
 
@@ -17,7 +23,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	/**
 	 * The user difficultyPreference score.
 	 */
-	private int difficultyPreference;
+	private int comfortPreference = 2;
 
 	private String locationPreference;
 
@@ -44,8 +50,8 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	}
 
 	@Override
-	public void setDifficultyPreference(int difficultyPreference) {
-		this.difficultyPreference = difficultyPreference;
+	public void setComfortPreference(int comfortPreference) {
+		this.comfortPreference = comfortPreference;
 	}
 
 	public void setNbOffers(int nbOffers) {
@@ -64,8 +70,8 @@ public class SimpleOfferBuilder implements OfferBuilder {
 		return daysOfStay;
 	}
 
-	public int getDifficultyPreference() {
-		return difficultyPreference;
+	public int getComfortPreference() {
+		return comfortPreference;
 	}
 
 	public String getLocationPreference() {
@@ -81,6 +87,21 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	}
 
 	public void build() {
+
+		// The offer building process tries to generate offers combinations
+
+		if (daysOfStay > 0) {
+			int avgBudgetMin = budgetMin / daysOfStay;
+			int avgBudgetMax = budgetMax / daysOfStay;
+
+			MockPersistence lp = new MockPersistence();
+
+			List<Hotel> hotels = lp.getHotelByPrice(avgBudgetMin, avgBudgetMax);
+			List<Site> sites = lp.getSiteByPrice(avgBudgetMin, avgBudgetMax);
+
+			Transport transport = (OnFoot) SpringIoC.getBean("onFoot");
+
+		}
 
 	}
 
