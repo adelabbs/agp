@@ -69,7 +69,7 @@ public class LocationImplementation implements LocationPersistence {
 			site.setType((String) result.getObject("type"));
 			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
 			site.setIsland((String) result.getObject("island"));
-			site.setTransport((Transport) result.getObject("transportType"));
+			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 			sites.add(site);
 		}
 		return sites;
@@ -91,8 +91,24 @@ public class LocationImplementation implements LocationPersistence {
 
 	@Override
 	public List<Transport> getAllTransports() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT type, price, speed, confort FROM transports";
+		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
+		List<Transport> transports = new ArrayList<Transport>();
+		Result result;
+
+		while(operator.hasNext()) {
+			result  = operator.next();
+		
+			Transport transport = new Transport();
+			
+			transport.setType((String) result.getObject("type"));
+			transport.setSpeed((int) result.getObject("speed"));
+			transport.setPrice((int) result.getObject("price"));
+			transport.setConfort((int) result.getObject("confort"));
+			transports.add(transport);
+		}
+		operator.closeStatement();
+		return transports;
 	}
 
 
