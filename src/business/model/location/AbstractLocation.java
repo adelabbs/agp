@@ -1,6 +1,6 @@
 package business.model.location;
 
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 
 public abstract class AbstractLocation {
 
@@ -8,7 +8,7 @@ public abstract class AbstractLocation {
 	private Coordinates coordinates;
 
 	private String island;
-	private AbstractTransport transport;
+	private Transport transport;
 	
 	public AbstractLocation() {
 		
@@ -35,11 +35,11 @@ public abstract class AbstractLocation {
 		this.coordinates = coordinates;
 	}
 
-	public AbstractTransport getTransport() {
+	public Transport getTransport() {
 		return transport;
 	}
 
-	public void setTransport(AbstractTransport transport) {
+	public void setTransport(Transport transport) {
 		this.transport = transport;
 	}
 

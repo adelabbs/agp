@@ -5,7 +5,7 @@ import java.util.List;
 
 import business.model.location.Hotel;
 import business.model.location.Site;
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 import business.spring.SpringIoC;
 import dao.LocationPersistence;
 
@@ -44,8 +44,8 @@ public class MockPersistence implements LocationPersistence {
 	}
 
 	@Override
-	public List<AbstractTransport> getTransportByPrice(int minPrice, int maxPrice) {
-		return new LinkedList<AbstractTransport>();
+	public List<Transport> getTransportByPrice(int minPrice, int maxPrice) {
+		return new LinkedList<Transport>();
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class MockPersistence implements LocationPersistence {
 	}
 
 	@Override
-	public List<AbstractTransport> getAllTransports() {
+	public List<Transport> getAllTransports() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -73,7 +73,7 @@ public class MockPersistence implements LocationPersistence {
 	}
 
 	@Override
-	public AbstractTransport getLocationsTransport(String keyTransport) {
+	public Transport getLocationsTransport(String keyTransport) {
 		// TODO Auto-generated method stub
 		return null;
 	}

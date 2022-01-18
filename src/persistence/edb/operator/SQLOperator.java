@@ -15,6 +15,7 @@ public class SQLOperator implements Operator {
 	private ResultSetMetaData rsmd;
 	private int numberOfColumns;
 	private ArrayList<String> columnNames = new ArrayList<String>();
+	private PreparedStatement preparedStatement;
 	
 	@Override
 	public void init() {
@@ -30,8 +31,8 @@ public class SQLOperator implements Operator {
 		Result result = new Result();
 		try {
 			if(resultSet.next()) {
-				for(int i = 0; i < numberOfColumns; i++) {
-					result.addField(columnNames.get(i), resultSet.getObject(i));
+				for(int i = 1; i <= numberOfColumns; i++) {
+					result.addField(columnNames.get(i-1), resultSet.getObject(i));
 				}
 			}
 		} catch (SQLException e) {
@@ -44,8 +45,7 @@ public class SQLOperator implements Operator {
 		try {
 			rsmd = (ResultSetMetaData) resultSet.getMetaData();
 			numberOfColumns = rsmd.getColumnCount();
-			
-			for(int i = 0; i < numberOfColumns; i++) {
+			for(int i = 1; i <= numberOfColumns; i++) {
 				columnNames.add(rsmd.getColumnName(i));
 			}
 		} catch(Exception e) {
@@ -55,12 +55,19 @@ public class SQLOperator implements Operator {
 	
 	public void executeQuery(String query) {
 		try {
-			PreparedStatement preparedStatement = JdbcConnection.getConnection().prepareStatement(query);
+			preparedStatement = JdbcConnection.getConnection().prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
-			preparedStatement.close();
 			buildResultMetaData();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
+		}
+	}
+	
+	public void closeStatement() {
+		try {
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

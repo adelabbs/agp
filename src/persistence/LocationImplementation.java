@@ -7,12 +7,13 @@ import java.util.List;
 import business.model.location.Coordinates;
 import business.model.location.Hotel;
 import business.model.location.Site;
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 import business.spring.SpringIoC;
 import dao.LocationPersistence;
 import persistence.edb.EDB_API;
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.Result;
+import persistence.edb.operator.SQLOperator;
 
 public class LocationImplementation implements LocationPersistence {
 	
@@ -25,25 +26,29 @@ public class LocationImplementation implements LocationPersistence {
 	
 	@Override
 	public List<Hotel> getHotelByPrice(int minPrice, int maxPrice) {
-		String query = "SELECT name, price, latitude, longitude, island, beach, transportType FROM HOTELS WHERE HOTELS.price >= " + Integer.toString(minPrice) +  "AND HOTELS.price <=" + Integer.toString(maxPrice);
-		Operator operator = edb.executeSQLQuery(query);
+		String query = "SELECT name, price, latitude, longitude, island, beach, transportType FROM hotels WHERE hotels.price >= " + Integer.toString(minPrice) +  " AND hotels.price <=" + Integer.toString(maxPrice);
+		System.out.println(query);
+		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
 		
 		List<Hotel> hotels = new ArrayList<Hotel>();
 		Result result;
 
 		while(operator.hasNext()) {
-			result  = operator.next();
+			result = operator.next();
 		
 			Hotel hotel = (Hotel) SpringIoC.getBean("hotel");
 
 			hotel.setName((String) result.getObject("name"));
 			hotel.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
-			hotel.setPricePerNight((float) result.getObject("price"));
-			hotel.setBeach((Site) result.getObject("beach"));
+			hotel.setPricePerNight((int) result.getObject("price"));
+			//hotel.setBeach((String) result.getObject("beach"));
+			System.out.println(result.getObject("beach"));
 			hotel.setIsland((String) result.getObject("island"));
-			hotel.setTransport((AbstractTransport) result.getObject("transportType"));
+			hotel.setTransport(getLocationsTransport((String) result.getObject("transportType")));
+			System.out.println(result.getObject("transportType"));
 			hotels.add(hotel);
 		}
+		operator.closeStatement();
 		return hotels;
 	}
 
@@ -64,14 +69,14 @@ public class LocationImplementation implements LocationPersistence {
 			site.setType((String) result.getObject("type"));
 			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
 			site.setIsland((String) result.getObject("island"));
-			site.setTransport((AbstractTransport) result.getObject("transportType"));
+			site.setTransport((Transport) result.getObject("transportType"));
 			sites.add(site);
 		}
 		return sites;
 	}
 
 	@Override
-	public List<AbstractTransport> getTransportByPrice(int minPrice, int maxPrice) {
+	public List<Transport> getTransportByPrice(int minPrice, int maxPrice) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -85,7 +90,7 @@ public class LocationImplementation implements LocationPersistence {
 
 
 	@Override
-	public List<AbstractTransport> getAllTransports() {
+	public List<Transport> getAllTransports() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -124,9 +129,22 @@ public class LocationImplementation implements LocationPersistence {
 	}
 
 	@Override
-	public AbstractTransport getLocationsTransport(String keyTransport) {
-		// TODO Auto-generated method stub
-		return null;
+	public Transport getLocationsTransport(String keyTransport) {
+		String query = "SELECT type, price, speed, confort FROM transports WHERE transports.type = '" + keyTransport+"'";
+		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
+		Transport transport = new Transport();
+		Result result;
+
+		if(operator.hasNext()) {
+			result  = operator.next();
+		
+			transport.setType((String) result.getObject("type"));
+			transport.setSpeed((int) result.getObject("speed"));
+			transport.setPrice((int) result.getObject("price"));
+			transport.setConfort((int) result.getObject("confort"));
+		}
+		operator.closeStatement();
+		return transport;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package business.model;
 
 import business.model.location.AbstractLocation;
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 
 public class Visit {
 
@@ -10,9 +10,9 @@ public class Visit {
 	/**
 	 * The mean of transport used to get to the visited location.
 	 */
-	private AbstractTransport meanOfTransport;
+	private Transport meanOfTransport;
 
-	public Visit(AbstractLocation visitedLocation, AbstractTransport meanOfTransport) {
+	public Visit(AbstractLocation visitedLocation, Transport meanOfTransport) {
 		this.visitedLocation = visitedLocation;
 		this.meanOfTransport = meanOfTransport;
 	}
@@ -25,11 +25,11 @@ public class Visit {
 		this.visitedLocation = visitedLocation;
 	}
 
-	public AbstractTransport getMeanOfTransport() {
+	public Transport getMeanOfTransport() {
 		return meanOfTransport;
 	}
 
-	public void setMeanOfTransport(AbstractTransport meanOfTransport) {
+	public void setMeanOfTransport(Transport meanOfTransport) {
 		this.meanOfTransport = meanOfTransport;
 	}
 
