@@ -13,9 +13,15 @@ import org.apache.lucene.store.*;
 public class LuceneQueryParser {
 	
 	LuceneIndexer indexer;
+	IndexSearcher searcher;
 	
 	public LuceneQueryParser(LuceneIndexer indexer) throws Exception{
 		this.indexer = indexer;
+	}
+	
+	
+	public IndexSearcher getSearcher() {
+		return searcher;
 	}
 	
 	public TopDocs search(String reqstr) throws Exception {
@@ -26,7 +32,7 @@ public class LuceneQueryParser {
 		Directory index = indexer.getIndex();
 		
 		DirectoryReader ireader = DirectoryReader.open(index);
-	    IndexSearcher searcher = new IndexSearcher(ireader);
+	    searcher = new IndexSearcher(ireader);
 	    
 	    QueryParser qp = new QueryParser("content", analyzer); 
 	    Query req = qp.parse(reqstr);
