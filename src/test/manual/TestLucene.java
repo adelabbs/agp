@@ -9,7 +9,7 @@ import org.apache.lucene.search.TopDocs;
 import persistence.lucene.*;
 
 public class TestLucene {
-	public static void main(String[] args) throws Exception{
+	public TestLucene() throws Exception{
 		String[] testNames = {"site1", "site2", "amazingsite"};
 		
 		PrintWriter writer;
@@ -34,11 +34,12 @@ public class TestLucene {
 	    
 	    System.out.println("Indexed "+num+" files out of "+testNames.length);
 	    
+	    /*
 	    LuceneQueryParser parser = new LuceneQueryParser(indexer);
 	    
 	    TopDocs resultats;
 	    resultats = parser.search("wonderful");
-	    
+	    */
 	    
 	    
 	}
