@@ -15,6 +15,8 @@ public class TextualOperator implements Operator {
 
 	private int cursor = 0;
 	private String SEPARATOR = "\\.";
+	public static final String KEY = "name";
+	public static final String SCORE = "score";
 
 	@Override
 	public void executeQuery(String query) {
@@ -47,11 +49,11 @@ public class TextualOperator implements Operator {
 
 				Document d = searcher.doc(docId);
 
-				String fileName = d.get("name");
+				String fileName = d.get(KEY);
 				String[] fields = fileName.split(SEPARATOR);
 
-				result.addField("name", fields[0]);
-				result.addField("score", results.scoreDocs[cursor].score);
+				result.addField(KEY, fields[0]);
+				result.addField(SCORE, results.scoreDocs[cursor].score);
 				cursor++;
 			}
 
@@ -64,9 +66,7 @@ public class TextualOperator implements Operator {
 
 	@Override
 	public boolean hasNext() {
-		boolean bool = cursor < results.totalHits.value;
-
-		return bool;
+		return cursor < results.totalHits.value - 1;
 	}
 
 }
