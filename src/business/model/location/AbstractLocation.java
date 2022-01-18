@@ -1,6 +1,5 @@
 package business.model.location;
 
-import persistence.edb.operator.Result;
 
 public abstract class AbstractLocation {
 
@@ -11,10 +10,6 @@ public abstract class AbstractLocation {
 	private AbstractLocation transport;
 	
 	public AbstractLocation() {
-		
-	}
-	
-	public AbstractLocation(Result result) {
 		
 	}
 

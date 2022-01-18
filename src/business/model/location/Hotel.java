@@ -1,6 +1,5 @@
 package business.model.location;
 
-import persistence.edb.operator.Result;
 
 public class Hotel extends AbstractLocation {
 
@@ -10,11 +9,6 @@ public class Hotel extends AbstractLocation {
 	public Hotel() {
 		super();
 	}
-	
-	public Hotel(Result result) {
-		super(result);
-	}
-
 
 	public Hotel(String name, Coordinates coordinates, float pricePerNight) {
 		super(name, coordinates);
@@ -27,6 +21,14 @@ public class Hotel extends AbstractLocation {
 
 	public void setPricePerNight(float pricePerNight) {
 		this.pricePerNight = pricePerNight;
+	}
+
+	public Site getBeach() {
+		return beach;
+	}
+
+	public void setBeach(Site beach) {
+		this.beach = beach;
 	}
 
 }

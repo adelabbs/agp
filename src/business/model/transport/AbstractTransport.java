@@ -1,6 +1,5 @@
 package business.model.transport;
 
-import persistence.edb.operator.Result;
 
 public abstract class AbstractTransport {
 	
@@ -15,11 +14,7 @@ public abstract class AbstractTransport {
 		this.price = price;
 		this.confort = confort;
 	}
-	
-	public AbstractTransport(Result result) {
-		
-	}
-	
+
 	public AbstractTransport() {
 		
 	}
