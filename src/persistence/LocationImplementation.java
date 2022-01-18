@@ -41,7 +41,7 @@ public class LocationImplementation implements LocationPersistence {
 			hotel.setName((String) result.getObject("name"));
 			hotel.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
 			hotel.setPricePerNight((int) result.getObject("price"));
-			//hotel.setBeach((String) result.getObject("beach"));
+			hotel.setBeach(getHotelsBeach((String) result.getObject("beach")));
 			System.out.println(result.getObject("beach"));
 			hotel.setIsland((String) result.getObject("island"));
 			hotel.setTransport(getLocationsTransport((String) result.getObject("transportType")));
@@ -150,7 +150,7 @@ public class LocationImplementation implements LocationPersistence {
 	@Override
 	public Site getHotelsBeach(String keyBeach) {
 		String query = "SELECT name, price, confort, type, latitude, longitude, island, transportType FROM Sites "
-				+ "INNER JOIN Hotels ON Sites.name = Hotels.beach";
+				+ "WHERE Sites.name = '" + keyBeach + "'";
 		
 		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
 		
@@ -167,7 +167,7 @@ public class LocationImplementation implements LocationPersistence {
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
 		}
-		//operator.closeStatement();
+		operator.closeStatement();
 		return site;
 	}
 
