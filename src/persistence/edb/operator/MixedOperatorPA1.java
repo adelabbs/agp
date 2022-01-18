@@ -27,19 +27,19 @@ public class MixedOperatorPA1 implements Operator {
 	
 	@Override
 	public void executeQuery(String query) {
-		if(!query.isBlank()) {
+		if(!query.trim().isEmpty()) {
 			
 			/* Divide SQL & Lucene part of Query */
 			parsingQuery(query);
 			
 			/* Execute SQL Query */
-			if(!sqlQuery.isBlank()) {
+			if(!sqlQuery.trim().isEmpty()) {
 				sqlOp = new SQLOperator();
 				//sqlOp.executeQuery(sqlQuery);
 			}
 			
 			/* Execute Lucene Query */
-			if(!textualQuery.isBlank()) {
+			if(!textualQuery.trim().isEmpty()) {
 				textOp = new TextualOperator();
 				//textOp.executeQuery(textualQuery);
 			}

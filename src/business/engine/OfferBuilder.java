@@ -10,7 +10,7 @@ public interface OfferBuilder {
 	
 	void setDaysOfStay(int nbDays);
 	
-	void setDifficultyPreference(int comfortLevel);
+	void setComfortPreference(int comfortPreference);
 	
 	void setNbOffers(int nbOffers);
 
