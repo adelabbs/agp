@@ -2,6 +2,7 @@ package beans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
@@ -21,7 +22,13 @@ public class EntryBean {
 	
 	public EntryBean() {}
 	
+	@PostConstruct
+	public void Init() {
+		setDaysOfStay(1);
+	}
+	
 	public String startEngine() {
+		System.out.println(getDaysOfStay());
 		return "result";
 	}
 	
@@ -47,11 +54,11 @@ public class EntryBean {
 		entry.setBudgetMax(budgetMax);
 	}
 
-	public String getDaysOfStay() {
+	public int getDaysOfStay() {
 		return entry.getDaysOfStay();
 	}
 
-	public void setDaysOfStay(String daysOfStay) {
+	public void setDaysOfStay(int daysOfStay) {
 		entry.setDaysOfStay(daysOfStay);
 	}
 
