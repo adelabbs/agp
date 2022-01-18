@@ -4,6 +4,10 @@ import persistence.edb.operator.Operator;
 
 public class ExecutionPlan1 extends EDB_API {
 	
+	public ExecutionPlan1() {
+		
+	}
+	
 	public ExecutionPlan1(String tableName, String key, String userDirectoryPath) {
 		super(tableName, key, userDirectoryPath);
 	}

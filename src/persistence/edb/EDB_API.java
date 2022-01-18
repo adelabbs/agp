@@ -9,6 +9,10 @@ public abstract class EDB_API {
 	private String key;
 	private String userDirectoryPath;
 	
+	public EDB_API() {
+		
+	}
+	
 	public EDB_API(String tableName, String key, String userDirectoryPath) {
 		initDataParameters(tableName, key, userDirectoryPath);
 	}
