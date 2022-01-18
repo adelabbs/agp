@@ -16,11 +16,9 @@ public class SearchEntry {
 	private int daysOfStay;
 
 	/**
-	 * The user difficultyPreference score.
+	 * The user comfortPreference score.
 	 */
-	private int difficultyPreference;
-
-	private String locationPreference;
+	private int comfortPreference;
 
 	private List<String> searchKeywords = new ArrayList<String>();
 
@@ -28,13 +26,11 @@ public class SearchEntry {
 
 	}
 
-	public SearchEntry(int budgetMin, int budgetMax, int daysOfStay, int difficultyPreference,
-			String locationPreference) {
+	public SearchEntry(int budgetMin, int budgetMax, int daysOfStay, int comfortPreference) {
 		this.budgetMin = budgetMin;
 		this.budgetMax = budgetMax;
 		this.daysOfStay = daysOfStay;
-		this.difficultyPreference = difficultyPreference;
-		this.locationPreference = locationPreference;
+		this.comfortPreference = comfortPreference;
 	}
 
 	public int getBudgetMin() {
@@ -61,20 +57,12 @@ public class SearchEntry {
 		this.daysOfStay = daysOfStay;
 	}
 
-	public int getDifficultyPreference() {
-		return difficultyPreference;
+	public int getComfortPreference() {
+		return comfortPreference;
 	}
 
-	public void setDifficultyPreference(int difficultyPreference) {
-		this.difficultyPreference = difficultyPreference;
-	}
-
-	public String getLocationPreference() {
-		return locationPreference;
-	}
-
-	public void setLocationPreference(String locationPreference) {
-		this.locationPreference = locationPreference;
+	public void setComfortPreference(int comfortPreference) {
+		this.comfortPreference = comfortPreference;
 	}
 
 	public List<String> getSearchKeywords() {
