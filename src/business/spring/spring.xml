@@ -13,19 +13,9 @@
 
 	<!-- This part is used only by TestEngine -->
 	<bean id="entry" class="business.engine.SearchEntry">
-		<!-- <property name="budgetMin">
-			<value>100</value> 
-		</property>
-		<property name="budgetMax">
-			<value>500</value> 
-		</property>
 		<property name="daysOfStay">
-			<value>7</value> 
+			<value>1</value>
 		</property>
-		<property name="comfortPreference">
-			<value>2</value> 
-		</property>
-	 -->
 	</bean>
 
 	<bean id="location" class="business.model.location.AbstractLocation" abstract="true" scope="prototype" />
