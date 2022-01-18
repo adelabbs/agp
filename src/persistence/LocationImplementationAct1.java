@@ -28,7 +28,7 @@ public class LocationImplementationAct1 implements LocationPersistence {
 
 	@Override
 	public List<Site> getSiteByPrice(int minPrice, int maxPrice) {
-		// TODO Auto-generated method stub
+		bde.executeSQLQuery("SELECT * FROM Sites WHERE price >= " + minPrice + " AND " + "price <= " + maxPrice);
 		return null;
 	}
 
