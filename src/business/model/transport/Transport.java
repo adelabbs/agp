@@ -1,23 +1,24 @@
 package business.model.transport;
 
-public abstract class AbstractTransport {
 
+public class Transport {
+	
 	private String type;
 	private int speed;
 	private int price;
-	private int comfort;
-
-	public AbstractTransport(String type, int speed, int price, int comfort) {
+	private int confort;
+	
+	public Transport(String type, int speed, int price, int confort) {
 		this.type = type;
 		this.speed = speed;
 		this.price = price;
-		this.comfort = comfort;
+		this.confort = confort;
 	}
 
-	public AbstractTransport() {
-
+	public Transport() {
+		
 	}
-
+	
 	public int getSpeed() {
 		return speed;
 	}
@@ -34,12 +35,12 @@ public abstract class AbstractTransport {
 		this.price = price;
 	}
 
-	public int getComfort() {
-		return comfort;
+	public int getConfort() {
+		return confort;
 	}
 
-	public void setComfort(int comfort) {
-		this.comfort = comfort;
+	public void setConfort(int confort) {
+		this.confort = confort;
 	}
 
 	public String getType() {

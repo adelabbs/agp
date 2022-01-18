@@ -1,18 +1,18 @@
 package business.model;
 
 import business.model.location.AbstractLocation;
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 
 public class Route {
 	private AbstractLocation source;
 	private AbstractLocation destination;
-	private AbstractTransport transport;
+	private Transport transport;
 
 	public Route() {
 
 	}
 
-	public Route(AbstractLocation source, AbstractLocation destination, AbstractTransport transport) {
+	public Route(AbstractLocation source, AbstractLocation destination, Transport transport) {
 		this.source = source;
 		this.destination = destination;
 		this.transport = transport;
@@ -34,11 +34,11 @@ public class Route {
 		this.destination = destination;
 	}
 
-	public AbstractTransport getTransport() {
+	public Transport getTransport() {
 		return transport;
 	}
 
-	public void setTransport(AbstractTransport transport) {
+	public void setTransport(Transport transport) {
 		this.transport = transport;
 	}
 

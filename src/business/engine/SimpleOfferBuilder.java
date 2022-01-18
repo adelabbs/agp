@@ -7,8 +7,8 @@ import java.util.List;
 import business.model.Offer;
 import business.model.location.Hotel;
 import business.model.location.Site;
-import business.model.transport.AbstractTransport;
 import business.model.transport.OnFoot;
+import business.model.transport.Transport;
 import business.spring.SpringIoC;
 import persistence.MockPersistence;
 
@@ -99,7 +99,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 			List<Hotel> hotels = lp.getHotelByPrice(avgBudgetMin, avgBudgetMax);
 			List<Site> sites = lp.getSiteByPrice(avgBudgetMin, avgBudgetMax);
 
-			AbstractTransport transport = (OnFoot) SpringIoC.getBean("onFoot");
+			Transport transport = (OnFoot) SpringIoC.getBean("onFoot");
 
 		}
 

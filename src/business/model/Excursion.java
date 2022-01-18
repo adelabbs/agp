@@ -10,6 +10,7 @@ public class Excursion {
 
 	public Excursion(int day) {
 		this.day = day;
+
 	}
 
 	public LinkedList<Route> getRoutes() {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import business.model.location.Hotel;
 import business.model.location.Site;
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 
 public interface LocationPersistence {
 	
@@ -15,11 +15,11 @@ public interface LocationPersistence {
 
 	List<Site> getSiteByConfort(int confort);
 
-	List<AbstractTransport> getTransportByPrice(int minPrice, int maxPrice);
+	List<Transport> getTransportByPrice(int minPrice, int maxPrice);
 	
-	List<AbstractTransport> getAllTransports();
+	List<Transport> getAllTransports();
 	
-	AbstractTransport getLocationsTransport(String keyTransport);
+	Transport getLocationsTransport(String keyTransport);
 	
 	List<Site> getHotelsBeaches();
 	
