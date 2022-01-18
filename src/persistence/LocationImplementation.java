@@ -45,8 +45,25 @@ public class LocationImplementation implements LocationPersistence {
 
 	@Override
 	public List<Site> getSiteByPrice(int minPrice, int maxPrice) {
-		edb.executeSQLQuery("SELECT * FROM Sites WHERE price >= " + minPrice + " AND " + "price <= " + maxPrice);
-		return null;
+		Operator operator = edb.executeSQLQuery("SELECT name, price, confort, type, latitude, longitude, island, transportType"
+				+ " FROM Sites WHERE price >= " + minPrice + " AND " + "price <= " + maxPrice);
+		List<Site> sites = new ArrayList<Site>();
+		Result result;
+		
+		while(operator.hasNext()) {
+			result = operator.next();
+			Site site = (Site) SpringIoC.getBean("site");
+			
+			site.setName((String) result.getObject("name"));
+			site.setPricePerVisit((float) result.getObject("price"));
+			site.setConfort((int) result.getObject("confort"));
+			site.setType((String) result.getObject("type"));
+			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
+			site.setIsland((String) result.getObject("island"));
+			site.setTransport((AbstractTransport) result.getObject("transportType"));
+			sites.add(site);
+		}
+		return sites;
 	}
 
 	@Override
