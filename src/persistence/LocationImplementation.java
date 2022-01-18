@@ -39,6 +39,9 @@ public class LocationImplementation implements LocationPersistence {
 			hotel.setName((String) result.getObject("name"));
 			hotel.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
 			hotel.setPricePerNight((float) result.getObject("price"));
+			hotel.setBeach((Site) result.getObject("beach"));
+			hotel.setIsland((String) result.getObject("island"));
+			hotel.setTransport((AbstractTransport) result.getObject("transportType"));
 			hotels.add(hotel);
 		}
 		return hotels;
