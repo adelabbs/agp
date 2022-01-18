@@ -1,5 +1,6 @@
 package persistence;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,6 +81,24 @@ public class MockPersistence implements LocationPersistence {
 
 	@Override
 	public Site getHotelsBeach(String keyBeach) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Site> getSiteByParameters(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Site> getHotelByParameters(HashMap<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Site> getTransportByParameters(HashMap<String, Object> param) {
 		// TODO Auto-generated method stub
 		return null;
 	}

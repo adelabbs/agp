@@ -35,13 +35,13 @@ public class MixedOperatorPA1 implements Operator {
 			/* Execute SQL Query */
 			if(!sqlQuery.trim().isEmpty()) {
 				sqlOp = new SQLOperator();
-				//sqlOp.executeQuery(sqlQuery);
+				sqlOp.executeQuery(sqlQuery);
 			}
 			
 			/* Execute Lucene Query */
 			if(!textualQuery.trim().isEmpty()) {
 				textOp = new TextualOperator();
-				//textOp.executeQuery(textualQuery);
+				textOp.executeQuery(textualQuery);
 			}
 		}
 	}
@@ -54,7 +54,6 @@ public class MixedOperatorPA1 implements Operator {
 
 	@Override
 	public Result next() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
