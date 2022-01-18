@@ -38,7 +38,7 @@ public class LuceneQueryParser {
 	    Query req = qp.parse(reqstr);
 
 	    TopDocs resultats = searcher.search(req, MAX_RESULTS);
-	    
+	    /*
 	    System.out.println(resultats.totalHits + " matching documents");
 	    for(int i=0; i<resultats.scoreDocs.length; i++) {
 	    	int docId = resultats.scoreDocs[i].doc;
@@ -46,8 +46,7 @@ public class LuceneQueryParser {
 	    	System.out.println(d.get("name") + ": score " + resultats.scoreDocs[i].score);
 	    }
 	    
-	    ireader.close();
-	    
+	    ireader.close();*/
 	    return resultats;
     }
 }
