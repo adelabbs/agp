@@ -47,11 +47,11 @@ public class EntryBean {
 		entry.setBudgetMax(budgetMax);
 	}
 
-	public int getDaysOfStay() {
+	public String getDaysOfStay() {
 		return entry.getDaysOfStay();
 	}
 
-	public void setDaysOfStay(int daysOfStay) {
+	public void setDaysOfStay(String daysOfStay) {
 		entry.setDaysOfStay(daysOfStay);
 	}
 
