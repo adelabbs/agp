@@ -13,6 +13,7 @@ import dao.LocationPersistence;
 import persistence.edb.EDB_API;
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.Result;
+import persistence.edb.operator.SQLOperator;
 
 public class LocationImplementation implements LocationPersistence {
 	
@@ -131,8 +132,26 @@ public class LocationImplementation implements LocationPersistence {
 
 	@Override
 	public Site getHotelsBeach(String keyBeach) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT name, price, confort, type, latitude, longitude, island, transportType FROM Sites "
+				+ "INNER JOIN Hotels ON Sites.name = Hotels.beach";
+		
+		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
+		
+		
+		Site site = (Site) SpringIoC.getBean("site");
+		Result result;
+		
+		if(operator.hasNext()) {
+			result  = operator.next();
+
+			site.setName((String) result.getObject("name"));
+			site.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
+			site.setIsland((String) result.getObject("island"));
+			site.setConfort((int) result.getObject("confort"));
+			site.setType((String) result.getObject("type"));
+		}
+		//operator.closeStatement();
+		return site;
 	}
 
 }
