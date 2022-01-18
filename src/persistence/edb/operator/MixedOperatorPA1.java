@@ -35,13 +35,13 @@ public class MixedOperatorPA1 implements Operator {
 			/* Execute SQL Query */
 			if(!sqlQuery.isBlank()) {
 				sqlOp = new SQLOperator();
-				sqlOp.executeQuery(sqlQuery);
+				//sqlOp.executeQuery(sqlQuery);
 			}
 			
 			/* Execute Lucene Query */
 			if(!textualQuery.isBlank()) {
 				textOp = new TextualOperator();
-				textOp.executeQuery(textualQuery);
+				//textOp.executeQuery(textualQuery);
 			}
 		}
 	}

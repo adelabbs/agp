@@ -8,7 +8,7 @@ public class PlanAct1 extends EDB_API {
 		super(tableName, key, userDirectoryPath);
 	}
 
-	Operator executeMixedQuery(String query) {
+	public Operator executeMixedQuery(String query) {
 		return null;
 	}
 
