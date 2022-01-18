@@ -12,8 +12,6 @@ public interface LocationPersistence {
 
 	List<Hotel> getHotelByPrice(int minPrice, int maxPrice);
 
-	List<Site> getSiteByType(int type);
-
 	List<Site> getSiteByPrice(int minPrice, int maxPrice);
 
 	List<Site> getSiteByDifficulty(int minDifficulty, int maxDifficulty);

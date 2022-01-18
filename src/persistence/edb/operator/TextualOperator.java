@@ -13,7 +13,7 @@ public class TextualOperator implements Operator {
 	LuceneIndexer indexer;
 	LuceneQueryParser parser;
 	
-	int cursor;
+	int cursor = 0;
 	
 
 	@Override

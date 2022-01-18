@@ -7,19 +7,9 @@ import business.model.location.Hotel;
 import business.model.location.Site;
 import business.model.transport.AbstractTransport;
 import dao.LocationPersistence;
-import persistence.edb.PlanAct1;
-import persistence.edb.operator.Operator;
 
-public class LocationImplementation implements LocationPersistence {
-	
-	PlanAct1 bde;
-	Operator op;
-	
-	public LocationImplementation() {
-		bde = new PlanAct1(null, null, null);
-	}
+public class LocationImplementationAct2 implements LocationPersistence {
 
-	
 	@Override
 	public List<AbstractLocation> getAbstractLocationByPrice(int minPrice, int maxPrice) {
 		// TODO Auto-generated method stub
@@ -28,12 +18,6 @@ public class LocationImplementation implements LocationPersistence {
 
 	@Override
 	public List<Hotel> getHotelByPrice(int minPrice, int maxPrice) {
-		//op = bde.execQuerySQL("SELECT * FROM HOTELS WHERE HOTELS.price >= " + minPrice + " AND HOTELS.price <= " + maxPrice);
-		return null;
-	}
-
-	@Override
-	public List<Site> getSiteByType(int type) {
 		// TODO Auto-generated method stub
 		return null;
 	}

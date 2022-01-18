@@ -33,11 +33,6 @@ public class MockPersistence implements LocationPersistence {
 	}
 
 	@Override
-	public List<Site> getSiteByType(int type) {
-		return new LinkedList<Site>();
-	}
-
-	@Override
 	public List<Site> getSiteByPrice(int minPrice, int maxPrice) {
 		LinkedList<Site> sites = new LinkedList<Site>();
 		Site easyLeasureSite = (Site) SpringIoC.getBean("easyLeasureSite");
