@@ -2,6 +2,7 @@ package persistence.edb;
 
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.SQLOperator;
+import persistence.edb.operator.TextualOperator;
 import persistence.lucene.LuceneIndexer;
 
 public abstract class EDB_API {
@@ -36,9 +37,15 @@ public abstract class EDB_API {
 		}
 	}
 	
-	public Operator executeSQLQuery(String query) {
-		Operator op = new SQLOperator();
+	public SQLOperator executeSQLQuery(String query) {
+		SQLOperator op = new SQLOperator();
 		op.executeQuery(query);	
+		return op;
+	}
+	
+	public TextualOperator executeTextualQuery(String keywordSentence) {
+		TextualOperator op = new TextualOperator();
+		op.executeQuery(keywordSentence);	
 		return op;
 	}
 	

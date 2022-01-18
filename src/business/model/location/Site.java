@@ -5,6 +5,7 @@ public class Site extends AbstractLocation {
 
 	private int confort;
 	private String type;
+	private float score;
 	
 	public Site() {
 		super();
@@ -74,6 +75,16 @@ public class Site extends AbstractLocation {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+
+	public float getScore() {
+		return score;
+	}
+
+
+	public void setScore(float score) {
+		this.score = score;
 	}
 
 }
