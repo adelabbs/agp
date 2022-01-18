@@ -1,21 +1,21 @@
 package business.model.transport;
 
 
-public abstract class AbstractTransport {
+public class Transport {
 	
 	private String type;
 	private int speed;
 	private int price;
 	private int confort;
 	
-	public AbstractTransport(String type, int speed, int price, int confort) {
+	public Transport(String type, int speed, int price, int confort) {
 		this.type = type;
 		this.speed = speed;
 		this.price = price;
 		this.confort = confort;
 	}
 
-	public AbstractTransport() {
+	public Transport() {
 		
 	}
 	

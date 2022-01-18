@@ -2,9 +2,13 @@ package persistence.edb;
 
 import persistence.edb.operator.Operator;
 
-public class ExectutionPlan2 extends EDB_API {
+public class ExecutionPlan2 extends EDB_API {
 	
-	public ExectutionPlan2(String tableName, String key, String userDirectoryPath) {
+	public ExecutionPlan2() {
+		
+	}
+	
+	public ExecutionPlan2(String tableName, String key, String userDirectoryPath) {
 		super(tableName, key, userDirectoryPath);
 	}
 

@@ -2,15 +2,15 @@ package business.model;
 
 import java.util.LinkedList;
 
-import business.model.transport.AbstractTransport;
+import business.model.transport.Transport;
 
 public class Excursion {
 
 	private LinkedList<Visit> visits = new LinkedList<Visit>();
 
-	private AbstractTransport returnMeanOfTransport;
+	private Transport returnMeanOfTransport;
 
-	public Excursion(AbstractTransport returnMeanOfTransport) {
+	public Excursion(Transport returnMeanOfTransport) {
 		this.returnMeanOfTransport = returnMeanOfTransport;
 	}
 
@@ -26,11 +26,11 @@ public class Excursion {
 		visits.remove(visit);
 	}
 
-	public AbstractTransport getReturnMeanOfTransport() {
+	public Transport getReturnMeanOfTransport() {
 		return returnMeanOfTransport;
 	}
 
-	public void setReturnMeanOfTransport(AbstractTransport returnMeanOfTransport) {
+	public void setReturnMeanOfTransport(Transport returnMeanOfTransport) {
 		this.returnMeanOfTransport = returnMeanOfTransport;
 	}
 
