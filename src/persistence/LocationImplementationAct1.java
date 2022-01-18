@@ -66,28 +66,32 @@ public class LocationImplementationAct1 implements LocationPersistence {
 
 	@Override
 	public List<Site> getSiteByConfort(int confort) {
-		// TODO Auto-generated method stub
+		bde.executeSQLQuery("SELECT * FROM Sites WHERE confort <= " + confort);
 		return null;
 	}
 
 
 	@Override
 	public List<AbstractTransport> getAllTransports() {
-		// TODO Auto-generated method stub
+		bde.executeSQLQuery("SELECT * FROM Transports");
 		return null;
 	}
 
 
 	@Override
 	public List<Site> getHotelsBeaches() {
-		// TODO Auto-generated method stub
+		bde.executeSQLQuery("SELECT Hotels.name, Sites.* FROM Sites INNER JOIN Hotels ON Sites.name = Hotels.beach");
 		return null;
 	}
 
 
 	@Override
 	public List<Site> getSiteByKeywords(List<String> keywords) {
-		// TODO Auto-generated method stub
+		String keySentence = "";
+		for(String keyword : keywords) {
+			keySentence += " " + keyword;
+		}
+		bde.executeMixedQuery("SELECT * FROM Sites with" + keySentence);
 		return null;
 	}
 
