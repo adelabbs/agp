@@ -2,15 +2,13 @@ package persistence.edb;
 
 import persistence.edb.operator.Operator;
 
-public class PlanAct2 extends EDB_API {
+public class ExecutionPlan1 extends EDB_API {
 	
-	public PlanAct2(String tableName, String key, String userDirectoryPath) {
+	public ExecutionPlan1(String tableName, String key, String userDirectoryPath) {
 		super(tableName, key, userDirectoryPath);
 	}
 
-	@Override
 	public Operator executeMixedQuery(String query) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -1,6 +1,6 @@
 package test.manual;
 
-import persistence.LocationImplementationAct1;
+import persistence.LocationImplementation;
 
 public class TestJDBC {
 	/*public static void main(String[] args) {
