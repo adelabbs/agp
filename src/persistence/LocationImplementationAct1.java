@@ -1,29 +1,54 @@
 package persistence;
 
-import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
+import business.model.location.Coordinates;
 import business.model.location.Hotel;
 import business.model.location.Site;
 import business.model.transport.AbstractTransport;
+import business.spring.SpringIoC;
 import dao.LocationPersistence;
 import persistence.edb.PlanAct1;
 import persistence.edb.operator.Operator;
+import persistence.edb.operator.Result;
+import persistence.edb.operator.SQLOperator;
 
 public class LocationImplementationAct1 implements LocationPersistence {
 	
 	PlanAct1 bde;
 	Operator op;
-	//salut
 	
-	
+
 	public LocationImplementationAct1() {
 		bde = new PlanAct1(null, null, null);
 	}
-
+	
 	@Override
 	public List<Hotel> getHotelByPrice(int minPrice, int maxPrice) {
-		//op = bde.execQuerySQL("SELECT * FROM HOTELS WHERE HOTELS.price >= " + minPrice + " AND HOTELS.price <= " + maxPrice);
-		return null;
+		String query = "SELECT * FROM HOTELS WHERE HOTELS.price >= " + Integer.toString(minPrice) +  "AND HOTELS.price <=" + Integer.toString(maxPrice);
+		SQLOperator operator = (SQLOperator) bde.executeSQLQuery(query);
+		List<Hotel> hotels = new ArrayList<Hotel>();
+		Result result = new Result();
+		Hotel hotel = (Hotel) SpringIoC.getBean("hotel");
+		String keyname, keyPrice, keyLat, keyLong;
+		
+		operator.init();
+		
+		while(operator.hasNext()) {
+			result  = operator.next();
+			
+			keyname = operator.getColumnNames().get(1);
+			keyPrice = operator.getColumnNames().get(2);
+			keyLat = operator.getColumnNames().get(3);
+			keyLong = operator.getColumnNames().get(4);
+			
+			hotel.setName((String) result.getObject(keyname));
+			hotel.setCoordinates(new Coordinates((float) result.getObject(keyLat), (float) result.getObject(keyLong)));
+			hotel.setPricePerNight((float) result.getObject(keyPrice));
+			hotels.add(hotel);
+		}
+		return hotels;
 	}
 
 	@Override
