@@ -1,10 +1,20 @@
 package business.model.location;
 
+import persistence.edb.operator.Result;
+
 public class Site extends AbstractLocation {
 
+	private int confort;
+	private String type;
+	
 	public Site() {
 		super();
 	}
+	
+	public Site(Result result) {
+		super(result);
+	}
+
 
 	public Site(String name, Coordinates coordinates, String island, String description, int comfort,
 			float pricePerVisit) {
@@ -53,6 +63,22 @@ public class Site extends AbstractLocation {
 
 	public void setPricePerVisit(float pricePerVisit) {
 		this.pricePerVisit = pricePerVisit;
+	}
+	
+	public int getConfort() {
+		return confort;
+	}
+
+	public void setConfort(int confort) {
+		this.confort = confort;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

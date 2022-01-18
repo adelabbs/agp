@@ -1,12 +1,17 @@
 package business.model.transport;
 
-public class OnFoot extends AbstractTransport {
+import persistence.edb.operator.Result;
 
-	/**
-	 * On foot transportation is free.
-	 */
-	@Override
-	public float calculatePrice() {
-		return 0;
+public class OnFoot extends AbstractTransport {
+	public OnFoot(String type, int speed, int price, int confort) {
+		super(type, speed, price, confort);
+	}
+	
+	public OnFoot(Result result) {
+		super(result);
+	}
+	
+	public OnFoot() {
+		
 	}
 }
