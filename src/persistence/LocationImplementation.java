@@ -3,6 +3,7 @@ package persistence;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import business.model.location.Coordinates;
 import business.model.location.Hotel;
 import business.model.location.Site;
@@ -72,13 +73,44 @@ public class LocationImplementation implements LocationPersistence {
 
 	@Override
 	public List<Site> getHotelsBeaches() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT name, price, confort, type, latitude, longitude, island, transportType FROM Sites "
+				+ "INNER JOIN Hotels ON Sites.name = Hotels.beach";
+		
+		Operator operator = edb.executeSQLQuery(query);
+		
+		List<Site> sites = new ArrayList<Site>();
+		Result result;
+
+		while(operator.hasNext()) {
+			result  = operator.next();
+		
+			Site site = (Site) SpringIoC.getBean("site");
+
+			site.setName((String) result.getObject("name"));
+			site.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
+			site.setIsland((String) result.getObject("island"));
+			site.setConfort((int) result.getObject("confort"));
+			site.setType((String) result.getObject("type"));
+			sites.add(site);
+		}
+		return sites;
 	}
 
 
 	@Override
 	public List<Site> getSiteByKeywords(List<String> keywords) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AbstractTransport getLocationsTransport(String keyTransport) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Site getHotelsBeach(String keyBeach) {
 		// TODO Auto-generated method stub
 		return null;
 	}
