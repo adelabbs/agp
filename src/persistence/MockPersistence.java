@@ -3,7 +3,6 @@ package persistence;
 import java.util.LinkedList;
 import java.util.List;
 
-import business.model.location.AbstractLocation;
 import business.model.location.Hotel;
 import business.model.location.Site;
 import business.model.transport.AbstractTransport;
@@ -11,11 +10,6 @@ import business.spring.SpringIoC;
 import dao.LocationPersistence;
 
 public class MockPersistence implements LocationPersistence {
-
-	@Override
-	public List<AbstractLocation> getAbstractLocationByPrice(int minPrice, int maxPrice) {
-		return null;
-	}
 
 	@Override
 	public List<Hotel> getHotelByPrice(int minPrice, int maxPrice) {
@@ -50,13 +44,32 @@ public class MockPersistence implements LocationPersistence {
 	}
 
 	@Override
-	public List<Site> getSiteByDifficulty(int minDifficulty, int maxDifficulty) {
-		return new LinkedList<Site>();
+	public List<AbstractTransport> getTransportByPrice(int minPrice, int maxPrice) {
+		return new LinkedList<AbstractTransport>();
 	}
 
 	@Override
-	public List<AbstractTransport> getTransportByPrice(int minPrice, int maxPrice) {
-		return new LinkedList<AbstractTransport>();
+	public List<Site> getSiteByConfort(int confort) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AbstractTransport> getAllTransports() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Site> getHotelsBeaches() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Site> getSiteByKeywords(List<String> keywords) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
