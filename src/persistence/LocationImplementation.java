@@ -27,7 +27,6 @@ public class LocationImplementation implements LocationPersistence {
 	@Override
 	public List<Hotel> getHotelByPrice(int minPrice, int maxPrice) {
 		String query = "SELECT name, price, latitude, longitude, island, beach, transportType FROM hotels WHERE hotels.price >= " + Integer.toString(minPrice) +  " AND hotels.price <=" + Integer.toString(maxPrice);
-		System.out.println(query);
 		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
 		
 		List<Hotel> hotels = new ArrayList<Hotel>();
@@ -42,10 +41,8 @@ public class LocationImplementation implements LocationPersistence {
 			hotel.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
 			hotel.setPricePerNight((int) result.getObject("price"));
 			hotel.setBeach(getHotelsBeach((String) result.getObject("beach")));
-			System.out.println(result.getObject("beach"));
 			hotel.setIsland((String) result.getObject("island"));
 			hotel.setTransport(getLocationsTransport((String) result.getObject("transportType")));
-			System.out.println(result.getObject("transportType"));
 			hotels.add(hotel);
 		}
 		operator.closeStatement();
@@ -64,7 +61,7 @@ public class LocationImplementation implements LocationPersistence {
 			Site site = (Site) SpringIoC.getBean("site");
 			
 			site.setName((String) result.getObject("name"));
-			site.setPricePerVisit((float) result.getObject("price"));
+			site.setPricePerVisit((int) result.getObject("price"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
 			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
@@ -77,7 +74,7 @@ public class LocationImplementation implements LocationPersistence {
 
 	@Override
 	public List<Transport> getTransportByPrice(int minPrice, int maxPrice) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
