@@ -2,7 +2,7 @@ package persistence.edb;
 
 import persistence.edb.operator.Operator;
 
-public class ExecutionPlan2 extends EDB_API {
+public class ExecutionPlan2 extends EdbAPI {
 	
 	public ExecutionPlan2() {
 		

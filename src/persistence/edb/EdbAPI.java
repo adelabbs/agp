@@ -5,7 +5,7 @@ import persistence.edb.operator.SQLOperator;
 import persistence.edb.operator.TextualOperator;
 import persistence.lucene.LuceneIndexer;
 
-public abstract class EDB_API {
+public abstract class EdbAPI {
 	
 	public static final String INDEX_PATH = System.getProperty("user.dir")+"/tmp/index";
 	
@@ -13,11 +13,11 @@ public abstract class EDB_API {
 	private String key;
 	private String userDirectoryPath;
 	
-	public EDB_API() {
+	public EdbAPI() {
 		
 	}
 	
-	public EDB_API(String tableName, String key, String userDirectoryPath) {
+	public EdbAPI(String tableName, String key, String userDirectoryPath) {
 		initDataParameters(tableName, key, userDirectoryPath);
 	}
 	
