@@ -84,9 +84,7 @@ public class LocationImplementation implements LocationPersistence {
 			Site site = (Site) SpringIoC.getBean("site");
 			
 			site.setName((String) result.getObject("name"));
-			System.out.println("NAME : " + (String) result.getObject("name"));
 			site.setScore((float) result.getObject("score"));
-			System.out.println("SCORE : " + (float) result.getObject("score"));
 			site.setPricePerVisit((int) result.getObject("price"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));

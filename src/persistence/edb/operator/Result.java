@@ -16,4 +16,8 @@ public class Result {
 	public Object getObject(String key) {
 		return resultRow.get(key);
 	}
+	
+	public HashMap<String,Object> getResultRow(){
+		return resultRow;
+	}
 }
