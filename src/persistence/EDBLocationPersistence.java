@@ -20,11 +20,11 @@ import persistence.edb.operator.Operator;
 import persistence.edb.operator.Result;
 import persistence.edb.operator.SQLOperator;
 
-public class LocationImplementation implements LocationPersistence {
+public class EDBLocationPersistence implements LocationPersistence {
 	
 	private EdbAPI edb;
 	
-	public LocationImplementation(EdbAPI edb) {
+	public EDBLocationPersistence(EdbAPI edb) {
 		this.edb = edb;
 	}
 	

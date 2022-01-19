@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import persistence.LocationImplementation;
+import persistence.EDBLocationPersistence;
 import persistence.edb.ExecutionPlan1;
 
 public class TestDynamicQuery {
@@ -13,7 +13,7 @@ public class TestDynamicQuery {
 		ExecutionPlan1 edb = new ExecutionPlan1(null, null, System.getProperty("user.dir")+"/tmp/sites");
 		edb.createTextualIndex();
 		
-		LocationImplementation li = new LocationImplementation(edb);
+		EDBLocationPersistence li = new EDBLocationPersistence(edb);
 		
 		// Error when giving unknown parameters in SQL, ResultSet don't exist
 		
