@@ -87,7 +87,7 @@ public class LocationImplementation implements LocationPersistence {
 			site.setPricePerVisit((int) result.getObject("price"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
-			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
+			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			site.setIsland((String) result.getObject("island"));
 			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 			site.setScore((Float) result.getObject("score"));
@@ -111,7 +111,7 @@ public class LocationImplementation implements LocationPersistence {
 			Hotel hotel = (Hotel) SpringIoC.getBean("hotel");
 
 			hotel.setName((String) result.getObject("name"));
-			hotel.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
+			hotel.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			hotel.setPricePerNight((int) result.getObject("price"));
 			hotel.setBeach(getHotelsBeach((String) result.getObject("beach")));
 			hotel.setIsland((String) result.getObject("island"));
@@ -138,7 +138,7 @@ public class LocationImplementation implements LocationPersistence {
 			site.setPricePerVisit((int) result.getObject("price"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
-			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
+			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			site.setIsland((String) result.getObject("island"));
 			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 			sites.add(site);
@@ -187,7 +187,7 @@ public class LocationImplementation implements LocationPersistence {
 			site.setPricePerVisit((int) result.getObject("price"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
-			site.setCoordinates((new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude"))));
+			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			site.setIsland((String) result.getObject("island"));
 			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 			sites.add(site);
@@ -235,7 +235,7 @@ public class LocationImplementation implements LocationPersistence {
 			Site site = (Site) SpringIoC.getBean("site");
 
 			site.setName((String) result.getObject("name"));
-			site.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
+			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			site.setIsland((String) result.getObject("island"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
@@ -278,7 +278,7 @@ public class LocationImplementation implements LocationPersistence {
 			result  = operator.next();
 
 			site.setName((String) result.getObject("name"));
-			site.setCoordinates(new Coordinates((float) result.getObject("latitude"), (float) result.getObject("longitude")));
+			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			site.setIsland((String) result.getObject("island"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
