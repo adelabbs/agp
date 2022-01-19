@@ -17,6 +17,10 @@ public class SQLOperator implements Operator {
 	private ArrayList<String> columnNames = new ArrayList<String>();
 	private PreparedStatement preparedStatement;
 	
+	public boolean existResultSet() {
+		return resultSet != null;
+	}
+	
 	@Override
 	public void init() {
 		try {

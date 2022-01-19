@@ -16,9 +16,10 @@ public class MixedOperatorPA1 implements Operator {
 	private ArrayList<Result> textualResults;
 
 	private ArrayList<Result> mixedResults;
-
+	private boolean existMixedResults = false; // Check if mixedResults has been filled with proper data.
+	
 	private int cursor = 0;
-
+		
 	/*
 	 * \brief : Separate the SQL and Lucene part of the query in 2 String variables.
 	 */
@@ -64,42 +65,53 @@ public class MixedOperatorPA1 implements Operator {
 			/* Execute SQL Query and merge with Textual results */
 			if (!sqlQuery.trim().isEmpty()) {
 				sqlOp = new SQLOperator();
-				System.out.println(sqlQuery);
 				sqlOp.executeQuery(sqlQuery);
 				
-				sqlOp.init();
+				if(sqlOp.existResultSet()) {
+					String name;
+					String key;
 
-				String name;
-				String key;
+					float score;
 
-				float score;
+					Result sqlResult;
+					Result tmpResult;
 
-				Result sqlResult;
-				Result tmpResult;
+					boolean found;
 
-				boolean found;
+					Iterator<Result> iterator = textualResults.iterator();
+					while (sqlOp.hasNext()) {
+						found = false;
 
-				Iterator<Result> iterator = textualResults.iterator();
-				while (sqlOp.hasNext()) {
-					found = false;
+						sqlResult = sqlOp.next();
+						key = (String) sqlResult.getObject(TextualOperator.KEY);
 
-					sqlResult = sqlOp.next();
-					key = (String) sqlResult.getObject(TextualOperator.KEY);
+						while (!found && iterator.hasNext()) {
+							tmpResult = iterator.next();
+							name = (String) tmpResult.getObject(TextualOperator.KEY);
 
-					while (!found && iterator.hasNext()) {
-						tmpResult = iterator.next();
-						name = (String) tmpResult.getObject(TextualOperator.KEY);
-
-						if (name.equals(key)) {
-							found = true;
-							score = (float) tmpResult.getObject(TextualOperator.SCORE);
-							sqlResult.addField(TextualOperator.SCORE, score);
-
-							mixedResults.set(textualResults.indexOf(tmpResult), sqlResult);
+							if (name.equals(key)) {
+								found = true;
+								score = (float) tmpResult.getObject(TextualOperator.SCORE);
+								sqlResult.addField(TextualOperator.SCORE, score);
+								mixedResults.set(textualResults.indexOf(tmpResult), sqlResult);
+								setExistMixedResults(true);
+							}
+						}
+						
+						iterator = textualResults.iterator();
+					}
+					
+					/* Temporary fix to remove Result that are null */
+					ArrayList<Result> toRemove = new ArrayList<Result>();
+					for(Result res : mixedResults) {
+						if(res == null) {
+							toRemove.add(res);
 						}
 					}
 					
-					iterator = textualResults.iterator();
+					for(Result res : toRemove) {
+						mixedResults.remove(res);
+					}
 				}
 			}
 		}
@@ -113,7 +125,6 @@ public class MixedOperatorPA1 implements Operator {
 
 	@Override
 	public Result next() {
-		System.out.println();
 		Result result = mixedResults.get(cursor);
 		cursor++;
 		return result;
@@ -123,6 +134,14 @@ public class MixedOperatorPA1 implements Operator {
 	public boolean hasNext() {
 		//System.out.println(mixedResults.size());
 		return cursor < mixedResults.size() - 1;
+	}
+
+	public boolean isExistMixedResults() {
+		return existMixedResults;
+	}
+
+	public void setExistMixedResults(boolean existMixedResults) {
+		this.existMixedResults = existMixedResults;
 	}
 
 }
