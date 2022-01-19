@@ -2,7 +2,6 @@ package persistence.edb;
 
 import persistence.edb.operator.MixedOperatorPA1;
 import persistence.edb.operator.Operator;
-import persistence.edb.operator.TextualOperator;
 
 public class ExecutionPlan1 extends EdbAPI {
 	

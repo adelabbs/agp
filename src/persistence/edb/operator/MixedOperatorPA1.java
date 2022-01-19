@@ -3,6 +3,8 @@ package persistence.edb.operator;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
+
 public class MixedOperatorPA1 implements Operator {
 
 	private SQLOperator sqlOp;
@@ -32,14 +34,12 @@ public class MixedOperatorPA1 implements Operator {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void executeQuery(String query) {
 		if (!query.trim().isEmpty()) {
 
 			textualResults = new ArrayList<Result>();
 			mixedResults = new ArrayList<Result>();
-
 
 			/* Divide SQL & Lucene part of Query */
 			parsingQuery(query);
@@ -55,7 +55,10 @@ public class MixedOperatorPA1 implements Operator {
 					textResult = textOp.next();
 					textualResults.add(textResult);
 				}
-				mixedResults = (ArrayList<Result>) textualResults.clone();
+				
+				for(int i = 0; i< textualResults.size(); i++) {
+					mixedResults.add(i, null);
+				}
 			}
 
 			/* Execute SQL Query and merge with Textual results */
@@ -91,9 +94,8 @@ public class MixedOperatorPA1 implements Operator {
 							found = true;
 							score = (float) tmpResult.getObject(TextualOperator.SCORE);
 							sqlResult.addField(TextualOperator.SCORE, score);
-							
-							System.err.println("TMP RESULT : " + textualResults.indexOf(tmpResult));
-							mixedResults.add(textualResults.indexOf(tmpResult), sqlResult);
+
+							mixedResults.set(textualResults.indexOf(tmpResult), sqlResult);
 						}
 					}
 					
