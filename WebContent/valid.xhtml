@@ -1,19 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Database filler form</title>
 </h:head>
 
 <h:body>
 	<fieldset>
+	
+		<p>
+			<strong>Database filler form</strong>
+		</p>
+		 <h:form>
+		<p:growl id="growl" showSummary="true" showDetail="true" keepAlive="true" life="3000">
+   			<p:autoUpdate/>
+		</p:growl>
+	
 		<legend>Welcome #{loginBean.login} !</legend>
 		<h:panelGroup rendered="#{loginBean.connected == true}">
-			<ul>
-				<!--  <li><a href="fill-in.jsf">Start to fill in</a></li> -->
-			</ul>
+			<div>
+				<h:outputLabel for="site" value="Chose a site : "/>
+            	<p:inputText id="site" value="#{databaseFillerBean.name}" label = "site" required = "true"/>
+        	</div>
+        	<div>
+        		<h:outputLabel for="description" value="Write description : "/>
+            	<p:inputTextarea rows = "8" cols = "60" id="description" value="#{databaseFillerBean.description}" label = "description" required = "true"/>
+        	</div>
+        	
+        <p:commandButton value="Insert into database" ajax="false" validateClient="true" styleClass="p-mr-2" action="#{databaseFilterBean.fillIn}"/>
 		</h:panelGroup>
+		 </h:form>
 	</fieldset>
 </h:body>
 </html>

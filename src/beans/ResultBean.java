@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +12,9 @@ import business.model.Offer;
 
 @ManagedBean
 @SessionScoped
-public class ResultBean  {
+public class ResultBean implements Serializable {
+
+	private static final long serialVersionUID = -1168123493777752654L;
 
 	private List<Offer> offers;
 	

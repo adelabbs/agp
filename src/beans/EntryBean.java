@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +15,10 @@ import business.spring.SpringIoC;
 @ManagedBean
 @SessionScoped
 
-public class EntryBean {
+public class EntryBean implements Serializable {
 	
+	private static final long serialVersionUID = -7658310028694454686L;
+
 	private SearchEntry entry = new SearchEntry();
 	
 	private Engine form = (Engine) SpringIoC.getBean("form");
@@ -24,12 +27,16 @@ public class EntryBean {
 	
 	@PostConstruct
 	public void Init() {
-		setDaysOfStay(1);
+		//setDaysOfStay(1);
 	}
 	
 	public String startEngine() {
-		System.out.println(getDaysOfStay());
-		return "result";
+		if ((getDaysOfStay() > 0) && (getDaysOfStay() < 8)) {
+			return "result";
+		}
+		else {
+			return "invalid-entry";
+		}
 	}
 	
 	public SearchEntry getEntry() {
@@ -54,11 +61,26 @@ public class EntryBean {
 		entry.setBudgetMax(budgetMax);
 	}
 
+	@SuppressWarnings("null")
 	public int getDaysOfStay() {
-		return entry.getDaysOfStay();
+		/*if ((entry.getDaysOfStay() > 0) || (entry.getDaysOfStay() < 8)) {
+			return entry.getDaysOfStay(); 
+		}
+		else {
+			return (Integer) null;
+		}*/
+		return entry.getDaysOfStay(); 
 	}
 
+	@SuppressWarnings("null")
 	public void setDaysOfStay(int daysOfStay) {
+		/*if ((entry.getDaysOfStay() > 0) || (entry.getDaysOfStay() < 8)) {
+			entry.setDaysOfStay(daysOfStay);
+		}
+		else {
+			Integer invalid = null;
+			entry.setDaysOfStay(invalid);
+		}*/
 		entry.setDaysOfStay(daysOfStay);
 	}
 
@@ -93,6 +115,4 @@ public class EntryBean {
 	public void setForm(Engine form) {
 		this.form = form;
 	}
-	
-	
 }

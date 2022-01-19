@@ -1,21 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>You must log in to fill in the database</title>
+	<title>Database access</title>
 </h:head>
 
 <h:body>
-<fieldset>
-		<legend>Please log in for more functionalities</legend>
+
+	<p>
+		<strong>You must log in to fill in the database </strong>
+	</p>
+	
+	<fieldset>
 		<h:form>
-               Login : 
-                <h:inputText value="#{loginBean.login}" />
-			<br />
-                 Password: 
-                <h:inputSecret value="#{loginBean.password}" />
-			<br />
+            <div>
+            	<h:outputLabel for="login" value="Login : "/>
+            	<p:inputText id="login" value="#{loginBean.login}" label="login" required = "true" />
+        	</div>
+        	<div>
+            <h:outputLabel for="password" value="Password : "/>
+            	<p:password id="password" value="#{loginBean.password}" label="password" required = "true" />
+        	</div>
 			<h:commandButton value="Log in" action="#{loginBean.verify}" />
 		</h:form>
 	</fieldset>
