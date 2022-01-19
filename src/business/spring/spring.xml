@@ -9,7 +9,7 @@
 
 	<bean id="persistenceDAO" class="dao.LocationPersistence" abstract="true" scope="prototype" />
 
-	<bean id="edbDAO" class="persistence.edbPersistence" parent="persistenceDAO" />
+	<bean id="edbDAO" class="persistence.EDBLocationPersistence" parent="persistenceDAO" />
 
 	<!-- This part is used only by TestEngine -->
 	<bean id="entry" class="business.engine.SearchEntry">
@@ -85,7 +85,7 @@
 	</bean>
 
 
-	<bean id="transport" class="business.model.transport.AbstractTransport" abstract="true" scope="prototype" />
+	<bean id="transport" class="business.model.transport.Transport" scope="prototype" />
 
 	<bean id="boat" class="business.model.transport.Boat" parent="transport">
 		<property name="speed">
