@@ -166,6 +166,7 @@ public class LocationImplementation implements LocationPersistence {
 			transport.setPrice((int) result.getObject("price"));
 			transport.setConfort((int) result.getObject("confort"));
 			transports.add(transport);
+			System.out.println(transport.toString());
 		}
 		operator.closeStatement();
 		return transports;

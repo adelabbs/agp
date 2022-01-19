@@ -13,5 +13,7 @@ public class TestJDBC {
 		li.getHotelByPrice(0, 100);
 		System.out.println("========= SITES ==========");
 		li.getSiteByPrice(0, 10);
+		System.out.println("========= TRANSPORT ==========");
+		li.getTransportByPrice(0, 10);
 	}
 }
