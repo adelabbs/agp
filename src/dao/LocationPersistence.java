@@ -29,21 +29,13 @@ public interface LocationPersistence {
 	/* Lucene Methods */
 	List<Site> getSiteByKeywords(List<String> keywords);
 	
-	/*
-	 * 
-	 */
-	
 	/* Mixed Query */
 	List<Site> getSiteByParameters(HashMap<String,Object> param);
 	
-	List<Site> getHotelByParameters(HashMap<String,Object> param);
+	List<Hotel> getHotelByParameters(HashMap<String,Object> param);
 	
-	List<Site> getTransportByParameters(HashMap<String,Object> param); // {"confort" : 3 } { "type" : activity } {....}
+	List<Transport> getTransportByParameters(HashMap<String,Object> param);
 	
-	/* if confort ==> Rajouter '>=' entre la clé et la valeur
-	 *  si on trouve minPrice et maxPrice : {minPrice : 2} {maxPrice : 3}
-	 *  	if minPrice, on met "price" >= valueMinPrice
-	 *  	else if maxPrice on met "price" <= valueMaxPrice
-	 */
+
 	
 }

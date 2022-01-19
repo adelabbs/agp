@@ -30,5 +30,15 @@ public class Hotel extends AbstractLocation {
 	public void setBeach(Site beach) {
 		this.beach = beach;
 	}
+	
+	public String toString() {
+		return "HOTEL = Name : " + name + 
+				", Price : " + pricePerNight + 
+				", Latitude : " + coordinates.getLatitude() + 
+				", Longitude : " + coordinates.getLongitude() + 
+				", Island : " + island + 
+				", Beach : " + beach.getName() + 
+				", TransportType : " + transport.getType();
+	}
 
 }

@@ -92,13 +92,13 @@ public class MockPersistence implements LocationPersistence {
 	}
 
 	@Override
-	public List<Site> getHotelByParameters(HashMap<String, Object> param) {
+	public List<Hotel> getHotelByParameters(HashMap<String, Object> param) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Site> getTransportByParameters(HashMap<String, Object> param) {
+	public List<Transport> getTransportByParameters(HashMap<String, Object> param) {
 		// TODO Auto-generated method stub
 		return null;
 	}

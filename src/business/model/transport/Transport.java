@@ -50,5 +50,12 @@ public class Transport {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	public String toString() {
+		return "TRANSPORT = Type : " + type + 
+				", Price : " + price + 
+				", Speed : " + speed +
+				", Confort : " + confort;
+	}
 
 }

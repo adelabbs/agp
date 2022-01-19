@@ -4,11 +4,11 @@ import business.model.transport.Transport;
 
 public abstract class AbstractLocation {
 
-	private String name;
-	private Coordinates coordinates;
+	protected String name;
+	protected Coordinates coordinates;
 
-	private String island;
-	private Transport transport;
+	protected String island;
+	protected Transport transport;
 	
 	public AbstractLocation() {
 		

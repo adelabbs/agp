@@ -86,5 +86,15 @@ public class Site extends AbstractLocation {
 	public void setScore(float score) {
 		this.score = score;
 	}
+	
+	public String toString() {
+		return "SITE = Name : " + name + 
+				", Price : " + pricePerVisit + 
+				", Confort : " + confort + 
+				", Latitude : " + coordinates.getLatitude() + 
+				", Longitude : " + coordinates.getLongitude() + 
+				", Island : " + island +
+				", TransportType : " + transport.getType();
+	}
 
 }

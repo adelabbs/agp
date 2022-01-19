@@ -32,15 +32,39 @@ public class LocationImplementation implements LocationPersistence {
 	}
 
 	@Override
-	public List<Site> getHotelByParameters(HashMap<String, Object> param) {
+	public List<Hotel> getHotelByParameters(HashMap<String, Object> param) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Site> getTransportByParameters(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Transport> getTransportByParameters(HashMap<String, Object> param) {
+		/* if confort ==> Rajouter '>=' entre la clé et la valeur
+		 *  si on trouve minPrice et maxPrice : {minPrice : 2} {maxPrice : 3}
+		 *  	if minPrice, on met "price" >= valueMinPrice
+		 *  	else if maxPrice on met "price" <= valueMaxPrice
+		 */
+		
+		 // {"confort" : 3 } { "type" : activity } {....}
+		String query = "SELECT type, price, speed, confort FROM transports";
+		
+		SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
+		List<Transport> transports = new ArrayList<Transport>();
+		Result result;
+
+		while(operator.hasNext()) {
+			result  = operator.next();
+		
+			Transport transport = new Transport();
+			
+			transport.setType((String) result.getObject("type"));
+			transport.setSpeed((int) result.getObject("speed"));
+			transport.setPrice((int) result.getObject("price"));
+			transport.setConfort((int) result.getObject("confort"));
+			transports.add(transport);
+		}
+		operator.closeStatement();
+		return transports;
 	}
 	
 	@Override
@@ -93,6 +117,7 @@ public class LocationImplementation implements LocationPersistence {
 			hotel.setIsland((String) result.getObject("island"));
 			hotel.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 			hotels.add(hotel);
+			System.out.println(hotel.toString());
 		}
 		operator.closeStatement();
 		return hotels;
@@ -117,6 +142,7 @@ public class LocationImplementation implements LocationPersistence {
 			site.setIsland((String) result.getObject("island"));
 			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 			sites.add(site);
+			System.out.println(site.toString());
 		}
 		return sites;
 	}

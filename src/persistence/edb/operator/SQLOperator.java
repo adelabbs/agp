@@ -74,7 +74,13 @@ public class SQLOperator implements Operator {
 	@Override
 	public boolean hasNext() {
 		try {
-			return !resultSet.isLast();
+			if(resultSet.next()) {
+				resultSet.previous();
+				return true;
+			}
+			else {
+				return false;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
