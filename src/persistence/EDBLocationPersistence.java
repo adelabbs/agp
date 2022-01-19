@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import business.model.location.Coordinates;
@@ -441,6 +440,32 @@ public class EDBLocationPersistence implements LocationPersistence {
 		}
 		operator.closeStatement();
 		return site;
+	}
+
+	@Override
+	public List<Hotel> getAllHotels() {
+		String query = "SELECT name, price, latitude, longitude, island, beach, transportType FROM hotels";
+		SQLOperator operator = edb.executeSQLQuery(query);
+		
+		List<Hotel> hotels = new ArrayList<Hotel>();
+		Result result;
+
+		while(operator.hasNext()) {
+			result = operator.next();
+		
+			Hotel hotel = (Hotel) SpringIoC.getBean("hotel");
+
+			hotel.setName((String) result.getObject("name"));
+			hotel.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
+			hotel.setPricePerNight((int) result.getObject("price"));
+			hotel.setBeach(getHotelsBeach((String) result.getObject("beach")));
+			hotel.setIsland((String) result.getObject("island"));
+			hotel.setTransport(getLocationsTransport((String) result.getObject("transportType")));
+			hotels.add(hotel);
+			System.out.println(hotel.toString());
+		}
+		operator.closeStatement();
+		return hotels;
 	}
 
 

@@ -1,6 +1,5 @@
 package test.manual;
 
-import java.security.spec.XECPublicKeySpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

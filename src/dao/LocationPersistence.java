@@ -20,6 +20,8 @@ public interface LocationPersistence {
 	
 	List<Transport> getAllTransports();
 	
+	List<Hotel> getAllHotels();
+	
 	Transport getLocationsTransport(String keyTransport);
 	
 	List<Site> getHotelsBeaches();
