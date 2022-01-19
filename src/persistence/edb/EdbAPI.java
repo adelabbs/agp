@@ -1,8 +1,11 @@
 package persistence.edb;
 
+import com.mysql.jdbc.Connection;
+
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.SQLOperator;
 import persistence.edb.operator.TextualOperator;
+import persistence.jdbc.JdbcConnection;
 import persistence.lucene.LuceneIndexer;
 
 public abstract class EdbAPI {
@@ -13,12 +16,19 @@ public abstract class EdbAPI {
 	private String key;
 	private String userDirectoryPath;
 	
+	public static final int DEFAULT_CONNECTION = 0;
+	public static final int SPECIFIED_CONNECTION = 1;
+	
 	public EdbAPI() {
 		
 	}
 	
 	public EdbAPI(String tableName, String key, String userDirectoryPath) {
 		initDataParameters(tableName, key, userDirectoryPath);
+	}
+	
+	public void setDatabaseConnection(int connectionMode, String host, String base, String user, String password, String url) {
+		JdbcConnection.setSpecifiedConnection(connectionMode, host, base, user, password, url);
 	}
 	
 	public void initDataParameters(String tableName, String key, String userDirectoryPath) {
