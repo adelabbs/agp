@@ -1,6 +1,6 @@
 package test.manual;
 
-import persistence.LocationImplementation;
+import persistence.EDBLocationPersistence;
 import persistence.edb.ExecutionPlan1;
 
 public class TestJDBC {
@@ -8,7 +8,7 @@ public class TestJDBC {
 
 	public static void main(String[] args) {
 		ExecutionPlan1 ep1 = new ExecutionPlan1();
-		LocationImplementation li = new LocationImplementation(ep1);
+		EDBLocationPersistence li = new EDBLocationPersistence(ep1);
 		System.out.println("========= HOTELS =========");
 		li.getHotelByPrice(0, 100);
 		System.out.println("========= SITES ==========");
