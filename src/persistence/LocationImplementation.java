@@ -69,7 +69,7 @@ public class LocationImplementation implements LocationPersistence {
 	
 	@Override
 	public List<Site> getSiteByKeywords(List<String> keywords) {
-		String keywordSentence = "SELECT name, price, latitude, longitude, island, beach, transportType "
+		String keywordSentence = "SELECT name, price, confort, type, latitude, longitude, island, transportType "
 				+ "FROM Sites with";
 		for(String keyword : keywords) {
 			keywordSentence += " " + keyword;
@@ -84,15 +84,18 @@ public class LocationImplementation implements LocationPersistence {
 			Site site = (Site) SpringIoC.getBean("site");
 			
 			site.setName((String) result.getObject("name"));
+			System.out.println("NAME : " + (String) result.getObject("name"));
+			site.setScore((float) result.getObject("score"));
+			System.out.println("SCORE : " + (float) result.getObject("score"));
 			site.setPricePerVisit((int) result.getObject("price"));
 			site.setConfort((int) result.getObject("confort"));
 			site.setType((String) result.getObject("type"));
 			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
 			site.setIsland((String) result.getObject("island"));
 			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
-			site.setScore((Float) result.getObject("score"));
-			
+
 			sites.add(site);
+			System.out.println(site.toString());
 		}
 		return sites;
 	}

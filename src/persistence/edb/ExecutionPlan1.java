@@ -1,6 +1,8 @@
 package persistence.edb;
 
+import persistence.edb.operator.MixedOperatorPA1;
 import persistence.edb.operator.Operator;
+import persistence.edb.operator.TextualOperator;
 
 public class ExecutionPlan1 extends EDB_API {
 	
@@ -13,7 +15,9 @@ public class ExecutionPlan1 extends EDB_API {
 	}
 
 	public Operator executeMixedQuery(String query) {
-		return null;
+		MixedOperatorPA1 op = new MixedOperatorPA1();
+		op.executeQuery(query);	
+		return op;
 	}
 
 }

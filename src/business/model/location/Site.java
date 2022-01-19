@@ -7,27 +7,28 @@ public class Site extends AbstractLocation {
 	private String type;
 	private float score;
 	
-	public Site() {
-		super();
-	}
-
-
-	public Site(String name, Coordinates coordinates, String island, String description, int comfort,
-			float pricePerVisit) {
-		super(name, coordinates);
-		this.island = island;
-		this.description = description;
-		this.comfort = comfort;
-		this.pricePerVisit = pricePerVisit;
-	}
-
 	private String island;
 
 	private String description;
 
 	private int comfort;
 
-	private float pricePerVisit;
+	private int pricePerVisit;
+
+	
+	public Site() {
+		super();
+	}
+
+
+	public Site(String name, Coordinates coordinates, String island, String description, int comfort,
+			int pricePerVisit) {
+		super(name, coordinates);
+		this.island = island;
+		this.description = description;
+		this.comfort = comfort;
+		this.pricePerVisit = pricePerVisit;
+	}
 
 	public String getIsland() {
 		return island;
@@ -53,11 +54,11 @@ public class Site extends AbstractLocation {
 		this.comfort = comfort;
 	}
 
-	public float getPricePerVisit() {
+	public int getPricePerVisit() {
 		return pricePerVisit;
 	}
 
-	public void setPricePerVisit(float pricePerVisit) {
+	public void setPricePerVisit(int pricePerVisit) {
 		this.pricePerVisit = pricePerVisit;
 	}
 	
@@ -88,7 +89,8 @@ public class Site extends AbstractLocation {
 	}
 	
 	public String toString() {
-		return "SITE = Name : " + name + 
+		return "SITE = Name : " + name +
+				", Score : " + score +
 				", Price : " + pricePerVisit + 
 				", Confort : " + confort + 
 				", Latitude : " + coordinates.getLatitude() + 

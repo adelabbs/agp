@@ -32,12 +32,14 @@ public class MixedOperatorPA1 implements Operator {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void executeQuery(String query) {
 		if (!query.trim().isEmpty()) {
 
 			textualResults = new ArrayList<Result>();
 			mixedResults = new ArrayList<Result>();
+
 
 			/* Divide SQL & Lucene part of Query */
 			parsingQuery(query);
@@ -53,12 +55,16 @@ public class MixedOperatorPA1 implements Operator {
 					textResult = textOp.next();
 					textualResults.add(textResult);
 				}
+				mixedResults = (ArrayList<Result>) textualResults.clone();
 			}
 
 			/* Execute SQL Query and merge with Textual results */
 			if (!sqlQuery.trim().isEmpty()) {
 				sqlOp = new SQLOperator();
+				System.out.println(sqlQuery);
 				sqlOp.executeQuery(sqlQuery);
+				
+				sqlOp.init();
 
 				String name;
 				String key;
@@ -71,16 +77,13 @@ public class MixedOperatorPA1 implements Operator {
 				boolean found;
 
 				Iterator<Result> iterator = textualResults.iterator();
-
 				while (sqlOp.hasNext()) {
-
 					found = false;
 
 					sqlResult = sqlOp.next();
 					key = (String) sqlResult.getObject(TextualOperator.KEY);
 
 					while (!found && iterator.hasNext()) {
-
 						tmpResult = iterator.next();
 						name = (String) tmpResult.getObject(TextualOperator.KEY);
 
@@ -88,10 +91,13 @@ public class MixedOperatorPA1 implements Operator {
 							found = true;
 							score = (float) tmpResult.getObject(TextualOperator.SCORE);
 							sqlResult.addField(TextualOperator.SCORE, score);
-
+							
+							System.err.println("TMP RESULT : " + textualResults.indexOf(tmpResult));
 							mixedResults.add(textualResults.indexOf(tmpResult), sqlResult);
 						}
 					}
+					
+					iterator = textualResults.iterator();
 				}
 			}
 		}
@@ -105,15 +111,15 @@ public class MixedOperatorPA1 implements Operator {
 
 	@Override
 	public Result next() {
+		System.out.println();
 		Result result = mixedResults.get(cursor);
 		cursor++;
 		return result;
-
 	}
 
 	@Override
 	public boolean hasNext() {
-
+		//System.out.println(mixedResults.size());
 		return cursor < mixedResults.size() - 1;
 	}
 

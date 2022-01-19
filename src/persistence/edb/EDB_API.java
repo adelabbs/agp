@@ -7,6 +7,8 @@ import persistence.lucene.LuceneIndexer;
 
 public abstract class EDB_API {
 	
+	public static final String INDEX_PATH = System.getProperty("user.dir")+"/tmp/index";
+	
 	private String tableName; 
 	private String key;
 	private String userDirectoryPath;
@@ -31,7 +33,8 @@ public abstract class EDB_API {
 	
 	public void createTextualIndex() {
 		try {
-			LuceneIndexer.getInstance(userDirectoryPath);
+			LuceneIndexer ind = LuceneIndexer.getInstance(INDEX_PATH);
+			ind.indexing(userDirectoryPath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
