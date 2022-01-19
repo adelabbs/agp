@@ -11,7 +11,7 @@ import business.model.location.Site;
 import business.model.transport.Transport;
 import business.spring.SpringIoC;
 import dao.LocationPersistence;
-import persistence.edb.EDB_API;
+import persistence.edb.EdbAPI;
 import persistence.edb.operator.MixedOperatorPA1;
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.Result;
@@ -19,9 +19,9 @@ import persistence.edb.operator.SQLOperator;
 
 public class LocationImplementation implements LocationPersistence {
 	
-	private EDB_API edb;
+	private EdbAPI edb;
 	
-	public LocationImplementation(EDB_API edb) {
+	public LocationImplementation(EdbAPI edb) {
 		this.edb = edb;
 	}
 	
