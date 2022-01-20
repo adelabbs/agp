@@ -9,9 +9,10 @@ public abstract class AbstractLocation {
 
 	protected String island;
 	protected Transport transport;
-	
+	protected int price;
+
 	public AbstractLocation() {
-		
+
 	}
 
 	public AbstractLocation(String name, Coordinates coordinates) {
@@ -23,12 +24,12 @@ public abstract class AbstractLocation {
 		return name;
 	}
 
-	public Coordinates getCoordinates() {
-		return coordinates;
-	}
-
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Coordinates getCoordinates() {
+		return coordinates;
 	}
 
 	public void setCoordinates(Coordinates coordinates) {
@@ -49,5 +50,13 @@ public abstract class AbstractLocation {
 
 	public void setIsland(String island) {
 		this.island = island;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 }

@@ -12,8 +12,7 @@
 	<bean id="edbDAO" class="persistence.EDBLocationPersistence" parent="persistenceDAO" />
 
 	<!-- This part is used only by TestEngine -->
-	<bean id="entry" class="business.engine.SearchEntry">
-	</bean>
+	<bean id="entry" class="business.engine.SearchEntry"></bean>
 
 	<bean id="location" class="business.model.location.AbstractLocation" abstract="true" scope="prototype" />
 
@@ -85,18 +84,45 @@
 	<bean id="transport" class="business.model.transport.Transport" scope="prototype" />
 
 	<bean id="boat" class="business.model.transport.Boat" parent="transport">
-		<property name="speed">
-			<value>40</value>
+		<property name="type">
+			<value>boat</value>
 		</property>
-	</bean>
-	<bean id="bus" class="business.model.transport.Bus" parent="transport">
+		<property name="price">
+			<value>39</value>
+		</property>
 		<property name="speed">
 			<value>30</value>
 		</property>
+		<property name="confort">
+			<value>2</value>
+		</property>
+	</bean>
+	<bean id="bus" class="business.model.transport.Bus" parent="transport">
+		<property name="type">
+			<value>bus</value>
+		</property>
+		<property name="price">
+			<value>30</value>
+		</property>
+		<property name="speed">
+			<value>60</value>
+		</property>
+		<property name="confort">
+			<value>1</value>
+		</property>
 	</bean>
 	<bean id="onFoot" class="business.model.transport.OnFoot" parent="transport">
+		<property name="type">
+			<value>walk</value>
+		</property>
+		<property name="price">
+			<value>0</value>
+		</property>
 		<property name="speed">
 			<value>5</value>
+		</property>
+		<property name="confort">
+			<value>0</value>
 		</property>
 	</bean>
 

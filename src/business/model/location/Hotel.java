@@ -3,7 +3,6 @@ package business.model.location;
 
 public class Hotel extends AbstractLocation {
 
-	private int pricePerNight;
 	private Site beach;
 
 	public Hotel() {
@@ -12,15 +11,15 @@ public class Hotel extends AbstractLocation {
 
 	public Hotel(String name, Coordinates coordinates, int pricePerNight) {
 		super(name, coordinates);
-		this.pricePerNight = pricePerNight;
+		super.setPrice(pricePerNight); 
 	}
 
 	public int getPricePerNight() {
-		return pricePerNight;
+		return getPrice();
 	}
 
 	public void setPricePerNight(int pricePerNight) {
-		this.pricePerNight = pricePerNight;
+		setPrice(pricePerNight);
 	}
 
 	public Site getBeach() {
@@ -33,7 +32,7 @@ public class Hotel extends AbstractLocation {
 	
 	public String toString() {
 		return "HOTEL = Name : " + name + 
-				", Price : " + pricePerNight + 
+				", Price : " + getPrice() + 
 				", Latitude : " + coordinates.getLatitude() + 
 				", Longitude : " + coordinates.getLongitude() + 
 				", Island : " + island + 

@@ -11,12 +11,13 @@ public class DistanceComparator implements Comparator<Integer> {
 		this.distanceMatrix = distanceMatrix;
 	}
 	
+	
 	@Override
 	public int compare(Integer idSite1, Integer idSite2) {
 		if(idHotel < 0 || distanceMatrix == null) {
 			throw new IllegalArgumentException("Parameters are not set.");
 		}
-		return (int) (distanceMatrix[idHotel][idSite1] - distanceMatrix[idHotel][idSite2]);
+		return (int) (distanceMatrix[idHotel][idSite2] - distanceMatrix[idHotel][idSite1]); // decreasing order
 	}
 
 	public int getIdHotel() {

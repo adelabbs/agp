@@ -1,32 +1,29 @@
 package business.model.location;
 
-
 public class Site extends AbstractLocation {
 
 	private int confort;
-	private String type;
-	private float score;
 	
+	private float score;
+
+	private String type;
+
 	private String island;
 
 	private String description;
 
-	private int comfort;
-
 	private int pricePerVisit;
 
-	
 	public Site() {
 		super();
 	}
 
-
-	public Site(String name, Coordinates coordinates, String island, String description, int comfort,
+	public Site(String name, Coordinates coordinates, String island, String description, int confort,
 			int pricePerVisit) {
 		super(name, coordinates);
 		this.island = island;
 		this.description = description;
-		this.comfort = comfort;
+		this.confort = confort;
 		this.pricePerVisit = pricePerVisit;
 	}
 
@@ -46,14 +43,6 @@ public class Site extends AbstractLocation {
 		this.description = description;
 	}
 
-	public int getComfort() {
-		return comfort;
-	}
-
-	public void setComfort(int comfort) {
-		this.comfort = comfort;
-	}
-
 	public int getPricePerVisit() {
 		return pricePerVisit;
 	}
@@ -61,7 +50,7 @@ public class Site extends AbstractLocation {
 	public void setPricePerVisit(int pricePerVisit) {
 		this.pricePerVisit = pricePerVisit;
 	}
-	
+
 	public int getConfort() {
 		return confort;
 	}
@@ -78,24 +67,22 @@ public class Site extends AbstractLocation {
 		this.type = type;
 	}
 
-
 	public float getScore() {
 		return score;
 	}
 
-
 	public void setScore(float score) {
 		this.score = score;
 	}
-	
+
 	public String toString() {
-		return "SITE = Name : " + name +
-				", Score : " + score +
+		return "SITE = Name : " + name + 
+				", Score : " + score + 
 				", Price : " + pricePerVisit + 
 				", Confort : " + confort + 
 				", Latitude : " + coordinates.getLatitude() + 
-				", Longitude : " + coordinates.getLongitude() + 
-				", Island : " + island +
+				", Longitude : " + coordinates.getLongitude()+ 
+				", Island : " + island + 
 				", TransportType : " + transport.getType();
 	}
 
