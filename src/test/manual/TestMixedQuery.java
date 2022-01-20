@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import persistence.EDBLocationPersistence;
-import persistence.edb.ExecutionPlan1;
 
 public class TestMixedQuery {
 	public static void main(String args[]) {
