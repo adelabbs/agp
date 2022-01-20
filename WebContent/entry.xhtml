@@ -60,6 +60,13 @@
             	<h:message for="budgetMax"/>
             	<h:outputText type = "currency" value="€"/>
             </div>
+            <div>
+            <h:outputLabel for="searchKeyWords" value="Search by keywords : "/>
+            	<p:inputMask id="searchKeywords" value="#{entryBean.searchKeywords}" label="Maximum budget : " mask="9[9999]" validateMask="false">
+            	</p:inputMask>
+            	<h:message for="budgetMax"/>
+            	<h:outputText type = "currency" value="€"/>
+            </div>
    
         <p:commandButton icon="pi pi-search" styleClass="ui-button-warning" ajax="false" validateClient="true" action="#{entryBean.startEngine}"/>
 

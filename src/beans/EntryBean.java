@@ -27,7 +27,6 @@ public class EntryBean implements Serializable {
 	
 	@PostConstruct
 	public void Init() {
-		//setDaysOfStay(1);
 	}
 	
 	public String startEngine() {
@@ -61,26 +60,11 @@ public class EntryBean implements Serializable {
 		entry.setBudgetMax(budgetMax);
 	}
 
-	@SuppressWarnings("null")
 	public int getDaysOfStay() {
-		/*if ((entry.getDaysOfStay() > 0) || (entry.getDaysOfStay() < 8)) {
-			return entry.getDaysOfStay(); 
-		}
-		else {
-			return (Integer) null;
-		}*/
 		return entry.getDaysOfStay(); 
 	}
 
-	@SuppressWarnings("null")
 	public void setDaysOfStay(int daysOfStay) {
-		/*if ((entry.getDaysOfStay() > 0) || (entry.getDaysOfStay() < 8)) {
-			entry.setDaysOfStay(daysOfStay);
-		}
-		else {
-			Integer invalid = null;
-			entry.setDaysOfStay(invalid);
-		}*/
 		entry.setDaysOfStay(daysOfStay);
 	}
 

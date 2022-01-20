@@ -15,24 +15,57 @@
 		</legend>		
 		<br></br>	
 		<h:form id="form">
-    		<div class="product card">
-        		<p:dataList value="#{resultBean.offers}" var="offer" type="ordered" scrollable="true" scrollWidth="750" scrollHeight="500">
-            	<div class="product-list-item">
-                	<div class="product-list-detail">
-                    	<div class="product-name">Offre n°x</div>
-                    	<div class="product-description">programme jour 1</div>
-                    	<div class="product-description">...</div>
-                    	<div class="product-description">programme jour x</div>
-               	 	</div>
-               		<div class="product-list-action">
-                   		<h:outputText value="#{offer.totalPrice}" styleClass="product-price">
-                    	<f:convertNumber currencySymbol="€" type="currency"/>
-                    	</h:outputText>
-                	</div>
-                	<br></br>
-            	</div>
-        		</p:dataList>
-  			</div>
+    		
+  			
+  			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+    <div class="card">
+        <p:dataTable id="basicDT" var="offer" value="#{resultBean.offers}" scrollable="true" scrollWidth="1200" scrollHeight="800">
+            <p:column headerText="Available trip offers : ">
+                <h:outputText value="#{offer.id}" />
+            </p:column>
+			<p:column headerText="Duration of the stay : ">
+                <h:outputText value="#{entryBean.daysOfStay} days"/>
+            </p:column>
+            <p:column headerText="Total price :">
+                <h:outputText value="#{offer.totalPrice}" />
+            </p:column>
+            <p:column headerText="Hotels :">
+                <p:dataTable id="basicDT" var="hotel" value="#{offer.hotels}">
+                	<h:outputText value="#{hotel.name}" />
+                	<h:outputText value="#{hotel.pricePerVisit}" />
+           	 	</p:dataTable>
+            </p:column>
+            <p:column headerText="Excursions :">
+                <p:dataTable id="basicDT" var="excursion" value="#{offer.excursions}">
+                	<p:column>
+               			<h:outputText value="Day #{excursion.day}" />
+               			<p:dataTable id="basicDT" var="route" value="#{excursion.routes}">
+               				<p:column headerText="Departure location :">
+                				<h:outputText value="#{route.source.name}" />
+                				<h:outputText value="#{route.source.description}" />
+                				<h:outputText value="#{route.source.pricePerVisit}" />
+            				</p:column>
+            				
+            				<p:column headerText="Destination location :">
+                				<h:outputText value="#{route.destination.name}" />
+                				<h:outputText value="#{route.destination.description}" />
+                				<h:outputText value="#{route.destination.pricePerVisit}" />
+            				</p:column>
+            				<p:column headerText="Transportation :">
+                				<h:outputText value="By #{route.transport.type}" />
+                				<h:outputText value="By #{route.transport.price}" />
+            				</p:column>
+               			</p:dataTable>
+            		</p:column>
+                </p:dataTable>
+            </p:column>
+
+            <p:column style="width:3rem;text-align: center">
+            	<p:commandButton value="See details" action="#{resultBean.printInfos}"/>
+            </p:column>
+        </p:dataTable>
+    </div>
    	 	</h:form>	
 	</fieldset>
 </h:body>

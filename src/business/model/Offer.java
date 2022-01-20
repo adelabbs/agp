@@ -1,11 +1,14 @@
 package business.model;
 
 import java.util.HashMap;
+
 import java.util.LinkedList;
 
 import business.model.location.Hotel;
 
 public class Offer {
+	
+	private int id;
 
 	private LinkedList<Excursion> excursions = new LinkedList<Excursion>();
 
@@ -33,6 +36,22 @@ public class Offer {
 
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public HashMap<Hotel, Stay> getHotels() {
+		return hotels;
+	}
+
+	public void setHotels(HashMap<Hotel, Stay> hotels) {
+		this.hotels = hotels;
 	}
 
 }
