@@ -28,7 +28,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private LocationPersistence locationPersistence;
 	private String tableName = "sites";
 	private String key = "name";
-	private String userDirPath = System.getProperty("user.dir") + "/tmp/sites";
+	private String userDirPath = "./tmp/sites";
 
 	private List<Offer> offers = new LinkedList<Offer>();
 	private List<Hotel> hotels = new ArrayList<Hotel>();
@@ -66,7 +66,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 		getCandidateHotels();
 		getCandidateSites();
 
-		if (!hotels.isEmpty() && !!sites.isEmpty()) {
+		if (!hotels.isEmpty() && !sites.isEmpty()) {
 
 			findIndexSubsets(sites.size(), MIN_VISIT_PER_EXCURSION, MAX_VISIT_PER_EXCURSION);
 
