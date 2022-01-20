@@ -35,7 +35,7 @@ public class EntryBean implements Serializable {
 
 	public String startEngine() {
 		if ((getDaysOfStay() > 0) && (getDaysOfStay() < 8)) {
-			if ((getBudgetMax() == 0) && ((getQuery().isBlank()) || ((getQuery().isEmpty()) || (getQuery().equals(null))))) {
+			if ((getBudgetMax() == 0) && ((getQuery().trim().isEmpty()) || ((getQuery().isEmpty()) || (getQuery().equals(null))))) {
 				return "insufficient-data";
 			}
 			else if (getBudgetMin() > getBudgetMax()) {

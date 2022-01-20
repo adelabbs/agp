@@ -11,7 +11,6 @@ import javax.faces.bean.ApplicationScoped;
 import business.model.Excursion;
 import business.model.HotelReservation;
 import business.model.Offer;
-import business.model.Route;
 import business.model.location.Hotel;
 import business.model.location.Site;
 import business.model.transport.Bus;
@@ -43,7 +42,7 @@ public class MockOfferBuilder {
 		source.setDescription("C'est le feu fr�ro, fonce.");
 		destination.setDescription("Zeus qui dab en sah, c'est la loi de la rue.");
 		
-		Route route = new Route();
+		/*Route route = new Route();
 		//route.setTransport(transport);
 		route.setSource(source);
 		route.setDestination(destination);
@@ -65,6 +64,7 @@ public class MockOfferBuilder {
 
 		offers = new ArrayList<>();
 		offers.add(offer1);
+		*/
 	}
 	
 	public List<Offer> getOffers() {
