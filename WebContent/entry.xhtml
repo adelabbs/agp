@@ -39,9 +39,11 @@
             	<h:outputText value=" days"/>
         	</div>
         	<div>
-            <h:panelGrid columns="1" style="margin-bottom: 10px">
-            <p:inputText id="comfort" value="#{entryBean.comfortPreference}"/>
-            <p:slider for="comfort" step="1" maxValue="3"/>
+            <h:panelGrid columns="2" style="margin-bottom: 10px">
+           		<h:outputLabel for="comfort" value="Comfort requirement : "/>
+            	<p:inputText id="comfort" value="#{entryBean.comfortPreference}"/>
+            	<h:outputText value=""/>
+            	<p:slider for="comfort" step="1" maxValue="3" />
         	</h:panelGrid>
             </div>
         	<div>
