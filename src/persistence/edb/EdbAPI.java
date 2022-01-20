@@ -26,11 +26,12 @@ public abstract class EdbAPI {
 	public abstract Operator executeMixedQuery(String query);
 	
 	public EdbAPI() {
-		
+		createTextualIndex();
 	}
 	
 	public EdbAPI(String tableName, String key, String userDirectoryPath) {
 		initDataParameters(tableName, key, userDirectoryPath);
+		createTextualIndex();
 	}
 	
 	public void setDatabaseConnection(int connectionMode, String host, String base, String user, String password, String url) {

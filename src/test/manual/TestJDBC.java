@@ -7,8 +7,7 @@ public class TestJDBC {
 	
 
 	public static void main(String[] args) {
-		ExecutionPlan1 ep1 = new ExecutionPlan1();
-		EDBLocationPersistence li = new EDBLocationPersistence(ep1);
+		EDBLocationPersistence li = new EDBLocationPersistence("sites", "name", System.getProperty("user.dir")+"/tmp/sites");
 		System.out.println("========= HOTELS =========");
 		li.getHotelByPrice(0, 100);
 		System.out.println("========= SITES ==========");

@@ -1,21 +1,25 @@
 package business.model;
 
+import java.util.List;
+
 import business.model.location.AbstractLocation;
 import business.model.transport.Transport;
 
 public class Route {
 	private AbstractLocation source;
 	private AbstractLocation destination;
-	private Transport transport;
+	private List<Transport> transports;
+	private double distance;
 
 	public Route() {
 
 	}
 
-	public Route(AbstractLocation source, AbstractLocation destination, Transport transport) {
+	public Route(AbstractLocation source, AbstractLocation destination, List<Transport> transports, double distance) {
 		this.source = source;
 		this.destination = destination;
-		this.transport = transport;
+		this.transports = transports;
+		this.distance = distance;
 	}
 
 	public AbstractLocation getSource() {
@@ -34,12 +38,20 @@ public class Route {
 		this.destination = destination;
 	}
 
-	public Transport getTransport() {
-		return transport;
+	public List<Transport> getTransport() {
+		return transports;
 	}
 
-	public void setTransport(Transport transport) {
-		this.transport = transport;
+	public void setTransport(List<Transport> transports) {
+		this.transports = transports;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 
 }

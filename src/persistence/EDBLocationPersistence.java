@@ -14,6 +14,7 @@ import business.model.transport.Transport;
 import business.spring.SpringIoC;
 import dao.LocationPersistence;
 import persistence.edb.EdbAPI;
+import persistence.edb.ExecutionPlan1;
 import persistence.edb.operator.MixedOperatorPA1;
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.Result;
@@ -23,8 +24,8 @@ public class EDBLocationPersistence implements LocationPersistence {
 	
 	private EdbAPI edb;
 	
-	public EDBLocationPersistence(EdbAPI edb) {
-		this.edb = edb;
+	public EDBLocationPersistence(String tableName, String key, String userDirPath) {
+		this.edb = new ExecutionPlan1(tableName, key, userDirPath);
 	}
 	
 	@Override

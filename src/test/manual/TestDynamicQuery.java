@@ -9,10 +9,7 @@ import persistence.edb.ExecutionPlan1;
 
 public class TestDynamicQuery {
 	public static void main(String args[]) {
-		ExecutionPlan1 edb = new ExecutionPlan1("sites", "name", System.getProperty("user.dir")+"/tmp/sites");
-		edb.createTextualIndex();
-		
-		EDBLocationPersistence li = new EDBLocationPersistence(edb);
+		EDBLocationPersistence li = new EDBLocationPersistence("sites", "name", System.getProperty("user.dir")+"/tmp/sites");
 		
 		// Error when giving unknown parameters in SQL, ResultSet don't exist
 		
