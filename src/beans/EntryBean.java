@@ -1,11 +1,11 @@
 package beans;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.SessionScoped;
 
 import business.engine.Engine;
@@ -22,6 +22,8 @@ public class EntryBean implements Serializable {
 	private SearchEntry entry = new SearchEntry();
 
 	private Engine form = (Engine) SpringIoC.getBean("form");
+	
+	private String query;
 
 	public EntryBean() {
 	}
@@ -32,11 +34,33 @@ public class EntryBean implements Serializable {
 
 	public String startEngine() {
 		if ((getDaysOfStay() > 0) && (getDaysOfStay() < 8)) {
-			return "result";
+			if ((getBudgetMax() == 0) && ((getQuery().isBlank()) || ((getQuery().isEmpty()) || (getQuery().equals(null))))) {
+				return "insufficient-data";
+			}
+			else if (getBudgetMin() > getBudgetMax()) {
+				return "invalid-budget";
+			}
+			else {
+				buildKeywordList(getQuery());
+				return "result";
+			}
 		} else {
 			return "invalid-entry";
 		}
 	}
+	
+	public List<String> buildKeywordList(String query) {
+        List<String> results = getSearchKeywords();
+
+        if (!query.equals(null)) {
+        	String[] keywords = query.split(" ");
+
+        	for (String k : keywords) {
+        		results.add(k);
+        	}
+        }
+        return results;
+    }
 
 	public SearchEntry getEntry() {
 		return entry;
@@ -102,5 +126,13 @@ public class EntryBean implements Serializable {
 
 	public void setForm(Engine form) {
 		this.form = form;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
 	}
 }

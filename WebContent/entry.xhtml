@@ -24,7 +24,6 @@
 	<h2>Please state your expectations for the stay  </h2>
 	
 	<fieldset>
-	
 	<div class="card">
     <h:form>
         <p:messages>
@@ -40,7 +39,7 @@
             	<h:outputText value=" days"/>
         	</div>
         	<div>
-            <h:outputLabel for="comfort" value="Comfort score : " />
+            <h:outputLabel for="comfort" value="Comfort score (between 0 and 3) : " />
             	<p:inputMask id="comfort" value="#{entryBean.comfortPreference}" label="Comfort score : " mask="9[99]" validateMask="false">
             	</p:inputMask>
             	<h:message for="comfort"/>
@@ -61,15 +60,15 @@
             	<h:outputText type = "currency" value="€"/>
             </div>
             <div>
-            <h:outputLabel for="searchKeyWords" value="Search by keywords : "/>
-            	<p:inputMask id="searchKeywords" value="#{entryBean.searchKeywords}" label="Maximum budget : " mask="9[9999]" validateMask="false">
-            	</p:inputMask>
-            	<h:message for="budgetMax"/>
-            	<h:outputText type = "currency" value="€"/>
+            <h:outputLabel for="searchKeywords" value="Search by keywords : "/>	
+        		<p:inputText id="searchKeywords" value="#{entryBean.query}" label="Search by keywords : " />
+        		<h:message for="searchKeywords"/>
+        		<h:outputText value=""/>
+            	
             </div>
-   
-        <p:commandButton icon="pi pi-search" styleClass="ui-button-warning" ajax="false" validateClient="true" action="#{entryBean.startEngine}"/>
-
+   		<div>
+        	<p:commandButton icon="pi pi-search" styleClass="ui-button-warning" ajax="false" validateClient="true" action="#{entryBean.startEngine}"/>
+		</div>
     </h:form>
     </div>
 	</fieldset>

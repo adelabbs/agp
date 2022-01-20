@@ -1,6 +1,7 @@
 package business.engine;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Random;
 
@@ -8,7 +9,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 
 import business.model.Excursion;
+import business.model.HotelReservation;
 import business.model.Offer;
+import business.model.Route;
+import business.model.location.Hotel;
+import business.model.location.Site;
+import business.model.transport.Bus;
+import business.model.transport.Transport;
 
 @ApplicationScoped
 public class MockOfferBuilder {
@@ -18,31 +25,46 @@ public class MockOfferBuilder {
 	@PostConstruct
     public void init() {	
 		
+		Site source = new Site();
+		Site destination = new Site();
+		
+		Transport transport = new Bus();
+		transport.setPrice(40);
+		transport.setSpeed(30);
+		transport.setConfort(1);
+		transport.setType("Bus");
+		
+		source.setName("Name 1");
+		destination.setName("Name 2");
+		source.setTransport(transport);
+		destination.setTransport(transport);
+		source.setPricePerVisit(150);
+		destination.setPricePerVisit(300);
+		source.setDescription("C'est le feu fréro, fonce.");
+		destination.setDescription("Zeus qui dab en sah, c'est la loi de la rue.");
+		
+		Route route = new Route();
+		route.setTransport(transport);
+		route.setSource(source);
+		route.setDestination(destination);
 		
 		Excursion excursion1 = new Excursion(1);
-		Excursion excursion2 = new Excursion(1);
-		Excursion excursion3 = new Excursion(3);
-		Excursion excursion4 = new Excursion(1);
+		excursion1.addRoute(route);
 		
+		Hotel hotel = new Hotel();
+		hotel.setName(new String("Hotel 1"));
+		hotel.setPricePerNight(66);
+		
+		HotelReservation reservation = new HotelReservation(hotel, 2);
 		
 		Offer offer1 = new Offer();
-		Offer offer2 = new Offer();
-		
 		offer1.setId(1);
-		offer2.setId(2);
-		
 		offer1.setTotalPrice(699);
-		offer2.setTotalPrice(1200);
-		
 		offer1.getExcursions().add(excursion1);
-		offer1.getExcursions().add(excursion2);
-		offer1.getExcursions().add(excursion3);
-		offer2.getExcursions().add(excursion4);
-		
+		offer1.getHotels().add(reservation);
 
 		offers = new ArrayList<>();
 		offers.add(offer1);
-		offers.add(offer2);
 	}
 	
 	public List<Offer> getOffers() {
