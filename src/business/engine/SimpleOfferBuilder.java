@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import business.model.Excursion;
+import business.model.HotelReservation;
 import business.model.Offer;
 import business.model.location.Hotel;
 import business.model.location.Site;
@@ -91,6 +92,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 		int currentHotelStayDuration;
 		int budget = isSetPriceRange() ? searchEntry.getBudgetMax() : DEFAULT_BUDGET;
 		Hotel currentHotel;
+		HotelReservation reservation;
 		int currentOfferPrice = 0;
 		Excursion excursion;
 		boolean alreadyVisited;
@@ -145,7 +147,16 @@ public class SimpleOfferBuilder implements OfferBuilder {
 
 						if (!alreadyVisited) {
 							found = true;
-							// TODO handle hotel transport change;
+
+							Hotel nextHotel = excursion.getHotel();
+							if (!nextHotel.getName().equals(currentHotel.getName())) {
+								reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
+								offer.addHotelReservation(reservation);
+								currentHotel = nextHotel;
+								currentHotelStayDuration = 0;
+							}
+							
+							
 							excursion.setDay(day);
 							offer.addExcursion(excursion);
 							for (Site site : excursion.getSites()) {
@@ -164,6 +175,8 @@ public class SimpleOfferBuilder implements OfferBuilder {
 				}
 				time++;
 			}
+			reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
+			offer.addHotelReservation(reservation);
 			offer.setTotalPrice(currentOfferPrice);
 			i++;
 		}
