@@ -8,10 +8,6 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable {
-
-	/**
-	 * A session scoped bean must be serializable.
-	 */
 	private static final long serialVersionUID = 6955508471291131930L;
 
 	private String login;
