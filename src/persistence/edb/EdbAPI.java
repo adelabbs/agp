@@ -23,6 +23,8 @@ public abstract class EdbAPI {
 	public static final int DEFAULT_CONNECTION = 0;
 	public static final int SPECIFIED_CONNECTION = 1;
 	
+	public abstract Operator executeMixedQuery(String query);
+	
 	public EdbAPI() {
 		
 	}
@@ -36,8 +38,8 @@ public abstract class EdbAPI {
 	}
 	
 	public void initDataParameters(String tableName, String key, String userDirectoryPath) {
-		this.tableName = tableName;
-		this.key = key;
+		this.setTableName(tableName);
+		this.setKey(key);
 		this.userDirectoryPath = userDirectoryPath;
 	}
 	
@@ -71,11 +73,25 @@ public abstract class EdbAPI {
 	}
 	
 	public TextualOperator executeTextualQuery(String keywordSentence) {
-		TextualOperator op = new TextualOperator();
+		TextualOperator op = new TextualOperator(key);
 		op.executeQuery(keywordSentence);	
 		return op;
 	}
-	
-	public abstract Operator executeMixedQuery(String query);
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 }

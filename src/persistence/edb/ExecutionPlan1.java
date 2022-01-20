@@ -14,7 +14,7 @@ public class ExecutionPlan1 extends EdbAPI {
 	}
 
 	public Operator executeMixedQuery(String query) {
-		MixedOperatorPA1 op = new MixedOperatorPA1();
+		MixedOperatorPA1 op = new MixedOperatorPA1(this.getKey());
 		op.executeQuery(query);	
 		return op;
 	}

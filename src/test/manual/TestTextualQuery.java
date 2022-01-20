@@ -15,7 +15,7 @@ public class TestTextualQuery {
 			e.printStackTrace();
 		}
 		
-		TextualOperator toper = new TextualOperator();
+		TextualOperator toper = new TextualOperator("name");
 		
 		toper.executeQuery("Wonderful");
 		

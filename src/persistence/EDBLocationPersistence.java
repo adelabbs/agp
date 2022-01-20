@@ -30,7 +30,7 @@ public class EDBLocationPersistence implements LocationPersistence {
 	@Override
 	public List<Site> getSiteByParameters(HashMap<String, Object> param) {
 		/* Create dynamic query */
-		String query = "SELECT * FROM sites";
+		String query = "SELECT * FROM " + edb.getTableName();
 		if(param.size() > 1) {
 			query += " WHERE";
 			
@@ -223,7 +223,7 @@ public class EDBLocationPersistence implements LocationPersistence {
 	@Override
 	public List<Site> getSiteByKeywords(List<String> keywords) {
 		String query = "SELECT name, price, confort, type, latitude, longitude, island, transportType "
-				+ "FROM Sites with";
+				+ "FROM " + edb.getTableName() + " with";
 		for(String keyword : keywords) {
 			query += " " + keyword;
 		}

@@ -5,7 +5,11 @@ import java.util.Iterator;
 
 import org.apache.commons.collections.bag.SynchronizedSortedBag;
 
+import persistence.edb.ExecutionPlan1;
+
 public class MixedOperatorPA1 implements Operator {
+	
+	private String textualKey;
 
 	private SQLOperator sqlOp;
 	private TextualOperator textOp;
@@ -20,6 +24,10 @@ public class MixedOperatorPA1 implements Operator {
 	
 	private int cursor = 0;
 		
+	public MixedOperatorPA1(String textualKey) {
+		this.textualKey = textualKey;
+	}
+	
 	/*
 	 * \brief : Separate the SQL and Lucene part of the query in 2 String variables.
 	 */
@@ -47,7 +55,7 @@ public class MixedOperatorPA1 implements Operator {
 
 			/* Execute Lucene Query */
 			if (!textualQuery.trim().isEmpty()) {
-				textOp = new TextualOperator();
+				textOp = new TextualOperator(textualKey);
 				textOp.executeQuery(textualQuery);
 
 				Result textResult;
@@ -83,11 +91,11 @@ public class MixedOperatorPA1 implements Operator {
 						found = false;
 
 						sqlResult = sqlOp.next();
-						key = (String) sqlResult.getObject(TextualOperator.KEY);
+						key = (String) sqlResult.getObject(textualKey);
 
 						while (!found && iterator.hasNext()) {
 							tmpResult = iterator.next();
-							name = (String) tmpResult.getObject(TextualOperator.KEY);
+							name = (String) tmpResult.getObject(textualKey);
 
 							if (name.equals(key)) {
 								found = true;
@@ -143,5 +151,4 @@ public class MixedOperatorPA1 implements Operator {
 	public void setExistMixedResults(boolean existMixedResults) {
 		this.existMixedResults = existMixedResults;
 	}
-
 }

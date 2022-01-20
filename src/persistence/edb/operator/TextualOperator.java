@@ -15,9 +15,14 @@ public class TextualOperator implements Operator {
 
 	private int cursor = 0;
 	private String SEPARATOR = "\\.";
+	private String key;
 	public static final String KEY = "name";
 	public static final String SCORE = "score";
 
+	public TextualOperator(String key) {
+		this.key = key;
+	}
+	
 	@Override
 	public void executeQuery(String query) {
 		indexer = LuceneIndexer.getInstance("");
@@ -49,10 +54,10 @@ public class TextualOperator implements Operator {
 
 				Document d = searcher.doc(docId);
 
-				String fileName = d.get(KEY);
+				String fileName = d.get(key);
 				String[] fields = fileName.split(SEPARATOR);
 
-				result.addField(KEY, fields[0]);
+				result.addField(key, fields[0]);
 				result.addField(SCORE, results.scoreDocs[cursor].score);
 				cursor++;
 			}
