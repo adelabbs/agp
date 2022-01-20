@@ -3,14 +3,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd" xmlns:context="http://www.springframework.org/schema/context">
 
-	<bean id="form" class="business.engine.Engine">
-		<property name="builder" ref="simpleOfferBuilder" />
-	</bean>
-	
-	<bean id="offerBuilder" class="business.engine.OfferBuilder" abstract="true" scope="prototype" />
-	
-	<bean id="simpleOfferBuilder" class="business.engine.OfferBuilder" parent="offerBuilder" />
-
 	<bean id="persistenceDAO" class="dao.LocationPersistence" abstract="true" scope="prototype" />
 
 	<bean id="edbDAO" class="persistence.EDBLocationPersistence" parent="persistenceDAO" />

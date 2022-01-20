@@ -42,21 +42,11 @@
                 <p:dataTable id="excursionTable" var="excursion" value="#{offer.excursions}" scrollWidth="1200" scrollHeight="800">
                 	<p:column>
                			<h:outputText value="Day #{excursion.day}" />
-               			<p:dataTable id="routeTable" var="route" value="#{excursion.routes}" scrollWidth="1200" scrollHeight="800">
-               				<p:column headerText="Departure location :">
-                				<h:outputText value="#{route.source.name}" />
-                				<h:outputText value="#{route.source.description}" />
-                				<h:outputText value="#{route.source.pricePerVisit} €" />
-            				</p:column>
-            				
-            				<p:column headerText="Destination location :">
-                				<h:outputText value="#{route.destination.name} " />
-                				<h:outputText value=" #{route.destination.description} " />
-                				<h:outputText value=" #{route.destination.pricePerVisit} €" />
-            				</p:column>
-            				<p:column headerText="Transportation :">
-                				<h:outputText value="By #{route.transport.type} " />
-                				<h:outputText value="#{route.transport.price} €" />
+               			<p:dataTable id="sitesTable" var="site" value="#{excursion.sites}" scrollWidth="1200" scrollHeight="800">
+               				<p:column headerText="Site :">
+                				<h:outputText value="#{site.name}" />
+                				<h:outputText value="#{site.description}" />
+                				<h:outputText value="#{site.pricePerVisit} €" />
             				</p:column>
                			</p:dataTable>
             		</p:column>

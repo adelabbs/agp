@@ -2,6 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,8 +21,6 @@ public class EntryBean implements Serializable {
 	private static final long serialVersionUID = -7658310028694454686L;
 
 	private SearchEntry entry = new SearchEntry();
-
-	private Engine form = (Engine) SpringIoC.getBean("form");
 	
 	private String query;
 
@@ -121,13 +120,13 @@ public class EntryBean implements Serializable {
 		entry.removeSearchKeyword(keyword);
 	}
 
-	public Engine getForm() {
+	/*public Engine getForm() {
 		return form;
 	}
 
 	public void setForm(Engine form) {
 		this.form = form;
-	}
+	}*/
 
 	public String getQuery() {
 		return query;

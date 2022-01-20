@@ -42,7 +42,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private double excursionFrequency;
 
 	public SimpleOfferBuilder() {
-
+		locationPersistence = new EDBLocationPersistence(tableName, key, userDirPath);
 	}
 
 	public SimpleOfferBuilder(SearchEntry searchEntry) {
