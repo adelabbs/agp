@@ -23,8 +23,6 @@ public class SimpleOfferBuilder implements OfferBuilder {
 
 	private static final int DEFAULT_BUDGET = 1000;
 
-	private int DEFAULT_STAY_DURATION = 7;
-
 	private SearchEntry searchEntry;
 	private LocationPersistence locationPersistence;
 	private String tableName = "sites";
@@ -41,6 +39,10 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private double[][] distanceMatrix;
 
 	private double excursionFrequency;
+
+	public SimpleOfferBuilder() {
+
+	}
 
 	public SimpleOfferBuilder(SearchEntry searchEntry) {
 		this.searchEntry = searchEntry;
@@ -76,80 +78,11 @@ public class SimpleOfferBuilder implements OfferBuilder {
 			buildOffers();
 		}
 
-		/*
-		 * 1. Recup Hotel & Sites candidats aux critères 2. Créer des excursions
-		 * possibles H1 -> S -> S -> H1 = 1 excursion H1 -> H2 = à la fin d'une
-		 * journée Excursion = Ensembles de sites et hotels 3.
-		 */
-
-		// H, S, C
-
-		// => (H, S), (S, S), (H, H)
-
-		// Filter H, S with C
-
-		// Excursion + hotels
-		// Top-n
-		// 1) generate all items
-		// // => only visit each site at most once
-		// // => excursion order does not matter
-		// d1 : v1, v2 d2: o d3 : v1, v2
-		//
-		// 2) rank => score
-		//
-		// => Max number of visits per excursion
-		//
-		// 2 excursions max / day day 1 : a day 2: b change hotel
-
-		// ...
-
-		/***
-		 * Generate 1 offer find best hotel
-		 * 
-		 * 1 2 3 1 0.5 0.25 => 0, 1
-		 *
-		 * find sublist of sites
-		 * 
-		 */
-
-		/**
-		 * Find all cycles of length up to n for each hotel aka find all the potential
-		 * excursions from each hotel and compute their cost (each excursion costs the
-		 * price of transport and the price of each visit) also find the comfort score
-		 * of each excursion also find the preference score of each excursion (if
-		 * available, if not it's 0 by default and therefore even for each excursion)
-		 * 
-		 * then sort the excursions by their score and construct offers aka limited by
-		 * the number of excursions calculate offer prices
-		 * 
-		 * 
-		 */
-
 	}
 
 	private void buildOffers() {
 		excursionFrequency = isSetComfortPreference() ? searchEntry.getComfortPreference() : AVG_COMFORT;
 
-		// should not exceed max budget
-		// choose Excursion
-		// keep hotel stay duration
-		// time = 0 % 2 == 0 ?
-
-		// stayDuration ++
-
-		// currentHotel = hotel from best excursion
-
-		// E2 => autre hotel => skip
-		//
-		// D1 => pick excursion
-		// => includeExcursion ?
-		// add
-
-		// while excursion has next && cost <= budget
-
-		// if already visited site
-
-		// list of hotels
 		Offer offer;
 		int nbOffer = 3;
 		int i = 0;
@@ -341,10 +274,6 @@ public class SimpleOfferBuilder implements OfferBuilder {
 		return searchEntry.getBudgetMin() != null && searchEntry.getBudgetMax() != null;
 	}
 
-	private boolean isSetStayDuration() {
-		return searchEntry.getDaysOfStay() != null;
-	}
-
 	private boolean isSetComfortPreference() {
 		return searchEntry.getComfortPreference() != null;
 	}
@@ -356,6 +285,10 @@ public class SimpleOfferBuilder implements OfferBuilder {
 				distanceMatrix[i][j] = EngineUtility.calculateDistance(hotels.get(i), sites.get(j));
 			}
 		}
+	}
+
+	public SearchEntry getSearchEntry() {
+		return searchEntry;
 	}
 
 }
