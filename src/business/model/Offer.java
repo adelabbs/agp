@@ -1,20 +1,16 @@
 package business.model;
 
-import java.util.HashMap;
-
 import java.util.LinkedList;
 
-import business.model.location.Hotel;
-
 public class Offer {
-	
+
 	private int id;
 
 	private LinkedList<Excursion> excursions = new LinkedList<Excursion>();
 
-	private HashMap<Hotel, Stay> hotels = new HashMap<Hotel, Stay>();
+	private LinkedList<HotelReservation> hotelReservations = new LinkedList<HotelReservation>();
 
-	private float totalPrice;
+	private int totalPrice;
 
 	public LinkedList<Excursion> getExcursions() {
 		return excursions;
@@ -30,11 +26,11 @@ public class Offer {
 		excursions.remove(excursion);
 	}
 
-	public float getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(float totalPrice) {
+	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
@@ -46,12 +42,17 @@ public class Offer {
 		this.id = id;
 	}
 
-	public HashMap<Hotel, Stay> getHotels() {
-		return hotels;
+	public LinkedList<HotelReservation> getHotels() {
+		return hotelReservations;
 	}
 
-	public void setHotels(HashMap<Hotel, Stay> hotels) {
-		this.hotels = hotels;
+	public void addHotelReservation(HotelReservation reservation) {
+		if (!hotelReservations.contains(reservation)) {
+			hotelReservations.add(reservation);
+		}
 	}
-	
+
+	public void removeHotelReservation(HotelReservation reservation) {
+		hotelReservations.remove(reservation);
+	}
 }

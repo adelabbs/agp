@@ -3,23 +3,23 @@ package business.model.location;
 
 public class Hotel extends AbstractLocation {
 
-	private float pricePerNight;
+	private int pricePerNight;
 	private Site beach;
 
 	public Hotel() {
 		super();
 	}
 
-	public Hotel(String name, Coordinates coordinates, float pricePerNight) {
+	public Hotel(String name, Coordinates coordinates, int pricePerNight) {
 		super(name, coordinates);
 		this.pricePerNight = pricePerNight;
 	}
 
-	public float getPricePerNight() {
+	public int getPricePerNight() {
 		return pricePerNight;
 	}
 
-	public void setPricePerNight(float pricePerNight) {
+	public void setPricePerNight(int pricePerNight) {
 		this.pricePerNight = pricePerNight;
 	}
 
