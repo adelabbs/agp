@@ -40,11 +40,11 @@ public class MockOfferBuilder {
 		destination.setTransport(transport);
 		source.setPricePerVisit(150);
 		destination.setPricePerVisit(300);
-		source.setDescription("C'est le feu fréro, fonce.");
+		source.setDescription("C'est le feu frï¿½ro, fonce.");
 		destination.setDescription("Zeus qui dab en sah, c'est la loi de la rue.");
 		
 		Route route = new Route();
-		route.setTransport(transport);
+		//route.setTransport(transport);
 		route.setSource(source);
 		route.setDestination(destination);
 		

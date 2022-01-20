@@ -116,7 +116,6 @@ public class EDBLocationPersistence implements LocationPersistence {
 		query += " WHERE";
 		
         Iterator<Entry<String, Object>> iter = param.entrySet().iterator();
-		int cpt = 0;
 		
 		while (iter.hasNext()) {
             Entry<String, Object> entry = iter.next();
@@ -174,7 +173,6 @@ public class EDBLocationPersistence implements LocationPersistence {
 		query += " WHERE";
 		
         Iterator<Entry<String, Object>> iter = param.entrySet().iterator();
-		int cpt = 0;
 		
 		while (iter.hasNext()) {
             Entry<String, Object> entry = iter.next();

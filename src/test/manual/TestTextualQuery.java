@@ -2,7 +2,6 @@ package test.manual;
 
 import persistence.edb.operator.Result;
 import persistence.edb.operator.TextualOperator;
-import persistence.lucene.LuceneIndexer;
 
 public class TestTextualQuery {
 	public static void main(String args[]) {

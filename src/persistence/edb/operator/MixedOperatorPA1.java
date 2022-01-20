@@ -3,10 +3,6 @@ package persistence.edb.operator;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
-
-import persistence.edb.ExecutionPlan1;
-
 public class MixedOperatorPA1 implements Operator {
 	
 	private String textualKey;
@@ -36,8 +32,6 @@ public class MixedOperatorPA1 implements Operator {
 			int indTextualQuery = query.indexOf("with");
 			sqlQuery = query.substring(0, indTextualQuery - 1); // Sub -1 to remove ' ' between last word and 'with'.
 			textualQuery = query.substring(indTextualQuery + 5); // Add +5 to skip 'with '
-
-			System.out.println("SQLQuery : '" + sqlQuery + "', TextualQuery : '" + textualQuery + "'");
 		} else {
 			sqlQuery = query;
 		}
@@ -105,7 +99,6 @@ public class MixedOperatorPA1 implements Operator {
 								setExistMixedResults(true);
 							}
 						}
-						
 						iterator = textualResults.iterator();
 					}
 					
@@ -140,7 +133,6 @@ public class MixedOperatorPA1 implements Operator {
 
 	@Override
 	public boolean hasNext() {
-		//System.out.println(mixedResults.size());
 		return cursor < mixedResults.size() - 1;
 	}
 

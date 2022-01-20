@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import persistence.EDBLocationPersistence;
-import persistence.edb.ExecutionPlan1;
 
 public class TestDynamicQuery {
 	public static void main(String args[]) {

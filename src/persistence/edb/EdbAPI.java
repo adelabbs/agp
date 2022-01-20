@@ -1,10 +1,6 @@
 package persistence.edb;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import com.mysql.jdbc.Connection;
 
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.SQLOperator;

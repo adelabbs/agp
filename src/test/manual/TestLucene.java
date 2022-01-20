@@ -1,10 +1,6 @@
 package test.manual;
 
 import java.io.*;
-import java.nio.file.*;
-import java.util.ArrayList;
-
-import org.apache.lucene.search.TopDocs;
 
 import persistence.lucene.*;
 

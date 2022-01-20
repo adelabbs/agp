@@ -30,6 +30,7 @@ public class EntryBean implements Serializable {
 
 	@PostConstruct
 	public void Init() {
+		setComfortPreference(2);
 	}
 
 	public String startEngine() {
