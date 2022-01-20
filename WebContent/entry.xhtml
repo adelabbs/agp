@@ -43,7 +43,7 @@
            		<h:outputLabel for="comfort" value="Comfort requirement : "/>
             	<p:inputText id="comfort" value="#{entryBean.comfortPreference}"/>
             	<h:outputText value=""/>
-            	<p:slider for="comfort" step="1" maxValue="3" />
+            	<p:slider for="comfort" step="1" minValue = "1" maxValue="3" />
         	</h:panelGrid>
             </div>
         	<div>
