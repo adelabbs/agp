@@ -53,5 +53,5 @@ public class Offer {
 	public void setHotels(HashMap<Hotel, Stay> hotels) {
 		this.hotels = hotels;
 	}
-
+	
 }

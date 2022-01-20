@@ -9,16 +9,16 @@ import java.util.List;
  */
 public class SearchEntry {
 
-	private int budgetMin;
+	private Integer budgetMin;
 
-	private int budgetMax;
+	private Integer budgetMax;
 
-	private int daysOfStay;
+	private Integer daysOfStay;
 
 	/**
 	 * The user comfortPreference score.
 	 */
-	private int comfortPreference;
+	private Integer comfortPreference;
 
 	private List<String> searchKeywords = new ArrayList<String>();
 
@@ -26,42 +26,42 @@ public class SearchEntry {
 
 	}
 
-	public SearchEntry(int budgetMin, int budgetMax, int daysOfStay, int comfortPreference) {
+	public SearchEntry(Integer budgetMin, Integer budgetMax, Integer daysOfStay, Integer comfortPreference) {
 		this.budgetMin = budgetMin;
 		this.budgetMax = budgetMax;
 		this.daysOfStay = daysOfStay;
 		this.comfortPreference = comfortPreference;
 	}
 
-	public int getBudgetMin() {
+	public Integer getBudgetMin() {
 		return budgetMin;
 	}
 
-	public void setBudgetMin(int budgetMin) {
+	public void setBudgetMin(Integer budgetMin) {
 		this.budgetMin = budgetMin;
 	}
 
-	public int getBudgetMax() {
+	public Integer getBudgetMax() {
 		return budgetMax;
 	}
 
-	public void setBudgetMax(int budgetMax) {
+	public void setBudgetMax(Integer budgetMax) {
 		this.budgetMax = budgetMax;
 	}
 
-	public int getDaysOfStay() {
+	public Integer getDaysOfStay() {
 		return daysOfStay;
 	}
 
-	public void setDaysOfStay(int daysOfStay) {
+	public void setDaysOfStay(Integer daysOfStay) {
 		this.daysOfStay = daysOfStay;
 	}
 
-	public int getComfortPreference() {
+	public Integer getComfortPreference() {
 		return comfortPreference;
 	}
 
-	public void setComfortPreference(int comfortPreference) {
+	public void setComfortPreference(Integer comfortPreference) {
 		this.comfortPreference = comfortPreference;
 	}
 

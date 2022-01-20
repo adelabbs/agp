@@ -16,36 +16,38 @@ import business.spring.SpringIoC;
 @SessionScoped
 
 public class EntryBean implements Serializable {
-	
+
 	private static final long serialVersionUID = -7658310028694454686L;
 
 	private SearchEntry entry = new SearchEntry();
-	
+
 	private Engine form = (Engine) SpringIoC.getBean("form");
-	
-	public EntryBean() {}
-	
+
+	public EntryBean() {
+	}
+
 	@PostConstruct
 	public void Init() {
 	}
-	
+
 	public String startEngine() {
 		if ((getDaysOfStay() > 0) && (getDaysOfStay() < 8)) {
 			return "result";
-		}
-		else {
+		} else {
 			return "invalid-entry";
 		}
 	}
-	
+
 	public SearchEntry getEntry() {
 		return entry;
 	}
+
 	public void setEntry(SearchEntry entry) {
 		this.entry = entry;
 	}
+
 	public int getBudgetMin() {
-		return entry.getBudgetMin();
+		return (entry.getBudgetMin() != null) ? entry.getBudgetMin().intValue() : 0;
 	}
 
 	public void setBudgetMin(int budgetMin) {
@@ -53,7 +55,7 @@ public class EntryBean implements Serializable {
 	}
 
 	public int getBudgetMax() {
-		return entry.getBudgetMax();
+		return (entry.getBudgetMax() != null) ? entry.getBudgetMax().intValue() : 0;
 	}
 
 	public void setBudgetMax(int budgetMax) {
@@ -61,7 +63,7 @@ public class EntryBean implements Serializable {
 	}
 
 	public int getDaysOfStay() {
-		return entry.getDaysOfStay(); 
+		return (entry.getDaysOfStay() != null) ? entry.getDaysOfStay().intValue() : 0;
 	}
 
 	public void setDaysOfStay(int daysOfStay) {
@@ -69,7 +71,7 @@ public class EntryBean implements Serializable {
 	}
 
 	public int getComfortPreference() {
-		return entry.getComfortPreference() ;
+		return (entry.getComfortPreference() != null) ? entry.getComfortPreference().intValue() : 0;
 	}
 
 	public void setComfortPreference(int comfortPreference) {
@@ -93,9 +95,11 @@ public class EntryBean implements Serializable {
 	public void removeSearchKeyword(String keyword) {
 		entry.removeSearchKeyword(keyword);
 	}
+
 	public Engine getForm() {
 		return form;
 	}
+
 	public void setForm(Engine form) {
 		this.form = form;
 	}
