@@ -1,5 +1,9 @@
 package persistence.edb;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.SQLOperator;
 import persistence.edb.operator.TextualOperator;
@@ -27,8 +31,18 @@ public abstract class EdbAPI {
 		this.userDirectoryPath = userDirectoryPath;
 	}
 	
-	public void createFileDescription() {
-		
+	public void createFileDescription(String keyName, String description) {
+		String path = userDirectoryPath + "/" + keyName + ".txt";
+		System.out.println(path);
+		try {
+			FileWriter myWriter = new FileWriter(path);
+			myWriter.write(description);
+			myWriter.close();
+			System.out.println("Successfully wrote to the file.");
+		} catch (IOException e) {
+			System.out.println("Error occuped when creating description file of path : " + path);
+			e.printStackTrace();
+		}
 	}
 	
 	public void createTextualIndex() {

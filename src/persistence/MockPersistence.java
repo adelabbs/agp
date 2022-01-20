@@ -103,4 +103,10 @@ public class MockPersistence implements LocationPersistence {
 		return null;
 	}
 
+	@Override
+	public List<Hotel> getAllHotels() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
