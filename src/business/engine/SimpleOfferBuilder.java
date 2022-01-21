@@ -16,9 +16,21 @@ import business.spring.SpringIoC;
 import dao.LocationPersistence;
 import persistence.EDBLocationPersistence;
 
+/**
+ * 
+ * This offer builder implementation does the following to construct offers 
+ * - Retrieve candidate site and hotels using the persistence layer and specific
+ * queries depending on the entry parameters 
+ * - Find all the possible subsets of sites that can constitute an excursion i.e. find all the subsets of length k
+ * such that MIN_VISIT_PER_EXCURSION <= k <= MAX_VISIT_PER_EXCURSION 
+ * - Generate all excursions for each hotel 
+ * - Rank the excursions based on their price and the comfort score (relative to the user preference) 
+ * - Build offers using the ranked list of excursions
+ * 
+ */
 public class SimpleOfferBuilder implements OfferBuilder {
 	private static final int MIN_VISIT_PER_EXCURSION = 1;
-	private static final int MAX_VISIT_PER_EXCURSION = 1;
+	private static final int MAX_VISIT_PER_EXCURSION = 2;
 	private static final int AVG_COMFORT = 2;
 
 	private static final int DEFAULT_BUDGET = 1000;
@@ -27,7 +39,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private LocationPersistence locationPersistence;
 	private String tableName = "sites";
 	private String key = "name";
-	private String userDirPath = System.getProperty("java.io.tmpdir") + "test/lucene/sites";
+	private String userDirPath = System.getProperty("user.home") + "/agp_crete/lucene/sites";
 
 	private List<Offer> offers = new LinkedList<Offer>();
 	private List<Hotel> hotels = new ArrayList<Hotel>();
@@ -63,10 +75,8 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	@Override
 	public void build() {
 
-		// getCandidateHotels();
-		// getCandidateSites();
-		getMockHotels();
-		getMockSites();
+		getCandidateHotels();
+		getCandidateSites();
 
 		if (!hotels.isEmpty() && !sites.isEmpty()) {
 
@@ -138,20 +148,19 @@ public class SimpleOfferBuilder implements OfferBuilder {
 						}
 
 						if (!alreadyVisited && currentOfferPrice + candidateExcursion.getPrice() <= budget) {
-							/*
-							 * Hotel nextHotel = excursion.getHotel(); if
-							 * (!nextHotel.getName().equals(currentHotel.getName())) { currentHotel =
-							 * excursion.getHotel();
-							 * 
-							 * int transportPrice = nextHotel.getTransport().getPrice(); if
-							 * (currentOfferPrice + transportPrice > budget) { break; } }
-							 */
+
 							found = true;
 
 							Hotel nextHotel = candidateExcursion.getHotel();
 							if (!nextHotel.getName().equals(currentHotel.getName())) {
 								reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
 								offer.addHotelReservation(reservation);
+
+								offer.addDistanceBetweenHotels(
+										EngineUtility.calculateDistance(nextHotel, currentHotel));
+								Transport transport = nextHotel.getTransport();
+								offer.addTransportBetweenHotels(transport);
+								currentOfferPrice += transport.getPrice();
 								currentHotel = nextHotel;
 								currentHotelStayDuration = 0;
 							}
@@ -176,9 +185,15 @@ public class SimpleOfferBuilder implements OfferBuilder {
 				}
 				time++;
 			}
-
-			reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
-			offer.addHotelReservation(reservation);
+			if (currentHotelStayDuration > 0) {
+				reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
+				offer.addHotelReservation(reservation);
+			} else {
+				// Remove last hotel from the offer
+				offer.getDistancesBetweenHotels().removeLast();
+				Transport last = offer.getTransportsBetweenHotels().removeLast();
+				currentOfferPrice -= last.getPrice();
+			}
 			offer.setTotalPrice(currentOfferPrice);
 			offer.setId(i);
 			offers.add(offer);
@@ -283,14 +298,6 @@ public class SimpleOfferBuilder implements OfferBuilder {
 		}
 		excursion.setPrice(visitPrices + transportPrices);
 		return excursion.getPrice();
-	}
-
-	private void getMockHotels() {
-		hotels = locationPersistence.getAllHotels();
-	}
-
-	private void getMockSites() {
-		sites = locationPersistence.getSiteByPrice(searchEntry.getBudgetMin(), searchEntry.getBudgetMax());
 	}
 
 	private void getCandidateHotels() {

@@ -6,9 +6,15 @@ import java.util.LinkedList;
 import business.model.Excursion;
 import business.model.location.Site;
 
+/**
+ * 
+ * This utility class is used to compare 2 excursions based on their respective
+ * price and their comfort score relative to the user preference (if set).
+ *
+ */
 public class ExcursionComparator implements Comparator<Excursion> {
 
-	private static final double COMFORT_DISTANCE_THRESHOLD = 0;
+	private static final double COMFORT_DISTANCE_THRESHOLD = 5;
 
 	private int comfortPreference = 2;
 
@@ -27,7 +33,12 @@ public class ExcursionComparator implements Comparator<Excursion> {
 		int distE2 = Math.abs(comfortE2 - comfortPreference);
 		int comfortComparison = Integer.signum(distE2 - distE1); // lower is better
 
-		return -(priceComparison + comfortComparison); // decreasing order
+		float preferenceE1 = calculateExcursionPreferenceScore(e1);
+		float preferenceE2 = calculateExcursionPreferenceScore(e2);
+
+		int preferenceComparison = (int) Math.signum(preferenceE1 - preferenceE2); // higher is better
+
+		return -(priceComparison + comfortComparison + preferenceComparison); // decreasing order
 	}
 
 	public void setComfortPreference(int comfortPreference) {
@@ -66,6 +77,16 @@ public class ExcursionComparator implements Comparator<Excursion> {
 		int div = sites.size() - 2;
 		scoreByType = (div != 0) ? scoreByType / (2 * div) : 0;
 		return (scoreByType + scoreByDistance) / 2;
+	}
+
+	private float calculateExcursionPreferenceScore(Excursion excursion) {
+		float score = 0;
+		LinkedList<Site> sites = excursion.getSites();
+		for (Site site : sites) {
+			score += site.getScore();
+		}
+
+		return score / sites.size();
 	}
 
 }

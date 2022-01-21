@@ -2,6 +2,14 @@ package business.model;
 
 import java.util.LinkedList;
 
+import business.model.transport.Transport;
+
+/**
+ * 
+ * An offer contains a list of excursions in chronological order as well as a
+ * list of hotel reservations.
+ *
+ */
 public class Offer {
 
 	private int id;
@@ -9,6 +17,10 @@ public class Offer {
 	private LinkedList<Excursion> excursions = new LinkedList<Excursion>();
 
 	private LinkedList<HotelReservation> hotelReservations = new LinkedList<HotelReservation>();
+
+	private LinkedList<Transport> transportsBetweenHotels = new LinkedList<Transport>();
+
+	private LinkedList<Double> distancesBetweenHotels = new LinkedList<Double>();
 
 	private int totalPrice;
 
@@ -54,6 +66,34 @@ public class Offer {
 
 	public void removeHotelReservation(HotelReservation reservation) {
 		hotelReservations.remove(reservation);
+	}
+
+	public LinkedList<Transport> getTransportsBetweenHotels() {
+		return transportsBetweenHotels;
+	}
+
+	public void addTransportBetweenHotels(Transport transport) {
+		if (transport != null) {
+			transportsBetweenHotels.add(transport);
+		}
+	}
+
+	public void removeTransportBetweenHotels(Transport transport) {
+		transportsBetweenHotels.remove(transport);
+	}
+
+	public LinkedList<Double> getDistancesBetweenHotels() {
+		return distancesBetweenHotels;
+	}
+
+	public void addDistanceBetweenHotels(Double distance) {
+		if (distance != null) {
+			distancesBetweenHotels.add(distance);
+		}
+	}
+
+	public void removeDistanceBetweenHotels(Double distance) {
+		distancesBetweenHotels.remove(distance);
 	}
 
 	@Override

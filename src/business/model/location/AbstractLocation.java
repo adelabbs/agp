@@ -2,6 +2,11 @@ package business.model.location;
 
 import business.model.transport.Transport;
 
+/**
+ * 
+ * Represents a location on an Island.
+ *
+ */
 public abstract class AbstractLocation {
 
 	protected String name;

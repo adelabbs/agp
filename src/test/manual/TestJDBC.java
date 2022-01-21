@@ -1,5 +1,9 @@
 package test.manual;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import antlr.collections.List;
 import persistence.EDBLocationPersistence;
 
 public class TestJDBC {
@@ -13,5 +17,20 @@ public class TestJDBC {
 		li.getSiteByPrice(0, 10);
 		System.out.println("========= TRANSPORT ==========");
 		li.getTransportByPrice(0, 10);
+		
+		
+		System.out.println("========= TEST HOTEL PAR PARAMETRES =========");
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		String transportType = "bus";
+		parameters.put("transportType", transportType);
+		//li.getHotelByParameters(parameters);
+		
+		System.out.println("========= TEST Site PAR PARAMETRES =========");
+		
+		ArrayList<String> keywords = new ArrayList<String>();
+		keywords.add("plage");
+		parameters.put("keywords", keywords);
+		li.getSiteByParameters(parameters);
+		
 	}
 }
