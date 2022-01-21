@@ -27,8 +27,9 @@ public class TestLucene {
 		LuceneIndexer indexer = LuceneIndexer.getInstance(sysdir+"/tmp/index");
 		
 		int num = indexer.indexing(sysdir+"/tmp/files");
+		int num2 = indexer.reindex(sysdir+"/tmp/files");
 	    
-	    System.out.println("Indexed "+num+" files out of "+testNames.length);
+	    System.out.println("Indexed "+num2+" files out of "+testNames.length);
 	    
 	    /*
 	    LuceneQueryParser parser = new LuceneQueryParser(indexer);
