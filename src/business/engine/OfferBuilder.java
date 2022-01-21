@@ -3,6 +3,7 @@ package business.engine;
 import java.util.List;
 
 import business.model.Offer;
+import dao.LocationPersistence;
 
 /**
  * 
@@ -17,4 +18,6 @@ public interface OfferBuilder {
 	List<Offer> getOffers();
 
 	void build();
+	
+	void setLocationPersistence(LocationPersistence setLocationPersistence);
 }

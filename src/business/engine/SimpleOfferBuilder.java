@@ -18,14 +18,14 @@ import persistence.EDBLocationPersistence;
 
 /**
  * 
- * This offer builder implementation does the following to construct offers 
- * - Retrieve candidate site and hotels using the persistence layer and specific
- * queries depending on the entry parameters 
- * - Find all the possible subsets of sites that can constitute an excursion i.e. find all the subsets of length k
- * such that MIN_VISIT_PER_EXCURSION <= k <= MAX_VISIT_PER_EXCURSION 
- * - Generate all excursions for each hotel 
- * - Rank the excursions based on their price and the comfort score (relative to the user preference) 
- * - Build offers using the ranked list of excursions
+ * This offer builder implementation does the following to construct offers -
+ * Retrieve candidate site and hotels using the persistence layer and specific
+ * queries depending on the entry parameters - Find all the possible subsets of
+ * sites that can constitute an excursion i.e. find all the subsets of length k
+ * such that MIN_VISIT_PER_EXCURSION <= k <= MAX_VISIT_PER_EXCURSION - Generate
+ * all excursions for each hotel - Rank the excursions based on their price and
+ * the comfort score (relative to the user preference) - Build offers using the
+ * ranked list of excursions
  * 
  */
 public class SimpleOfferBuilder implements OfferBuilder {
@@ -53,8 +53,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private double excursionFrequency;
 
 	public SimpleOfferBuilder() {
-		locationPersistence = new EDBLocationPersistence(tableName, key, userDirPath);
-		System.out.println(userDirPath);
+		
 	}
 
 	public SimpleOfferBuilder(SearchEntry searchEntry) {
@@ -346,6 +345,14 @@ public class SimpleOfferBuilder implements OfferBuilder {
 
 	public SearchEntry getSearchEntry() {
 		return searchEntry;
+	}
+
+	public LocationPersistence getLocationPersistence() {
+		return locationPersistence;
+	}
+
+	public void setLocationPersistence(LocationPersistence locationPersistence) {
+		this.locationPersistence = locationPersistence;
 	}
 
 }

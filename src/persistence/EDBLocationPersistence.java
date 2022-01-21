@@ -494,6 +494,9 @@ public class EDBLocationPersistence implements LocationPersistence {
 		return hotels;
 	}
 
-
+	@Override
+	public void createDescription(String key, String description) {
+		edb.createFileDescription(key, description);
+	}
 
 }

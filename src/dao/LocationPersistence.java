@@ -44,5 +44,7 @@ public interface LocationPersistence {
 	List<Hotel> getHotelByParameters(HashMap<String, Object> param);
 
 	List<Transport> getTransportByParameters(HashMap<String, Object> param);
+	
+	void createDescription(String key, String description);
 
 }
