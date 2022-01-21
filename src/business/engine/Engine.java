@@ -3,6 +3,8 @@ package business.engine;
 import java.util.List;
 
 import business.model.Offer;
+import dao.LocationPersistence;
+import persistence.EDBLocationPersistence;
 
 /**
  * The Engine class is the entry point of the offer recommendation process. It
@@ -11,6 +13,12 @@ import business.model.Offer;
  * to be able to build recommendations.
  */
 public class Engine {
+	
+	private String tableName = "sites";
+	private String key = "name";
+	private String userDirPath = System.getProperty("user.home") + "/agp_crete/lucene/sites";
+	
+	private LocationPersistence locationPersistence;
 
 	private SearchEntry searchEntry;
 
@@ -19,7 +27,9 @@ public class Engine {
 	private List<Offer> offers;
 
 	public Engine() {
+		locationPersistence = new EDBLocationPersistence(tableName, key, userDirPath);
 		builder = new SimpleOfferBuilder();
+		builder.setLocationPersistence(locationPersistence);
 	}
 
 	public void buildRecommendations() {
@@ -40,6 +50,10 @@ public class Engine {
 
 	public void setSearchEntry(SearchEntry searchEntry) {
 		this.searchEntry = searchEntry;
+	}
+
+	public void createDescription(String key, String description) {
+		locationPersistence.createDescription(key, description);
 	}
 
 }
