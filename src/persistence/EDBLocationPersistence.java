@@ -32,8 +32,10 @@ public class EDBLocationPersistence implements LocationPersistence {
 	public List<Site> getSiteByParameters(HashMap<String, Object> param) {
 		/* Create dynamic query */
 		String query = "SELECT * FROM " + edb.getTableName();
-		if(param.size() > 1) {
-			query += " WHERE";
+		if(param.size() > 0) {
+			if(param.size() > 1 || !param.containsKey("keywords")) {
+				query += " WHERE";
+			}
 			
 	        Iterator<Entry<String, Object>> iter = param.entrySet().iterator();
 			
@@ -79,28 +81,53 @@ public class EDBLocationPersistence implements LocationPersistence {
 			}
 		}
 		System.out.println("FULL QUERY : " + query);
-
-		MixedOperatorPA1 operator = (MixedOperatorPA1) edb.executeMixedQuery(query);
-		List<Site> sites = new ArrayList<Site>();
-		Result result;
 		
-		while(operator.isExistMixedResults() && operator.hasNext()) {
-			result = operator.next();
-			Site site = (Site) SpringIoC.getBean("site");
+		List<Site> sites = new ArrayList<Site>();
+		
+		if(query.contains("with")) {
+			MixedOperatorPA1 operator = (MixedOperatorPA1) edb.executeMixedQuery(query);
 			
-			site.setName((String) result.getObject("name"));
-			site.setScore((float) result.getObject("score"));
-			site.setPricePerVisit((int) result.getObject("price"));
-			site.setConfort((int) result.getObject("confort"));
-			site.setType((String) result.getObject("type"));
-			site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
-			site.setIsland((String) result.getObject("island"));
-			site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
+			Result result;
+			
+			while(operator.isExistMixedResults() && operator.hasNext()) {
+				result = operator.next();
+				Site site = (Site) SpringIoC.getBean("site");
+				
+				site.setName((String) result.getObject("name"));
+				site.setScore((float) result.getObject("score"));
+				site.setPricePerVisit((int) result.getObject("price"));
+				site.setConfort((int) result.getObject("confort"));
+				site.setType((String) result.getObject("type"));
+				site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
+				site.setIsland((String) result.getObject("island"));
+				site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
 
-			sites.add(site);
-			System.out.println(site.toString());
+				sites.add(site);
+				System.out.println(site.toString());
+			}
+			return sites;
+		} else {
+			SQLOperator operator = (SQLOperator) edb.executeSQLQuery(query);
+			Result result = new Result();
+			
+			while(operator.hasNext()) {
+				result = operator.next();
+				Site site = (Site) SpringIoC.getBean("site");
+				
+				site.setName((String) result.getObject("name"));
+				site.setPricePerVisit((int) result.getObject("price"));
+				site.setConfort((int) result.getObject("confort"));
+				site.setType((String) result.getObject("type"));
+				site.setCoordinates(new Coordinates((float) result.getObject("longitude"), (float) result.getObject("latitude")));
+				site.setIsland((String) result.getObject("island"));
+				site.setTransport(getLocationsTransport((String) result.getObject("transportType")));
+				sites.add(site);
+				System.out.println(site.toString());
+			}
+			return sites;
 		}
-		return sites;
+		
+
 		
 	}
 
