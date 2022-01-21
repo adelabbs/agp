@@ -6,46 +6,64 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
+	<style type="text/css">
+	
+		.largeTable {
+			width: 150%;
+			height: 80%;
+		}
+		
+    	.medColumn {
+    		width: 200%;
+    	}
+
+    	.outputLabel {
+			font-weight: bold;
+    		color: green;
+		}
+
+</style> 
+
 	<title>Research result</title>
 </h:head>
 <h:body>
+	<h:outputStylesheet name="style.css" />
+
+
 	<fieldset>
 		<legend>
 			<strong>Here are the offers that match your criteria</strong>
 		</legend>		
 		<br></br>	
 		<h:form id="form">
-    		
-  			
-  			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
 
     <div class="card">
-        <p:dataTable id="offerTable" var="offer" value="#{resultBean.offers}" scrollable="true" scrollWidth="1200" scrollHeight="800">
+        <p:dataTable id="offerTable" var="offer" value="#{resultBean.offers}" styleClass="largeTable">
             <p:column headerText="Available trip offers : ">
                 <h:outputText value="#{offer.id}" />
             </p:column>
-			<p:column headerText="Duration of the stay : ">
-                <h:outputText value="#{entryBean.daysOfStay} days"/>
-            </p:column>
             <p:column headerText="Total price :">
-                <h:outputText value="#{offer.totalPrice}" />
+                <h:outputText value="#{offer.totalPrice} €" styleClass="outputLabel"/>
             </p:column>
             <p:column headerText="Hotels :">
-                <p:dataTable id="hotelTable" var="hotelReservation" value="#{offer.hotels}" scrollWidth="1200" scrollHeight="800">
+                <p:dataTable id="hotelTable" var="hotelReservation" value="#{offer.hotelReservations}">
                	 	<p:column>
-                		<h:outputText value="#{hotels.hotel.name}" />
-                		<h:outputText value="#{hotels.hotel.pricePerNight} €" />
+                		<h:outputText value="#{hotelReservation.hotel.name}" />
+                	</p:column>
+                	<p:column>
+                		<h:outputText value="#{hotelReservation.hotel.pricePerNight} €" />
                 	</p:column>
            	 	</p:dataTable>
             </p:column>
-            <p:column headerText="Excursions :">
-                <p:dataTable id="excursionTable" var="excursion" value="#{offer.excursions}" scrollWidth="1200" scrollHeight="800">
-                	<p:column>
+            <p:column>
+                <p:dataTable id="excursionTable" var="excursion" value="#{offer.excursions}">
+                	<p:column  headerText="Site :">
                			<h:outputText value="Day #{excursion.day}" />
-               			<p:dataTable id="sitesTable" var="site" value="#{excursion.sites}" scrollWidth="1200" scrollHeight="800">
-               				<p:column headerText="Site :">
-                				<h:outputText value="#{site.name}" />
-                				<h:outputText value="#{site.description}" />
+               			<p:dataTable id="sitesTable" var="site" value="#{excursion.sites}">
+               				<p:column>
+                				<h:outputText value="#{site.name}"/>
+                			</p:column>
+                			<p:column>
                 				<h:outputText value="#{site.pricePerVisit} €" />
             				</p:column>
                			</p:dataTable>

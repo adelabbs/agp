@@ -32,13 +32,6 @@
 
         	<br></br>
         	<div>
-            <h:outputLabel for="stayDuration" value="Duration of the stay : "/>
-            	<p:inputMask id="stayDuration" value="#{entryBean.daysOfStay}" label="Duration of the stay : " required = "true" mask="9[99]" validateMask="false">
-            	</p:inputMask>
-            	<h:message for="stayDuration"/>
-            	<h:outputText value=" days"/>
-        	</div>
-        	<div>
             <h:panelGrid columns="2" style="margin-bottom: 10px">
            		<h:outputLabel for="comfort" value="Comfort requirement : "/>
             	<p:inputText id="comfort" value="#{entryBean.comfortPreference}"/>

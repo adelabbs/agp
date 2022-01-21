@@ -42,7 +42,7 @@ public class Offer {
 		this.id = id;
 	}
 
-	public LinkedList<HotelReservation> getHotels() {
+	public LinkedList<HotelReservation> getHotelReservations() {
 		return hotelReservations;
 	}
 

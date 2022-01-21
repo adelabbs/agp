@@ -31,7 +31,6 @@ public class EntryBean implements Serializable {
 	}
 
 	public String startEngine() {
-		if ((getDaysOfStay() > 0) && (getDaysOfStay() < 8)) {
 			if ((getBudgetMax() == 0) && ((getQuery().trim().isEmpty()) || ((getQuery().isEmpty()) || (getQuery().equals(null))))) {
 				return "insufficient-data";
 			}
@@ -42,9 +41,6 @@ public class EntryBean implements Serializable {
 				buildKeywordList(getQuery());
 				return "result";
 			}
-		} else {
-			return "invalid-entry";
-		}
 	}
 	
 	public List<String> buildKeywordList(String query) {
