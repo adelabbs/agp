@@ -11,8 +11,10 @@ public class JdbcConnection {
 	private static final String DEFAULT_USER = "root";
 	private static final String DEFAULT_PASSWORD = "";
 	private static final String DEFAULT_URL = "jdbc:mysql://" + DEFAULT_HOST + "/" + DEFAULT_BASE;
-	
+
+	@SuppressWarnings("unused")
 	private static String host;
+	@SuppressWarnings("unused")
 	private static String base;
 	private static String user;
 	private static String password;
@@ -24,22 +26,23 @@ public class JdbcConnection {
 	 */
 	private static Connection connection;
 
-	public static void setSpecifiedConnection(int connectionMode, String host, String base, String user, String password, String url) {
-		if(connectionMode == EdbAPI.SPECIFIED_CONNECTION) {
+	public static void setSpecifiedConnection(int connectionMode, String host, String base, String user,
+			String password, String url) {
+		if (connectionMode == EdbAPI.SPECIFIED_CONNECTION) {
 			JdbcConnection.host = host;
 			JdbcConnection.base = base;
 			JdbcConnection.user = user;
-			JdbcConnection.password  = user;
+			JdbcConnection.password = user;
 			JdbcConnection.url = url;
-			
+
 			JdbcConnection.isSet = true;
 		}
 	}
-	
+
 	public static Connection getConnection() {
 		if (connection == null) {
 			try {
-				if(!isSet) {
+				if (!isSet) {
 					DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 					connection = DriverManager.getConnection(DEFAULT_URL, DEFAULT_USER, DEFAULT_PASSWORD);
 				} else {

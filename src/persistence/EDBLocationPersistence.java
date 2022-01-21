@@ -73,7 +73,7 @@ public class EDBLocationPersistence implements LocationPersistence {
 			@SuppressWarnings("unchecked")
 			List<String> keywords = (List<String>) param.get("keywords");
 			
-			if(keywords != null) {
+			if(keywords != null && keywords.size() > 0) {
 				query += " with";
 				for(String keyword : keywords) {
 					query += " " + keyword;

@@ -2,7 +2,6 @@ package beans;
 
 import java.io.Serializable;
 
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +18,7 @@ public class EntryBean implements Serializable {
 	private static final long serialVersionUID = -7658310028694454686L;
 
 	private SearchEntry entry = new SearchEntry();
-	
+
 	private String query;
 
 	public EntryBean() {
@@ -31,30 +30,31 @@ public class EntryBean implements Serializable {
 	}
 
 	public String startEngine() {
-			if ((getBudgetMax() == 0) && ((getQuery().trim().isEmpty()) || ((getQuery().isEmpty()) || (getQuery().equals(null))))) {
-				return "insufficient-data";
-			}
-			else if (getBudgetMin() > getBudgetMax()) {
-				return "invalid-budget";
-			}
-			else {
-				buildKeywordList(getQuery());
-				return "result";
-			}
+		if ((getBudgetMax() == 0)
+				&& ((getQuery().trim().isEmpty()) || ((getQuery().isEmpty()) || (getQuery().equals(null))))) {
+			return "insufficient-data";
+		} else if (getBudgetMin() > getBudgetMax()) {
+			return "invalid-budget";
+		} else {
+			buildKeywordList(getQuery());
+			return "result";
+		}
 	}
-	
+
 	public List<String> buildKeywordList(String query) {
-        List<String> results = getSearchKeywords();
+		List<String> results = getSearchKeywords();
 
-        if (!query.equals(null)) {
-        	String[] keywords = query.split(" ");
+		if (!query.equals(null)) {
+			String[] keywords = query.split(" ");
 
-        	for (String k : keywords) {
-        		results.add(k);
-        	}
-        }
-        return results;
-    }
+			for (String k : keywords) {
+				if (!k.isEmpty()) {
+					results.add(k);
+				}
+			}
+		}
+		return results;
+	}
 
 	public SearchEntry getEntry() {
 		return entry;
@@ -113,14 +113,6 @@ public class EntryBean implements Serializable {
 	public void removeSearchKeyword(String keyword) {
 		entry.removeSearchKeyword(keyword);
 	}
-
-	/*public Engine getForm() {
-		return form;
-	}
-
-	public void setForm(Engine form) {
-		this.form = form;
-	}*/
 
 	public String getQuery() {
 		return query;

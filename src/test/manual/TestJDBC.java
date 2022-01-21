@@ -3,7 +3,6 @@ package test.manual;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import antlr.collections.List;
 import persistence.EDBLocationPersistence;
 
 public class TestJDBC {
