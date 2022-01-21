@@ -1,7 +1,7 @@
 package beans;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +43,7 @@ public class EntryBean implements Serializable {
 
 	public List<String> buildKeywordList(String query) {
 		List<String> results = getSearchKeywords();
-
+		entry.setSearchKeywords(new ArrayList<String>());
 		if (!query.equals(null)) {
 			String[] keywords = query.split(" ");
 

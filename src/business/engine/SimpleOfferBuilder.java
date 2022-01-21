@@ -301,7 +301,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 
 	private void getCandidateHotels() {
 		if (isSetPriceRange()) {
-			hotels = locationPersistence.getHotelByPrice(searchEntry.getBudgetMin(), searchEntry.getBudgetMax());
+			hotels = locationPersistence.getHotelByPrice(0, searchEntry.getBudgetMax());
 		} else {
 			hotels = locationPersistence.getAllHotels();
 		}
@@ -313,7 +313,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 			queryParameters.put("confort", searchEntry.getComfortPreference());
 		}
 		if (isSetPriceRange()) {
-			queryParameters.put("minPrice", searchEntry.getBudgetMin());
+			queryParameters.put("minPrice", 0);
 			queryParameters.put("maxPrice", searchEntry.getBudgetMax());
 		}
 		if (isSetKeywords()) {
