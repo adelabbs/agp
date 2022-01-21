@@ -39,7 +39,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private LocationPersistence locationPersistence;
 	private String tableName = "sites";
 	private String key = "name";
-	private String userDirPath = System.getProperty("java.io.tmpdir") + "test/lucene/sites";
+	private String userDirPath = System.getProperty("user.home") + "/agp_crete/lucene/sites";
 
 	private List<Offer> offers = new LinkedList<Offer>();
 	private List<Hotel> hotels = new ArrayList<Hotel>();

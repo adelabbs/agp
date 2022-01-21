@@ -17,7 +17,7 @@ import persistence.lucene.LuceneIndexer;
  */
 public abstract class EdbAPI {
 
-	public static final String INDEX_PATH = System.getProperty("java.io.tmpdir") + "test/lucene/index";
+	public static final String INDEX_PATH = System.getProperty("user.home") + "/agp_crete/lucene/index";
 
 	private String tableName;
 	private String key;
