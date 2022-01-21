@@ -6,6 +6,15 @@ import business.model.location.Hotel;
 import business.model.location.Site;
 import business.model.transport.Transport;
 
+/**
+ * 
+ * An excursion is a sequence of sites and a single hotel.
+ * ie. H -> S (n  times) -> H where H remains the same hotel
+ * 
+ * There can be multiple means of transport to use to commute between 2 locations.
+ * In particular if locations are located on 2 separate islands, the means of transport between them may be:
+ * Bus, Boat, Bus
+ */
 public class Excursion {
 
 	private LinkedList<Site> sites = new LinkedList<Site>();

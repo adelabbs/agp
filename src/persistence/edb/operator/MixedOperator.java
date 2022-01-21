@@ -3,7 +3,7 @@ package persistence.edb.operator;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MixedOperatorPA1 implements Operator {
+public class MixedOperator implements Operator {
 	
 	private String textualKey;
 
@@ -20,7 +20,7 @@ public class MixedOperatorPA1 implements Operator {
 	
 	private int cursor = 0;
 		
-	public MixedOperatorPA1(String textualKey) {
+	public MixedOperator(String textualKey) {
 		this.textualKey = textualKey;
 	}
 	

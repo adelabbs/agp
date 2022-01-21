@@ -15,7 +15,7 @@ import business.spring.SpringIoC;
 import dao.LocationPersistence;
 import persistence.edb.EdbAPI;
 import persistence.edb.ExecutionPlan1;
-import persistence.edb.operator.MixedOperatorPA1;
+import persistence.edb.operator.MixedOperator;
 import persistence.edb.operator.Operator;
 import persistence.edb.operator.Result;
 import persistence.edb.operator.SQLOperator;
@@ -85,7 +85,7 @@ public class EDBLocationPersistence implements LocationPersistence {
 		List<Site> sites = new ArrayList<Site>();
 		
 		if(query.contains("with")) {
-			MixedOperatorPA1 operator = (MixedOperatorPA1) edb.executeMixedQuery(query);
+			MixedOperator operator = (MixedOperator) edb.executeMixedQuery(query);
 			
 			Result result;
 			
@@ -254,7 +254,7 @@ public class EDBLocationPersistence implements LocationPersistence {
 			query += " " + keyword;
 		}
 		
-		MixedOperatorPA1 operator = (MixedOperatorPA1) edb.executeMixedQuery(query);
+		MixedOperator operator = (MixedOperator) edb.executeMixedQuery(query);
 		List<Site> sites = new ArrayList<Site>();
 		Result result;
 		
