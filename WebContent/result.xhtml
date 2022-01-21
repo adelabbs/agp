@@ -9,7 +9,7 @@
 	<style type="text/css">
 	
 		.largeTable {
-			width: 180%;
+			width: 250%;
 			height: 60%;
 		}
 		
@@ -52,6 +52,9 @@
                 	</p:column>
                 	<p:column>
                 		<h:outputText value="#{hotelReservation.hotel.pricePerNight} €" />
+                	</p:column>
+                	<p:column>
+                		<h:outputText value="#{hotelReservation.stayDuration} days." />
                 	</p:column>
            	 	</p:dataTable>
             </p:column>
