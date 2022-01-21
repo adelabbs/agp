@@ -9,9 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import business.engine.Engine;
 import business.engine.SearchEntry;
-import business.spring.SpringIoC;
 
 @ManagedBean
 @SessionScoped

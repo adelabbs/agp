@@ -55,14 +55,18 @@ public class Excursion {
 		this.hotel = hotel;
 	}
 
-	public void addTransports(LinkedList<Transport> locationToLocation) {
+	public void addTransport(LinkedList<Transport> locationToLocation) {
 		if (locationToLocation != null) {
 			transports.add(locationToLocation);
 		}
 	}
 
-	public void removeTransports(LinkedList<Transport> locationToLocation) {
+	public void removeTransport(LinkedList<Transport> locationToLocation) {
 		transports.remove(locationToLocation);
+	}
+
+	public void setTransports(LinkedList<LinkedList<Transport>> transports) {
+		this.transports = transports;
 	}
 
 	public int getPrice() {
@@ -71,6 +75,12 @@ public class Excursion {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Excursion [sites=" + sites + ", transports=" + transports + ", hotel=" + hotel + ", day=" + day
+				+ ", price=" + price + "]";
 	}
 
 }

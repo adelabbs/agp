@@ -7,7 +7,7 @@ public class TestBuildSubSetExcursion {
 	private static List<List<Integer>> siteSubsets = new ArrayList<List<Integer>>();
 	
 	public static void main(String[] args) {
-		findIndexSubsets(10,1, 2);
+		findIndexSubsets(20,1, 2);
 		for(List<Integer> tmp : siteSubsets) {
 			System.out.println(tmp.toString());
 		}

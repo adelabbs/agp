@@ -55,4 +55,11 @@ public class Offer {
 	public void removeHotelReservation(HotelReservation reservation) {
 		hotelReservations.remove(reservation);
 	}
+
+	@Override
+	public String toString() {
+		return "Offer [id=" + id + ", \n excursions=" + excursions + ", \n hotelReservations=" + hotelReservations
+				+ ", totalPrice=" + totalPrice + "]";
+	}
+
 }

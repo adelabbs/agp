@@ -7,8 +7,20 @@
 
 	<bean id="edbDAO" class="persistence.EDBLocationPersistence" parent="persistenceDAO" />
 
-	<!-- This part is used only by TestEngine -->
-	<bean id="entry" class="business.engine.SearchEntry"></bean>
+	<bean id="entry" class="business.engine.SearchEntry">
+		<property name="budgetMin">
+			<value>0</value>
+		</property>
+		<property name="budgetMax">
+			<value>800</value>
+		</property>
+		<property name="comfortPreference">
+			<value>2</value>
+		</property>
+		<property name="daysOfStay">
+			<value>4</value>
+		</property>
+	</bean>
 
 	<bean id="location" class="business.model.location.AbstractLocation" abstract="true" scope="prototype" />
 

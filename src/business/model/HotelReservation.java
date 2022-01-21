@@ -32,4 +32,9 @@ public class HotelReservation {
 		return stayDuration * hotel.getPricePerNight();
 	}
 
+	@Override
+	public String toString() {
+		return "\t HotelReservation [hotel=" + hotel + ", stayDuration=" + stayDuration + "]\n";
+	}
+
 }

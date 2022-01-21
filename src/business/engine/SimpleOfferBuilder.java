@@ -2,7 +2,6 @@ package business.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import persistence.EDBLocationPersistence;
 
 public class SimpleOfferBuilder implements OfferBuilder {
 	private static final int MIN_VISIT_PER_EXCURSION = 1;
-	private static final int MAX_VISIT_PER_EXCURSION = 2;
+	private static final int MAX_VISIT_PER_EXCURSION = 1;
 	private static final int AVG_COMFORT = 2;
 
 	private static final int DEFAULT_BUDGET = 1000;
@@ -28,13 +27,13 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private LocationPersistence locationPersistence;
 	private String tableName = "sites";
 	private String key = "name";
-	private String userDirPath = "./tmp/sites";
+	private String userDirPath = System.getProperty("java.io.tmpdir") + "test/lucene/sites";
 
 	private List<Offer> offers = new LinkedList<Offer>();
 	private List<Hotel> hotels = new ArrayList<Hotel>();
 	private List<Site> sites = new ArrayList<Site>();
 
-	private List<List<Integer>> siteSubsets;
+	private List<List<Integer>> siteSubsets = new ArrayList<List<Integer>>();
 	private List<Site> visitedSites;
 	private List<Excursion> excursions;
 	private double[][] distanceMatrix;
@@ -43,6 +42,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 
 	public SimpleOfferBuilder() {
 		locationPersistence = new EDBLocationPersistence(tableName, key, userDirPath);
+		System.out.println(userDirPath);
 	}
 
 	public SimpleOfferBuilder(SearchEntry searchEntry) {
@@ -63,8 +63,10 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	@Override
 	public void build() {
 
-		getCandidateHotels();
-		getCandidateSites();
+		// getCandidateHotels();
+		// getCandidateSites();
+		getMockHotels();
+		getMockSites();
 
 		if (!hotels.isEmpty() && !sites.isEmpty()) {
 
@@ -77,12 +79,12 @@ public class SimpleOfferBuilder implements OfferBuilder {
 			rankExcursions();
 
 			buildOffers();
+
 		}
 
 	}
 
 	private void buildOffers() {
-		excursionFrequency = isSetComfortPreference() ? searchEntry.getComfortPreference() : AVG_COMFORT;
 
 		Offer offer;
 		int nbOffer = 3;
@@ -97,14 +99,17 @@ public class SimpleOfferBuilder implements OfferBuilder {
 		Excursion excursion;
 		boolean alreadyVisited;
 		boolean newExcursionFound;
+		visitedSites = new ArrayList<Site>();
 
-		excursionFrequency = isSetComfortPreference() ? 1 / searchEntry.getComfortPreference() : 1 / AVG_COMFORT;
+		excursionFrequency = isSetComfortPreference() ? (double) 1 / searchEntry.getComfortPreference()
+				: (double) 1 / AVG_COMFORT;
+
 		while (i < nbOffer && !excursions.isEmpty()) {
 			offer = new Offer();
 			time = 0;
 			day = 0;
 			currentHotelStayDuration = 0;
-			alreadyVisited = false;
+			currentOfferPrice = 0;
 			excursion = excursions.get(0);
 			visitedSites.clear();
 			currentHotel = excursions.get(0).getHotel();
@@ -115,69 +120,68 @@ public class SimpleOfferBuilder implements OfferBuilder {
 					if (currentOfferPrice + currentHotel.getPricePerNight() > budget) {
 						break;
 					}
+					currentOfferPrice += currentHotel.getPricePerNight();
 					currentHotelStayDuration++;
 					day++;
 				}
 
 				if (Math.random() <= excursionFrequency) {
 					// Get next excursion
-					Iterator<Excursion> iterator = excursions.iterator();
 					boolean found = false;
-					while (iterator.hasNext() && !found) {
-						excursion = iterator.next();
-
-						for (Site site : excursion.getSites()) {
+					for (Excursion candidateExcursion : excursions) {
+						alreadyVisited = false;
+						for (Site site : candidateExcursion.getSites()) {
 							if (visitedSites.contains(site)) {
-								/*
-								 * Hotel nextHotel = excursion.getHotel(); if
-								 * (!nextHotel.getName().equals(currentHotel.getName())) { currentHotel =
-								 * excursion.getHotel();
-								 * 
-								 * int transportPrice = nextHotel.getTransport().getPrice(); if
-								 * (currentOfferPrice + transportPrice > budget) { break; } }
-								 */
-
-								if (currentOfferPrice + excursion.getPrice() <= budget) {
-									alreadyVisited = true;
-									break;
-								}
-
+								alreadyVisited = true;
+								break;
 							}
 						}
 
-						if (!alreadyVisited) {
+						if (!alreadyVisited && currentOfferPrice + candidateExcursion.getPrice() <= budget) {
+							/*
+							 * Hotel nextHotel = excursion.getHotel(); if
+							 * (!nextHotel.getName().equals(currentHotel.getName())) { currentHotel =
+							 * excursion.getHotel();
+							 * 
+							 * int transportPrice = nextHotel.getTransport().getPrice(); if
+							 * (currentOfferPrice + transportPrice > budget) { break; } }
+							 */
 							found = true;
 
-							Hotel nextHotel = excursion.getHotel();
+							Hotel nextHotel = candidateExcursion.getHotel();
 							if (!nextHotel.getName().equals(currentHotel.getName())) {
 								reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
 								offer.addHotelReservation(reservation);
 								currentHotel = nextHotel;
 								currentHotelStayDuration = 0;
 							}
-							
-							
-							excursion.setDay(day);
-							offer.addExcursion(excursion);
-							for (Site site : excursion.getSites()) {
+
+							candidateExcursion.setDay(day);
+							offer.addExcursion(candidateExcursion);
+							for (Site site : candidateExcursion.getSites()) {
 								visitedSites.add(site);
 							}
-							currentOfferPrice += excursion.getPrice();
+							currentOfferPrice += candidateExcursion.getPrice();
+							excursion = candidateExcursion;
+							break;
 						}
 					}
 
 					if (found) {
 						excursions.remove(excursion);
+						newExcursionFound = true;
 					} else {
 						newExcursionFound = false;
 					}
-
 				}
 				time++;
 			}
+
 			reservation = new HotelReservation(currentHotel, currentHotelStayDuration);
 			offer.addHotelReservation(reservation);
 			offer.setTotalPrice(currentOfferPrice);
+			offer.setId(i);
+			offers.add(offer);
 			i++;
 		}
 
@@ -202,7 +206,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 			subsets.add(new ArrayList<Integer>(subset));
 			return;
 		}
-		for (int i = startIndex; i <= n; i++) {
+		for (int i = startIndex; i < n; i++) {
 			subset.add(i);
 			recSubsetBuilder(n, k, i + 1, subsets, subset);
 			subset.remove(subset.size() - 1);
@@ -226,7 +230,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 
 				for (int i = 0; i < subset.size(); i++) {
 
-					Site site = sites.get(i);
+					Site site = sites.get(subset.get(i));
 					LinkedList<Transport> transportsToSite = new LinkedList<Transport>();
 
 					excursion.addSite(site);
@@ -249,11 +253,44 @@ public class SimpleOfferBuilder implements OfferBuilder {
 						}
 						transports.add(transportsToHotel);
 					}
+
 				}
 
-				excursions.add(excursion);
+				excursion.setTransports(transports);
+
+				int price = calculateExcursionPrice(excursion);
+				if (!isSetPriceRange() || price <= searchEntry.getBudgetMax()) {
+					excursions.add(excursion);
+				}
 			}
 		}
+
+	}
+
+	private int calculateExcursionPrice(Excursion excursion) {
+		int visitPrices = 0;
+		int transportPrices = 0;
+		LinkedList<Site> sites = excursion.getSites();
+		for (Site site : sites) {
+			visitPrices += site.getPrice();
+		}
+
+		LinkedList<LinkedList<Transport>> transports = excursion.getTransports();
+		for (LinkedList<Transport> transportsBetweenLocations : transports) {
+			for (Transport transport : transportsBetweenLocations) {
+				transportPrices += transport.getPrice();
+			}
+		}
+		excursion.setPrice(visitPrices + transportPrices);
+		return excursion.getPrice();
+	}
+
+	private void getMockHotels() {
+		hotels = locationPersistence.getAllHotels();
+	}
+
+	private void getMockSites() {
+		sites = locationPersistence.getSiteByPrice(searchEntry.getBudgetMin(), searchEntry.getBudgetMax());
 	}
 
 	private void getCandidateHotels() {
@@ -294,7 +331,7 @@ public class SimpleOfferBuilder implements OfferBuilder {
 	private void calculateDistances() {
 		distanceMatrix = new double[hotels.size()][sites.size()];
 		for (int i = 0; i < hotels.size(); i++) {
-			for (int j = 0; i < sites.size(); j++) {
+			for (int j = 0; j < sites.size(); j++) {
 				distanceMatrix[i][j] = EngineUtility.calculateDistance(hotels.get(i), sites.get(j));
 			}
 		}
